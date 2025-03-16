@@ -11,5 +11,6 @@ config_version=5
 [application]
 
 config/name="Mono juego"
+run/main_scene="uid://cts2878rykdgr"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Assets/icon.svg"
