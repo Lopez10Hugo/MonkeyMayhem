@@ -13,4 +13,5 @@ config_version=5
 config/name="Mono juego"
 run/main_scene="uid://cts2878rykdgr"
 config/features=PackedStringArray("4.4", "Forward Plus")
+run/max_fps=60
 config/icon="res://Assets/icon.svg"
