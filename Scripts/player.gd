@@ -8,7 +8,7 @@ const CLIMB_SPEED = 300.0  # Velocidad de trepado
 var jump_pressed = false
 var coyote_counter = 0
 var jump_buffer_counter = 0
-
+@onready var Sprite =$Sprite2D
 @export var jump_height: float
 @export var jump_time_to_peak: float
 @export var jump_time_to_descent: float
@@ -18,7 +18,6 @@ var jump_buffer_counter = 0
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
 var is_climbing = false  # Estado de trepado
-
 func _physics_process(delta: float) -> void:
 	# Comprobar si está tocando una pared
 	var is_touching_wall = is_on_wall()
@@ -57,6 +56,10 @@ func _physics_process(delta: float) -> void:
 	# Movimiento horizontal usando WASD
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
+		if direction == -1.0:
+			Sprite.flip_h = false
+		elif direction == 1.0:
+			Sprite.flip_h = true
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
