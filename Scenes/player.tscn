@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bl2ecfduss1gr"]
 
 [ext_resource type="Script" uid="uid://cr8u2lu5ith3g" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://dkxncby0mcie6" path="res://Assets/icon.svg" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://ddnp1a7241xa0" path="res://Assets/monkey.png" id="2_cvnsp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(115, 119)
@@ -14,4 +14,7 @@ position = Vector2(-3.5, 1.5)
 shape = SubResource("RectangleShape2D_cvnsp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_v0iea")
+unique_name_in_owner = true
+position = Vector2(-3.5, 1.5)
+scale = Vector2(3.59375, 3.71875)
+texture = ExtResource("2_cvnsp")

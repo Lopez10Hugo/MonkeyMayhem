@@ -9,7 +9,7 @@ const COYOTE_FRAME_WINDOW = 5
 var jump_pressed = false
 var coyote_counter = 0
 var jump_buffer_counter = 0
-
+@onready var Sprite =$Sprite2D
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if is_on_floor():
@@ -33,6 +33,10 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
+		if direction == -1.0:
+			Sprite.flip_h = false
+		elif direction == 1.0:
+			Sprite.flip_h = true
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
