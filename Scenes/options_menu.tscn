@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://duvnfsjytk38v"]
+
+[ext_resource type="Texture2D" uid="uid://bhbgwyujqpepl" path="res://Assets/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest of Illusion/Forest of Illusion Expansion Pack/Layers/back.png" id="1_plplt"]
+[ext_resource type="Script" uid="uid://cup6bx8lv1lk8" path="res://Scripts/options_menu.gd" id="1_uj0ok"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uj0ok"]
+texture = ExtResource("1_plplt")
+
+[node name="Options Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uj0ok")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_uj0ok")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -381.5
+offset_top = -244.0
+offset_right = 381.5
+offset_bottom = 244.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 60
+
+[node name="Left container" type="VBoxContainer" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
+
+[node name="Idioma" type="Button" parent="HSplitContainer/Left container"]
+layout_mode = 2
+text = "Idioma"
+
+[node name="Pantalla" type="Button" parent="HSplitContainer/Left container"]
+layout_mode = 2
+text = "Pantalla"
+
+[node name="Right container" type="VBoxContainer" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="HSplitContainer/Right container"]
+layout_mode = 2
+text = "Checkbox
+"
+
+[node name="Volver al menu" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -61.5
+offset_top = -104.0
+offset_right = 61.5
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Atrás"
+
+[connection signal="pressed" from="Volver al menu" to="." method="_on_volver_al_menu_pressed"]
