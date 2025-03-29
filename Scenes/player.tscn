@@ -3,18 +3,20 @@
 [ext_resource type="Script" uid="uid://cr8u2lu5ith3g" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://ddnp1a7241xa0" path="res://Assets/monkey.png" id="2_cvnsp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
-size = Vector2(115, 119)
+[sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
+radius = 53.0094
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(0, 1)
+collision_layer = 2
 script = ExtResource("1_cvnsp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3.5, 1.5)
-shape = SubResource("RectangleShape2D_cvnsp")
+position = Vector2(2, -13)
+shape = SubResource("CircleShape2D_cvnsp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-3.5, 1.5)
+position = Vector2(1.00003, -0.999999)
 scale = Vector2(3.59375, 3.71875)
 texture = ExtResource("2_cvnsp")

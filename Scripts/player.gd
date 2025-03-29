@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = SPEED  # Si no está tocando la pared o no presiona las teclas, dejar de trepar
 
 	# Movimiento horizontal usando WASD
-	var direction := Input.get_axis("ui_left", "ui_right")
+	var direction := Input.get_axis("moverse izquierda", "moverse derecha")
 	if direction:
 		if direction == -1.0:
 			Sprite.flip_h = false
