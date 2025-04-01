@@ -1,14 +1,19 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
+const SPEED = 200.0
 const JUMP_BUFFER_WINDOW = 0.08
 const COYOTE_FRAME_WINDOW = 0.08
-const CLIMB_SPEED = 300.0  # Velocidad de trepado
+const CLIMB_SPEED = 10000.0  
 
 var jump_pressed = false
 var coyote_counter = 0
 var jump_buffer_counter = 0
-@onready var Sprite =$Sprite2D
+var dashing = false
+var can_dash = true
+var dash_accel: float = 1
+
+@onready var Ray = %Ray
+@onready var Sprite = $Sprite2D
 @export var jump_height: float
 @export var jump_time_to_peak: float
 @export var jump_time_to_descent: float
@@ -16,55 +21,88 @@ var jump_buffer_counter = 0
 @onready var jump_velocity: float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
+@onready var dash_timer = $DashTimer
 
-var is_climbing = false  # Estado de trepado
 func _physics_process(delta: float) -> void:
-	# Comprobar si está tocando una pared
-	var is_touching_wall = is_on_wall()
+	check_ground(delta)
+	handle_jump()
+	handle_movement(delta)
+	move_and_slide()
 
-	# Movimiento y gravedad
+func calculate_gravity() -> float:
+	return jump_gravity if velocity.y < 0.0 else fall_gravity
+
+func check_for_wall() -> bool:
+	return Ray.is_colliding()
+
+func calculate_wall_movement() -> float:
+	return Input.get_axis("trepar arriba", "trepar abajo")
+
+func check_ground(delta: float) -> void:
 	if is_on_floor():
+		can_dash = true
 		coyote_counter = 0
 		if jump_pressed and jump_buffer_counter <= JUMP_BUFFER_WINDOW:
 			velocity.y = jump_velocity
 			jump_pressed = false
-		if is_climbing:
-			# Detener el movimiento de gravedad mientras trepa
-			velocity.y = 0
 	else:
-		# Si no está tocando el suelo, aplicar gravedad
 		velocity.y += calculate_gravity() * delta
 		coyote_counter += delta 
 		jump_buffer_counter += delta
 
-	# Comportamiento de salto
-	if Input.is_action_just_pressed("ui_accept") and not is_climbing:
+func handle_jump() -> void:
+	if Input.is_action_just_pressed("saltar"):
 		jump_pressed = true
 		jump_buffer_counter = 0
 		if is_on_floor() or coyote_counter <= COYOTE_FRAME_WINDOW:
 			velocity.y = jump_velocity
 
-	# Comportamiento de trepar
-	if is_touching_wall and Input.is_action_pressed("Trepar") and Input.is_action_pressed("ui_accept"):
-		# Si el jugador está tocando la pared y presiona "W + Espacio", activar el trepado
-		is_climbing = true
-		velocity.y = -CLIMB_SPEED  # Subir la pared
-	else:
-		is_climbing = false
-		velocity.x = SPEED  # Si no está tocando la pared o no presiona las teclas, dejar de trepar
+func handle_movement(delta: float) -> void:
+	if Input.is_action_just_pressed("Dash") and not dashing and can_dash:
+		dashing = true
+		can_dash = false
+		dash_timer.start(0.2)
+		var direction_x = Input.get_axis("moverse izquierda", "moverse derecha")
+		var direction_y = Input.get_axis("trepar arriba", "trepar abajo")
+		var dash_direction = Vector2(direction_x, direction_y).normalized()
+		if dash_direction == Vector2.ZERO:
+			dash_direction.x = 1 if Sprite.flip_h else -1
+		velocity = dash_direction * SPEED * 3
+		for i in range(3):  # Creates multiple trail instances
+			await get_tree().create_timer(0.05 * i).timeout
+			create_trail()
+	
+	if check_for_wall() and Input.is_action_pressed("Trepar"):
+		velocity.y = calculate_wall_movement() * CLIMB_SPEED * delta
+	elif not dashing:
+		var direction := Input.get_axis("moverse izquierda", "moverse derecha")
+		if direction:
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	# Movimiento horizontal usando WASD
-	var direction := Input.get_axis("moverse izquierda", "moverse derecha")
-	if direction:
-		if direction == -1.0:
+		if velocity.x < 0:
 			Sprite.flip_h = false
-		elif direction == 1.0:
+			Ray.rotation_degrees = 0.0  
+		elif velocity.x > 0:
 			Sprite.flip_h = true
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+			Ray.rotation_degrees = 180.0
 
-	move_and_slide()
+func create_trail():
+	var trail_sprite = Sprite2D.new()
+	trail_sprite.texture = Sprite.texture
+	trail_sprite.global_position = Sprite.global_position
+	trail_sprite.scale = Sprite.scale
+	trail_sprite.modulate = Color(0.6, 0.4, 0.2, 0.8)  # Marrón claro con transparencia
+	trail_sprite.z_index = Sprite.z_index - 1
+	trail_sprite.flip_h = Sprite.flip_h
+	get_parent().add_child(trail_sprite)
+	var tween = get_tree().create_tween()
+	tween.tween_property(trail_sprite, "modulate", Color(0.6, 0.4, 0.2, 0), 0.3)  # Se desvanece
+	tween.tween_callback(trail_sprite.queue_free)
 
-func calculate_gravity() -> float:
-	return jump_gravity if velocity.y < 0.0 else fall_gravity
+
+func _on_dash_timer_timeout() -> void:
+	dashing = false
+	velocity.x = 0
+	velocity.y /=10
