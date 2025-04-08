@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=4 uid="uid://cts2878rykdgr"]
 
-[ext_resource type="PackedScene" uid="uid://bl2ecfduss1gr" path="res://Scenes/player.tscn" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://b6j4c4ju0vxo6" path="res://Scripts/main.gd" id="1_8gbba"]
 [ext_resource type="Texture2D" uid="uid://bqwwci3hr8p7r" path="res://Assets/sprites/Brackeys Bundle/world_tileset.png" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://cxfkewlgy5kpa" path="res://Scenes/killzone.tscn" id="3_8gbba"]
 
@@ -179,18 +179,12 @@ sources/0 = SubResource("TileSetAtlasSource_8gbba")
 distance = -386.0
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_8gbba")
 
 [node name="GameManager" type="Node" parent="."]
 
-[node name="Player" parent="." instance=ExtResource("1_jjgbg")]
-z_index = 1
-position = Vector2(0, -10)
-jump_height = 80.0
-jump_time_to_peak = 0.5
-jump_time_to_descent = 0.4
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(4, -9)
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(4, -19)
 zoom = Vector2(2, 2)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
