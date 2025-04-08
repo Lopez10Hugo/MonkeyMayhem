@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://cts2878rykdgr"]
+[gd_scene load_steps=8 format=4 uid="uid://cts2878rykdgr"]
 
 [ext_resource type="PackedScene" uid="uid://bl2ecfduss1gr" path="res://Scenes/player.tscn" id="1_jjgbg"]
 [ext_resource type="Texture2D" uid="uid://bqwwci3hr8p7r" path="res://Assets/sprites/Brackeys Bundle/world_tileset.png" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://cxfkewlgy5kpa" path="res://Scenes/killzone.tscn" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://6dybykqnfrcc" path="res://Scenes/pausa.tscn" id="4_jjvhh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8gbba"]
 texture = ExtResource("2_bo1nx")
@@ -184,7 +185,7 @@ distance = -386.0
 
 [node name="Player" parent="." instance=ExtResource("1_jjgbg")]
 z_index = 1
-position = Vector2(0, -10)
+position = Vector2(-14, -18)
 jump_height = 80.0
 jump_time_to_peak = 0.5
 jump_time_to_descent = 0.4
@@ -201,3 +202,7 @@ tile_set = SubResource("TileSet_jjvhh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 shape = SubResource("WorldBoundaryShape2D_jjvhh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pausa" parent="CanvasLayer" instance=ExtResource("4_jjvhh")]
