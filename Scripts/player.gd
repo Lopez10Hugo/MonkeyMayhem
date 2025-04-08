@@ -12,7 +12,8 @@ var dashing = false
 var can_dash = true
 var dash_accel: float = 1
 
-@onready var Ray = %Ray
+@export var player_id = 1
+@onready var Ray = $Ray
 @onready var Sprite = $Sprite2D
 @export var jump_height: float
 @export var jump_time_to_peak: float
@@ -24,6 +25,7 @@ var dash_accel: float = 1
 @onready var dash_timer = $DashTimer
 
 func _physics_process(delta: float) -> void:
+	print("ID : " , player_id, " Pos: " , position)
 	check_ground(delta)
 	handle_jump()
 	handle_movement(delta)
@@ -36,7 +38,7 @@ func check_for_wall() -> bool:
 	return Ray.is_colliding()
 
 func calculate_wall_movement() -> float:
-	return Input.get_axis("trepar arriba", "trepar abajo")
+	return Input.get_axis("trepar_arriba_%s" % [player_id], "trepar_abajo_%s" % [player_id])
 
 func check_ground(delta: float) -> void:
 	if is_on_floor():
@@ -51,19 +53,19 @@ func check_ground(delta: float) -> void:
 		jump_buffer_counter += delta
 
 func handle_jump() -> void:
-	if Input.is_action_just_pressed("saltar"):
+	if Input.is_action_just_pressed("saltar_%s" % [player_id]):
 		jump_pressed = true
 		jump_buffer_counter = 0
 		if is_on_floor() or coyote_counter <= COYOTE_FRAME_WINDOW:
 			velocity.y = jump_velocity
 
 func handle_movement(delta: float) -> void:
-	if Input.is_action_just_pressed("Dash") and not dashing and can_dash:
+	if Input.is_action_just_pressed("dash_%s" % [player_id]) and not dashing and can_dash:
 		dashing = true
 		can_dash = false
 		dash_timer.start(0.2)
-		var direction_x = Input.get_axis("moverse izquierda", "moverse derecha")
-		var direction_y = Input.get_axis("trepar arriba", "trepar abajo")
+		var direction_x = Input.get_axis("mover_izquierda_%s" % [player_id],"mover_derecha_%s" % [player_id])
+		var direction_y = Input.get_axis("trepar_arriba_%s" % [player_id], "trepar_abajo_%s" % [player_id])
 		var dash_direction = Vector2(direction_x, direction_y).normalized()
 		if dash_direction == Vector2.ZERO:
 			dash_direction.x = 1 if Sprite.flip_h else -1
@@ -72,10 +74,10 @@ func handle_movement(delta: float) -> void:
 			await get_tree().create_timer(0.05 * i).timeout
 			create_trail()
 	
-	if check_for_wall() and Input.is_action_pressed("Trepar"):
+	if check_for_wall() and Input.is_action_pressed("trepar_%s" % [player_id]):
 		velocity.y = calculate_wall_movement() * CLIMB_SPEED * delta
 	elif not dashing:
-		var direction := Input.get_axis("moverse izquierda", "moverse derecha")
+		var direction := Input.get_axis("mover_izquierda_%s" % [player_id],"mover_derecha_%s" % [player_id])
 		if direction:
 			velocity.x = direction * SPEED
 		else:
