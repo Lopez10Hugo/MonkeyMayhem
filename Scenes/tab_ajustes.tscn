@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://ikqtw38xtqrk"]
+[gd_scene load_steps=4 format=3 uid="uid://ikqtw38xtqrk"]
+
+[ext_resource type="PackedScene" path="res://Scenes/rebind_control_boton.tscn" id="1_omlax"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_04q3k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_omlax"]
 
 [node name="Tab_ajustes" type="Control"]
 layout_mode = 3
@@ -19,9 +25,10 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 0
+current_tab = 2
 
 [node name="Sonido" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -73,7 +80,6 @@ layout_mode = 2
 text = "hola"
 
 [node name="Controles" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -89,14 +95,46 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controles/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Controles/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 64
-alignment = 1
 
-[node name="Label" type="Label" parent="TabContainer/Controles/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controles/MarginContainer/ScrollContainer"]
 layout_mode = 2
-text = "hola"
+theme_override_constants/separation = 60
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxEmpty_04q3k")
+
+[node name="Rebind_control_boton" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_omlax")]
+layout_mode = 2
+action_name = "mover_derecha_1"
+
+[node name="Rebind_control_boton2" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_omlax")]
+layout_mode = 2
+action_name = "mover_izquierda_1"
+
+[node name="Rebind_control_boton3" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_omlax")]
+layout_mode = 2
+action_name = "saltar_1"
+
+[node name="Rebind_control_boton4" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_omlax")]
+layout_mode = 2
+action_name = "mover_derecha_1"
+
+[node name="Rebind_control_boton5" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_omlax")]
+layout_mode = 2
+action_name = "mover_derecha_1"
+
+[node name="Rebind_control_boton6" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_omlax")]
+layout_mode = 2
+action_name = "mover_derecha_1"
+
+[node name="HSeparator2" type="HSeparator" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxEmpty_omlax")
 
 [node name="Accesibilidad" type="TabBar" parent="TabContainer"]
 visible = false
