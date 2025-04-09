@@ -1,11 +1,18 @@
 extends Control
+@onready var grid_container: GridContainer = $GridContainer
+@onready var continuar: Button = $GridContainer/Continuar
+
+func _ready() -> void:
+	continuar.grab_focus()
 
 var pausado : bool = false:
 	set = set_pausa
-	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pausar"):
+		pausado = not pausado
+		continuar.grab_focus()
+	if event.is_action_pressed("ui_cancel"):
 		pausado = not pausado
 
 func set_pausa(valor : bool):

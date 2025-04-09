@@ -185,7 +185,7 @@ script = ExtResource("1_8gbba")
 [node name="GameManager" type="Node" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(4, -19)
+position = Vector2(-75, -51)
 zoom = Vector2(2, 2)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
