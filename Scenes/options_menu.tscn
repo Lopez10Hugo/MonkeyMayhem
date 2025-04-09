@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://duvnfsjytk38v"]
+[gd_scene load_steps=6 format=3 uid="uid://duvnfsjytk38v"]
 
 [ext_resource type="Texture2D" uid="uid://bhbgwyujqpepl" path="res://Assets/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest of Illusion/Forest of Illusion Expansion Pack/Layers/back.png" id="1_plplt"]
 [ext_resource type="Script" uid="uid://cup6bx8lv1lk8" path="res://Scripts/options_menu.gd" id="1_uj0ok"]
+[ext_resource type="FontFile" uid="uid://dkkt3xoq4ajcs" path="res://Assets/Fonts/kiwisoda/KiwiSoda.ttf" id="3_l1wg4"]
+[ext_resource type="PackedScene" uid="uid://ikqtw38xtqrk" path="res://Scenes/tab_ajustes.tscn" id="4_inh3s"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uj0ok"]
 texture = ExtResource("1_plplt")
@@ -24,56 +26,40 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_uj0ok")
 
-[node name="HSplitContainer" type="HSplitContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -381.5
-offset_top = -244.0
-offset_right = 381.5
-offset_bottom = 244.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 60
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
 
-[node name="Left container" type="VBoxContainer" parent="HSplitContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 30
 
-[node name="Idioma" type="Button" parent="HSplitContainer/Left container"]
+[node name="Titulo" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Idioma"
+theme_override_colors/font_shadow_color = Color(0.894118, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 6
+theme_override_fonts/font = ExtResource("3_l1wg4")
+theme_override_font_sizes/font_size = 64
+text = "Opciones"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Pantalla" type="Button" parent="HSplitContainer/Left container"]
+[node name="Tab_ajustes" parent="MarginContainer/VBoxContainer" instance=ExtResource("4_inh3s")]
 layout_mode = 2
-text = "Pantalla"
+size_flags_vertical = 3
 
-[node name="Right container" type="VBoxContainer" parent="HSplitContainer"]
+[node name="Volver al menu" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Button" type="Button" parent="HSplitContainer/Right container"]
-layout_mode = 2
-text = "Checkbox
-"
-
-[node name="Volver al menu" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -61.5
-offset_top = -104.0
-offset_right = 61.5
-offset_bottom = -64.0
-grow_horizontal = 2
-grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
 text = "Atrás"
 
-[connection signal="pressed" from="Volver al menu" to="." method="_on_volver_al_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Volver al menu" to="." method="_on_volver_al_menu_pressed"]
