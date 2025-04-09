@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ikqtw38xtqrk"]
 
-[ext_resource type="PackedScene" path="res://Scenes/rebind_control_boton.tscn" id="1_omlax"]
+[ext_resource type="PackedScene" uid="uid://d34udydjwtjb5" path="res://Scenes/rebind_control.tscn" id="2_g1e5q"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_04q3k"]
 
@@ -100,36 +100,28 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controles/MarginContainer/ScrollContainer"]
 layout_mode = 2
-theme_override_constants/separation = 60
+size_flags_horizontal = 4
+theme_override_constants/separation = 30
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_04q3k")
 
-[node name="Rebind_control_boton" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_omlax")]
+[node name="Rebind_control" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_g1e5q")]
 layout_mode = 2
-action_name = "mover_derecha_1"
 
-[node name="Rebind_control_boton2" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_omlax")]
-layout_mode = 2
-action_name = "mover_izquierda_1"
-
-[node name="Rebind_control_boton3" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_omlax")]
+[node name="Rebind_control2" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_g1e5q")]
 layout_mode = 2
 action_name = "saltar_1"
 
-[node name="Rebind_control_boton4" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_omlax")]
+[node name="Rebind_control3" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_g1e5q")]
 layout_mode = 2
-action_name = "mover_derecha_1"
+action_name = "mover_izquierda_1"
 
-[node name="Rebind_control_boton5" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_omlax")]
+[node name="Rebind_control4" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_g1e5q")]
 layout_mode = 2
-action_name = "mover_derecha_1"
-
-[node name="Rebind_control_boton6" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_omlax")]
-layout_mode = 2
-action_name = "mover_derecha_1"
+action_name = "trepar_1"
 
 [node name="HSeparator2" type="HSeparator" parent="TabContainer/Controles/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2

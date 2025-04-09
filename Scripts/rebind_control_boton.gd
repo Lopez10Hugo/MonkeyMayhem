@@ -22,6 +22,8 @@ func set_action_name() -> void:
 			label.text = "Moverse a la izquierda"
 		"saltar_1":
 			label.text = "Saltar"
+		"trepar_1":
+			label.text = "Trepar"
 
 func set_text_key() ->void:
 	var action_events = InputMap.action_get_events(action_name)

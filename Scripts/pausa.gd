@@ -3,9 +3,10 @@ extends Control
 @onready var continuar: Button = $GridContainer/Continuar
 @onready var salir: Button = $GridContainer/Salir
 @onready var opciones: Button = $GridContainer/Opciones
-@onready var confirmacion_salir: Window = $"Confirmacion salir"
-@onready var si_salir: Button = $"Confirmacion salir/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Si"
-@onready var no_salir: Button = $"Confirmacion salir/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/No"
+#@onready var confirmacion_salir: Window = $"Confirmacion salir"
+@onready var confirmacion_salir: Window = $Window
+@onready var si_salir: Button = $Window/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Si
+@onready var no_salir: Button = $Window/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/No
 
 var in_confirmacion_salir: bool = false
 
