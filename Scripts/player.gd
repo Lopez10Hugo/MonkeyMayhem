@@ -25,7 +25,7 @@ var dash_accel: float = 1
 @onready var dash_timer = $DashTimer
 
 func _physics_process(delta: float) -> void:
-	print("ID : " , player_id, " Pos: " , position)
+	#print("ID : " , player_id, " Pos: " , position)
 	check_ground(delta)
 	handle_jump()
 	handle_movement(delta)
