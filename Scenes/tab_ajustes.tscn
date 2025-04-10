@@ -1,5 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ikqtw38xtqrk"]
+[gd_scene load_steps=6 format=3 uid="uid://ikqtw38xtqrk"]
 
+[ext_resource type="PackedScene" uid="uid://bc0pvylyphul1" path="res://Scenes/boton_modo_ventana.tscn" id="1_j0xpj"]
+[ext_resource type="PackedScene" uid="uid://b16ie1d2dkvrs" path="res://Scenes/boton_resolucion.tscn" id="2_e2y0x"]
 [ext_resource type="PackedScene" uid="uid://d34udydjwtjb5" path="res://Scenes/rebind_control.tscn" id="2_g1e5q"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_04q3k"]
@@ -25,7 +27,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 2
+current_tab = 1
 
 [node name="Sonido" type="TabBar" parent="TabContainer"]
 visible = false
@@ -54,7 +56,6 @@ layout_mode = 2
 text = "hola"
 
 [node name="Gráficos" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -70,16 +71,21 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Gráficos/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Gráficos/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 64
-alignment = 1
 
-[node name="Label" type="Label" parent="TabContainer/Gráficos/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Gráficos/MarginContainer/ScrollContainer"]
 layout_mode = 2
-text = "hola"
+theme_override_constants/separation = 128
+
+[node name="boton_modo_ventana" parent="TabContainer/Gráficos/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_j0xpj")]
+layout_mode = 2
+
+[node name="boton_resolucion" parent="TabContainer/Gráficos/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_e2y0x")]
+layout_mode = 2
 
 [node name="Controles" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
