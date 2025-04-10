@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=4 uid="uid://cts2878rykdgr"]
 
-[ext_resource type="Script" path="res://Scripts/main.gd" id="1_8gbba"]
+[ext_resource type="Script" uid="uid://b6j4c4ju0vxo6" path="res://Scripts/main.gd" id="1_8gbba"]
 [ext_resource type="Texture2D" uid="uid://bqwwci3hr8p7r" path="res://Assets/sprites/Brackeys Bundle/world_tileset.png" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://cxfkewlgy5kpa" path="res://Scenes/killzone.tscn" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://6dybykqnfrcc" path="res://Scenes/pausa.tscn" id="4_jjvhh"]
