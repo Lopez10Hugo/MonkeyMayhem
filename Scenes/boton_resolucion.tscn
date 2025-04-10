@@ -8,3 +8,5 @@ script = ExtResource("2_0v7eq")
 
 [node name="Label" parent="HBoxContainer" index="0"]
 text = "Resolución"
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]

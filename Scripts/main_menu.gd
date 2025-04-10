@@ -32,7 +32,7 @@ func _on_options_pressed() -> void:
 	fondo_main.visible = false
 	options_menu.set_process(true)
 	options_menu.visible = true
-	$"Options Menu/MarginContainer/VBoxContainer/Volver al menu".grab_focus()
+	$"Options Menu".grab_focus()
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()

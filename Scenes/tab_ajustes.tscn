@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ikqtw38xtqrk"]
+[gd_scene load_steps=7 format=3 uid="uid://ikqtw38xtqrk"]
 
+[ext_resource type="Script" uid="uid://b5rqomrwehbtx" path="res://Scenes/tab_ajustes.gd" id="1_e2y0x"]
 [ext_resource type="PackedScene" uid="uid://bc0pvylyphul1" path="res://Scenes/boton_modo_ventana.tscn" id="1_j0xpj"]
 [ext_resource type="PackedScene" uid="uid://b16ie1d2dkvrs" path="res://Scenes/boton_resolucion.tscn" id="2_e2y0x"]
 [ext_resource type="PackedScene" uid="uid://d34udydjwtjb5" path="res://Scenes/rebind_control.tscn" id="2_g1e5q"]
@@ -15,6 +16,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 2
+script = ExtResource("1_e2y0x")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 custom_minimum_size = Vector2(1000, 420)
@@ -80,9 +83,13 @@ theme_override_constants/separation = 128
 
 [node name="boton_modo_ventana" parent="TabContainer/Gráficos/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_j0xpj")]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../boton_resolucion")
+focus_mode = 2
 
 [node name="boton_resolucion" parent="TabContainer/Gráficos/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_e2y0x")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../boton_modo_ventana")
+focus_mode = 2
 
 [node name="Controles" type="TabBar" parent="TabContainer"]
 visible = false
@@ -159,3 +166,7 @@ alignment = 1
 [node name="Label" type="Label" parent="TabContainer/Accesibilidad/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "hola"
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_entered" from="." to="TabContainer/Gráficos/MarginContainer/ScrollContainer/VBoxContainer/boton_modo_ventana" method="_on_tab_ajustes_focus_entered"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

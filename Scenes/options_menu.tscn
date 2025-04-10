@@ -15,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 2
 script = ExtResource("1_uj0ok")
 
 [node name="Panel" type="Panel" parent="."]
@@ -60,6 +61,9 @@ custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+focus_neighbor_top = NodePath("../Tab_ajustes")
+focus_neighbor_bottom = NodePath("../Tab_ajustes")
 text = "Atrás"
 
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Volver al menu" to="." method="_on_volver_al_menu_pressed"]

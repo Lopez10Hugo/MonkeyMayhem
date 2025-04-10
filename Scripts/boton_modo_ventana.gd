@@ -31,3 +31,6 @@ func on_modo_ventana_seleccionado(index : int) -> void:
 		3: # full screen sin bordes
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,true)
+
+func _on_focus_entered() -> void:
+	option_button.grab_focus()
