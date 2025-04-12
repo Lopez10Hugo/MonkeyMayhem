@@ -1,0 +1,155 @@
+[gd_scene load_steps=7 format=3 uid="uid://duvnfsjytk38v"]
+
+[ext_resource type="Texture2D" uid="uid://bhbgwyujqpepl" path="res://Assets/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest of Illusion/Forest of Illusion Expansion Pack/Layers/back.png" id="1_plplt"]
+[ext_resource type="Script" uid="uid://cup6bx8lv1lk8" path="res://Scripts/Menus/options_menu.gd" id="1_uj0ok"]
+[ext_resource type="FontFile" uid="uid://dkkt3xoq4ajcs" path="res://Assets/Fonts/kiwisoda/KiwiSoda.ttf" id="3_l1wg4"]
+[ext_resource type="PackedScene" uid="uid://b4eskf8f1gd2r" path="res://Scenes/Menus/graficos.tscn" id="4_oyh5q"]
+[ext_resource type="PackedScene" uid="uid://ci623np0twgr4" path="res://Scenes/Menus/controles.tscn" id="5_wuvo6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uj0ok"]
+texture = ExtResource("1_plplt")
+
+[node name="Options Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("1_uj0ok")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_uj0ok")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 120
+
+[node name="Titulo" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.894118, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 6
+theme_override_fonts/font = ExtResource("3_l1wg4")
+theme_override_font_sizes/font_size = 64
+text = "Opciones"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 120
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 200
+
+[node name="Controles" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/HSplitContainer"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+focus_neighbor_right = NodePath("../Graficos")
+focus_neighbor_bottom = NodePath("../../HSplitContainer2/Accesibilidad")
+text = "Controles"
+
+[node name="Graficos" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/HSplitContainer"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../Controles")
+focus_neighbor_bottom = NodePath("../../HSplitContainer2/Sonido")
+text = "Graficos
+"
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 200
+
+[node name="Accesibilidad" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/HSplitContainer2"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../HSplitContainer/Controles")
+focus_neighbor_right = NodePath("../Sonido")
+focus_neighbor_bottom = NodePath("../../../Volver al menu")
+text = "Accesibilidad
+"
+
+[node name="Sonido" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/HSplitContainer2"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_left = NodePath("../Accesibilidad")
+focus_neighbor_top = NodePath("../../HSplitContainer/Graficos")
+focus_neighbor_bottom = NodePath("../../../Volver al menu")
+text = "Sonido
+"
+
+[node name="Volver al menu" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Atrás"
+
+[node name="Graficos" parent="." instance=ExtResource("4_oyh5q")]
+visible = false
+layout_mode = 1
+
+[node name="Controles" parent="." instance=ExtResource("5_wuvo6")]
+visible = false
+layout_mode = 1
+
+[node name="confirmar" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 576.0
+offset_right = 64.0
+offset_bottom = 599.0
+text = "Confirmar: "
+
+[node name="atrás" type="Label" parent="."]
+layout_mode = 0
+offset_left = 197.0
+offset_top = 575.0
+offset_right = 238.0
+offset_bottom = 598.0
+text = "Atrás:"
+
+[node name="imagen_confirmar" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 575.0
+offset_right = 156.0
+offset_bottom = 604.0
+
+[node name="imagen_atras" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 572.0
+offset_right = 295.0
+offset_bottom = 605.0
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HSplitContainer/Controles" to="." method="_on_controles_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HSplitContainer/Graficos" to="." method="_on_graficos_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Volver al menu" to="." method="_on_volver_al_menu_pressed"]
