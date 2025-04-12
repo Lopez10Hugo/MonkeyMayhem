@@ -62,7 +62,7 @@ func _on_salir_pressed() -> void:
 func _on_si_pressed() -> void:
 	pausado = false
 	in_confirmacion_salir = false
-	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 
 func _on_no_pressed() -> void:
 	in_confirmacion_salir = false
