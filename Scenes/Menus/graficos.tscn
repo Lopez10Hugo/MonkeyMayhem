@@ -46,24 +46,24 @@ theme_override_constants/separation = 128
 
 [node name="boton_modo_ventana" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_vb2iw")]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../../Volver al menu")
+focus_neighbor_top = NodePath("../Volver al menu")
 focus_neighbor_bottom = NodePath("../boton_resolucion")
 focus_mode = 2
 
 [node name="boton_resolucion" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_qrw10")]
 layout_mode = 2
 focus_neighbor_top = NodePath("../boton_modo_ventana")
-focus_neighbor_bottom = NodePath("../../../../Volver al menu")
+focus_neighbor_bottom = NodePath("../Volver al menu")
 focus_mode = 2
 
-[node name="Volver al menu" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Volver al menu" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../MarginContainer/ScrollContainer/VBoxContainer/boton_resolucion")
-focus_neighbor_bottom = NodePath("../MarginContainer/ScrollContainer/VBoxContainer/boton_modo_ventana")
+focus_neighbor_top = NodePath("../boton_resolucion")
+focus_neighbor_bottom = NodePath("../boton_modo_ventana")
 text = "Atrás"
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Volver al menu" to="." method="_on_volver_al_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/Volver al menu" to="." method="_on_volver_al_menu_pressed"]

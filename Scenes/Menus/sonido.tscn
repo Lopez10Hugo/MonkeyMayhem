@@ -47,10 +47,11 @@ bus_name = "Musica"
 layout_mode = 2
 bus_name = "Efectos de sonido"
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Atrás"
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

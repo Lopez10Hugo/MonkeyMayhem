@@ -8,7 +8,7 @@ var is_listening_for_input = false
 @export var action_name : String = "mover_derecha_1"
 
 func _ready() -> void:
-	set_process_unhandled_input(false)
+	set_process_unhandled_key_input(false)
 	set_action_name()
 	set_text_key()
 
@@ -52,23 +52,28 @@ func get_joypad_button_name(index: int) -> String:
 		JOY_BUTTON_DPAD_RIGHT: return "D-Pad Right"
 		_: return "Botón " + str(index)
 
+var ignore_next_input = false
+
 func _on_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		button.text = "Presiona alguna tecla..."
 		is_listening_for_input = true
-		set_process_unhandled_key_input(toggled_on)
-		
-		for i in get_tree().get_first_nodes_in_group("hotkey_button"):
+		ignore_next_input = true  # ⚠️ Ignorar primer input
+		await get_tree().process_frame
+		set_process_unhandled_input(true)
+
+		for i in get_tree().get_nodes_in_group("hotkey_button"):
 			if i.action_name != self.action_name:
 				i.button.toggle_mode = false
-				i.set_process_unhandled_key_input(false)
+				i.set_process_unhandled_input(false)
 	else:
-		for i in get_tree().get_first_nodes_in_group("hotkey_button"):
+		for i in get_tree().get_nodes_in_group("hotkey_button"):
 			if i.action_name != self.action_name:
 				i.button.toggle_mode = true
-				i.set_process_unhandled_key_input(false)
-			
+				i.set_process_unhandled_input(false)
+
 		set_text_key()
+
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not is_listening_for_input:
@@ -77,12 +82,28 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		rebind_action_key(event)
 		button.button_pressed = false
 
+func _unhandled_input(event: InputEvent) -> void:
+	if not is_listening_for_input:
+		return
+
+	if ignore_next_input:
+		ignore_next_input = false
+		return  # 🚫 Ignoramos este primer evento
+
+	if event is InputEventKey or event is InputEventJoypadButton:
+		rebind_action_key(event)
+		button.button_pressed = false
+
+
 func rebind_action_key(evento):
 	InputMap.action_erase_events(action_name)
 	InputMap.action_add_event(action_name,evento)
-	set_process_unhandled_key_input(false)
+	#set_process_unhandled_key_input(false)
+	set_process_unhandled_input(false)
+	is_listening_for_input = false
 	set_text_key()
 	set_action_name()
+	button.grab_focus()
 
 func _on_focus_entered() -> void:
 	print('button grabbed focus')

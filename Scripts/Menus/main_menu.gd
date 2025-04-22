@@ -21,6 +21,7 @@ func on_exit_options() -> void:
 	fondo_main.visible = true
 	options_menu.visible = false
 	boton_play.grab_focus()
+	SettingsSignalBus.emit_set_settings_dict(SettingsDataContainer.create_storage_dict())
 	
 
 func _on_start_pressed() -> void:

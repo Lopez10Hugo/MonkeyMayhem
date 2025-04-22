@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://duvnfsjytk38v"]
+[gd_scene load_steps=9 format=3 uid="uid://duvnfsjytk38v"]
 
 [ext_resource type="Texture2D" uid="uid://bhbgwyujqpepl" path="res://Assets/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest of Illusion/Forest of Illusion Expansion Pack/Layers/back.png" id="1_plplt"]
 [ext_resource type="Script" uid="uid://cup6bx8lv1lk8" path="res://Scripts/Menus/options_menu.gd" id="1_uj0ok"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b4eskf8f1gd2r" path="res://Scenes/Menus/graficos.tscn" id="4_oyh5q"]
 [ext_resource type="PackedScene" uid="uid://ci623np0twgr4" path="res://Scenes/Menus/controles.tscn" id="5_wuvo6"]
 [ext_resource type="PackedScene" uid="uid://by8ycvahi1byv" path="res://Scenes/Menus/sonido.tscn" id="6_wuvo6"]
+[ext_resource type="PackedScene" uid="uid://6yd088206y4k" path="res://Scenes/Menus/accesibilidad.tscn" id="7_mjiau"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uj0ok"]
 texture = ExtResource("1_plplt")
@@ -124,6 +125,10 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[node name="Accesibilidad" parent="." instance=ExtResource("7_mjiau")]
+visible = false
+layout_mode = 1
+
 [node name="instrucciones" type="Node" parent="."]
 
 [node name="confirmar" type="Label" parent="instrucciones"]
@@ -155,5 +160,6 @@ offset_bottom = 605.0
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HSplitContainer/Controles" to="." method="_on_controles_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HSplitContainer/Graficos" to="." method="_on_graficos_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HSplitContainer2/Accesibilidad" to="." method="_on_accesibilidad_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HSplitContainer2/Sonido" to="." method="_on_sonido_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Volver al menu" to="." method="_on_volver_al_menu_pressed"]

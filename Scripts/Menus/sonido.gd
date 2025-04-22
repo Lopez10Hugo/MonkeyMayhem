@@ -13,3 +13,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			options_menu._inicial_display()
 			options_menu.grab_focus()
 			get_viewport().set_input_as_handled()
+
+func _on_button_pressed() -> void:
+	options_menu._inicial_display()
+	options_menu._on_focus_entered()

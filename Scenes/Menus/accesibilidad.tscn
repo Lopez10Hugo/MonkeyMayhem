@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://6yd088206y4k"]
+
+[ext_resource type="PackedScene" uid="uid://c6h54exjclvht" path="res://Scenes/Menus/subtitles_toggle_button.tscn" id="1_2elbh"]
+[ext_resource type="Script" uid="uid://cdkxrj0gl6bnr" path="res://Scripts/Menus/accesibilidad.gd" id="1_dk4dc"]
+
+[node name="Accesibilidad" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dk4dc")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 124
+theme_override_constants/margin_top = 124
+theme_override_constants/margin_right = 124
+theme_override_constants/margin_bottom = 124
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="subtitles_toggle_button" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_2elbh")]
+layout_mode = 2
+
+[node name="volver" type="Button" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Atrás
+"
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/volver" to="." method="_on_volver_pressed"]

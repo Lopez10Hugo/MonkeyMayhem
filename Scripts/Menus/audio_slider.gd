@@ -10,8 +10,18 @@ var bus_index : int = 0
 
 func _ready() -> void:
 	get_bus_name()
+	load_data()
 	set_label_text_name()
 	set_slider_value()
+
+func load_data() -> void:
+	match bus_name:
+		"Master":
+			_on_h_slider_value_changed(SettingsDataContainer.get_master_volume())
+		"Musica":
+			_on_h_slider_value_changed(SettingsDataContainer.get_music_volume())
+		"Efectos de sonido":
+			_on_h_slider_value_changed(SettingsDataContainer.get_effects_volume())
 
 func set_label_text_name():
 	audio_bus.text = "Volumen: " + str(bus_name) 
@@ -28,6 +38,14 @@ func set_slider_value():
 func _on_h_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
 	set_audio_value()
+	
+	match  bus_index:
+		0:
+			SettingsSignalBus.emit_on_master_sound_set(value)
+		1:
+			SettingsSignalBus.emit_on_musica_sound_set(value)
+		2:
+			SettingsSignalBus.emit_on_efectos_sound_set(value)
 
 func _on_focus_entered() -> void:
 	print("h slider grabbed focus")

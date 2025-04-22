@@ -12,12 +12,18 @@ const RESOLUTON_DICTIONARY : Dictionary = {
 func _ready():
 	option_button.item_selected.connect(on_resolucion_seleccionada)
 	add_resolution_items()
+	load_data()
+
+func load_data() ->void:
+	on_resolucion_seleccionada(SettingsDataContainer.get_resolution_index())
+	option_button.select(SettingsDataContainer.get_resolution_index())
 
 func add_resolution_items() -> void:
 	for resolucion in RESOLUTON_DICTIONARY:
 		option_button.add_item(resolucion)
 
 func on_resolucion_seleccionada(index : int) -> void:
+	SettingsSignalBus.emit_on_resolution_selected(index)
 	DisplayServer.window_set_size(RESOLUTON_DICTIONARY.values()[index])
 
 func _on_focus_entered() -> void:

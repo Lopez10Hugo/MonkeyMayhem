@@ -15,6 +15,13 @@ run/main_scene="uid://beo6iadyjm0u0"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Assets/icon.svg"
 
+[autoload]
+
+Autoloads="*res://Scripts/autoloads/autoloads.gd"
+SettingsDataContainer="*res://Scripts/autoloads/settings_data_container.gd"
+SettingsSignalBus="*res://Scripts/autoloads/SettingsSignalBus.gd"
+SaveManager="*res://Scripts/autoloads/save_manager.gd"
+
 [display]
 
 window/size/viewport_width=1280

@@ -9,6 +9,7 @@ extends Control
 @onready var boton_accesibilidad: Button = $MarginContainer/VBoxContainer/VBoxContainer/HSplitContainer2/Accesibilidad
 @onready var boton_sonido: Button = $MarginContainer/VBoxContainer/VBoxContainer/HSplitContainer2/Sonido
 @onready var sonido_tab: Control = $Sonido
+@onready var accesibilidad_tab: Control = $Accesibilidad
 
 signal exit_options
 
@@ -19,6 +20,7 @@ func _ready() -> void:
 
 func _on_volver_al_menu_pressed() -> void:
 	exit_options.emit()
+	SettingsSignalBus.emit_set_settings_dict(SettingsDataContainer.create_storage_dict())
 	set_process(false)
 
 func _on_focus_entered() -> void:
@@ -42,10 +44,16 @@ func _on_sonido_pressed() -> void:
 	sonido_tab.show()
 	sonido_tab._on_focus_entered()
 
+func _on_accesibilidad_pressed() -> void:
+	_hide_botones()
+	accesibilidad_tab.show()
+	accesibilidad_tab._on_focus_entered()
+
 func _inicial_display() -> void:
 	graficos_tab.hide()
 	controles_tab.hide()
 	sonido_tab.hide()
+	accesibilidad_tab.hide()
 	boton_controles.show()
 	boton_graficos.show()
 	boton_accesibilidad.show()
