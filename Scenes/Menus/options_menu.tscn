@@ -121,6 +121,7 @@ visible = false
 layout_mode = 1
 
 [node name="Sonido" parent="." instance=ExtResource("6_wuvo6")]
+visible = false
 layout_mode = 1
 
 [node name="instrucciones" type="Node" parent="."]
