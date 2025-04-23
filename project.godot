@@ -27,6 +27,10 @@ SaveManager="*res://Scripts/autoloads/save_manager.gd"
 window/size/viewport_width=1280
 window/size/viewport_height=620
 
+[global_group]
+
+Player=""
+
 [input]
 
 ui_accept={

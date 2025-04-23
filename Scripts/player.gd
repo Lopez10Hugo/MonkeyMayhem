@@ -15,6 +15,7 @@ var dash_accel: float = 1
 @export var player_id = 1
 @onready var Ray = $Ray
 @onready var Sprite = $Sprite2D
+@onready var Hand = $Hand
 @export var jump_height: float
 @export var jump_time_to_peak: float
 @export var jump_time_to_descent: float
@@ -83,12 +84,30 @@ func handle_movement(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 
-		if velocity.x < 0:
-			Sprite.flip_h = false
-			Ray.rotation_degrees = 0.0  
-		elif velocity.x > 0:
-			Sprite.flip_h = true
-			Ray.rotation_degrees = 180.0
+	if velocity.x < 0:
+		Sprite.flip_h = false
+		Ray.rotation_degrees = 0.0  
+		Hand.position.x = -10
+
+		if Hand.has_node("WeaponBase"):
+			var child = Hand.get_node("WeaponBase")
+			if child is WeaponBase:
+				child.get_node("Sprite2D").flip_h = false
+				child.position.x = Hand.position.x - child.get_node("CollisionShape2D").shape.extents.x
+				
+	elif velocity.x > 0:
+		Sprite.flip_h = true
+		Ray.rotation_degrees = 180.0
+		Hand.position.x = 14
+
+		if Hand.has_node("WeaponBase"):
+			var child = Hand.get_node("WeaponBase")
+			if child is WeaponBase:
+				child.position.x = Hand.position.x
+				child.get_node("Sprite2D").flip_h = true
+				
+
+
 
 func create_trail():
 	var trail_sprite = Sprite2D.new()
@@ -101,7 +120,6 @@ func create_trail():
 	get_parent().add_child(trail_sprite)
 	var tween = get_tree().create_tween()
 	tween.tween_property(trail_sprite, "modulate", Color(0.6, 0.4, 0.2, 0), 0.3)  # Se desvanece
-	tween.tween_callback(trail_sprite.queue_free)
 
 
 func _on_dash_timer_timeout() -> void:

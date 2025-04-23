@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcow4l0vixrgd"
-path="res://.godot/imported/chainsaw_by_ashmo.png-47fdff8c169e32175b762fda23f5765e.ctex"
+uid="uid://b3ijxof0nybka"
+path="res://.godot/imported/chainsaw_by_ashmo.png-3cddce32f2447f0dde6a92f709732e88.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/posibles armas/chainsaw_by_ashmo.png"
-dest_files=["res://.godot/imported/chainsaw_by_ashmo.png-47fdff8c169e32175b762fda23f5765e.ctex"]
+source_file="res://Assets/Weapons/chainsaw_by_ashmo.png"
+dest_files=["res://.godot/imported/chainsaw_by_ashmo.png-3cddce32f2447f0dde6a92f709732e88.ctex"]
 
 [params]
 
