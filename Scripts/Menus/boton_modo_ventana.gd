@@ -1,7 +1,7 @@
 extends Control
 
 @onready var option_button: OptionButton = $HBoxContainer/OptionButton
-@onready var volver_al_menu: Button = $"MarginContainer/VBoxContainer/Volver al menu"
+#@onready var volver_al_menu: Button = $"MarginContainer/VBoxContainer/Volver al menu"
 
 const WINDOW_MODE_ARRAY : Array[String] = [
 	"Pantalla completa",

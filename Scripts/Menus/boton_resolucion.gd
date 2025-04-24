@@ -1,7 +1,7 @@
 extends Control
 
 @onready var option_button: OptionButton = $HBoxContainer/OptionButton
-@onready var volver_al_menu: Button = $"MarginContainer/VBoxContainer/Volver al menu"
+#@onready var volver_al_menu: Button = $"MarginContainer/VBoxContainer/Volver al menu"
 
 const RESOLUTON_DICTIONARY : Dictionary = {
 	"1280x620" : Vector2i(1280,620),
