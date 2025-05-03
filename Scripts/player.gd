@@ -11,6 +11,7 @@ var jump_buffer_counter = 0
 var dashing = false
 var can_dash = true
 var dash_accel: float = 1
+var HP: float = 100
 
 @export var player_id = 1
 @onready var Ray = $Ray
@@ -26,12 +27,13 @@ var dash_accel: float = 1
 @onready var dash_timer = $DashTimer
 
 func _physics_process(delta: float) -> void:
-	#print("ID : " , player_id, " Pos: " , position)
+	print("ID : " , player_id, " Pos: " , position, "Health: ", HP)
 	check_ground(delta)
 	handle_jump()
 	handle_movement(delta)
 	move_and_slide()
-
+	handle_attack()
+	
 func calculate_gravity() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
 
@@ -88,27 +90,20 @@ func handle_movement(delta: float) -> void:
 		Sprite.flip_h = false
 		Ray.rotation_degrees = 0.0  
 		Hand.position.x = -10
-
-		if Hand.has_node("WeaponBase"):
-			var child = Hand.get_node("WeaponBase")
-			if child is WeaponBase:
-				child.get_node("Sprite2D").flip_h = false
-				child.position.x = Hand.position.x - child.get_node("CollisionShape2D").shape.extents.x
-				
+		
 	elif velocity.x > 0:
 		Sprite.flip_h = true
 		Ray.rotation_degrees = 180.0
 		Hand.position.x = 14
-
-		if Hand.has_node("WeaponBase"):
-			var child = Hand.get_node("WeaponBase")
-			if child is WeaponBase:
-				child.position.x = Hand.position.x
-				child.get_node("Sprite2D").flip_h = true
-				
-
-
-
+		
+	if Hand.has_node("WeaponBase"):
+		var child = Hand.get_node("WeaponBase")
+		if child is WeaponBase:
+			child.get_node("Sprite2D").flip_h = Sprite.flip_h
+			if Sprite.flip_h:
+				child.position.x = Hand.position.x + child.get_node("CollisionShape2D").shape.extents.x
+			else:
+				child.position.x = Hand.position.x - child.get_node("CollisionShape2D").shape.extents.x
 func create_trail():
 	var trail_sprite = Sprite2D.new()
 	trail_sprite.texture = Sprite.texture
@@ -126,3 +121,27 @@ func _on_dash_timer_timeout() -> void:
 	dashing = false
 	velocity.x = 0
 	velocity.y /=10
+
+func take_damage(damage: int):
+	HP -= damage
+	if HP <= 0:
+		explode()
+		
+func explode():
+	$ExplosionParticles.emitting = true
+	$Sprite2D.visible = false
+	set_physics_process(false)
+	set_process(false)
+	await get_tree().create_timer(1.0).timeout
+	queue_free()
+
+
+func handle_attack():
+	if Hand.has_node("WeaponBase"):
+		print("Monitoring? ", Hand.get_node("WeaponBase").is_monitoring())
+
+
+	if Input.is_action_just_pressed("atacar_%s" % [player_id]) and Hand.has_node("WeaponBase"):
+		Hand.get_node("WeaponBase").attack()
+	
+	
