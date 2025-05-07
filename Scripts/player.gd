@@ -66,7 +66,6 @@ func handle_jump() -> void:
 		jump_pressed = true
 		jump_buffer_counter = 0
 		if is_on_floor() or coyote_counter or is_climbing() <= COYOTE_FRAME_WINDOW:
-			print('salto')
 			just_jumped = true
 			velocity.y = jump_velocity
 

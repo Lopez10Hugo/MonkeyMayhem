@@ -21,6 +21,7 @@ Autoloads="*res://Scripts/autoloads/autoloads.gd"
 SettingsDataContainer="*res://Scripts/autoloads/settings_data_container.gd"
 SettingsSignalBus="*res://Scripts/autoloads/SettingsSignalBus.gd"
 SaveManager="*res://Scripts/autoloads/save_manager.gd"
+SeleccionPersonaje="*res://Scripts/autoloads/seleccion_personaje.gd"
 
 [display]
 
