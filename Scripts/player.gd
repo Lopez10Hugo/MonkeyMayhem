@@ -13,6 +13,8 @@ var can_dash = true
 var dash_accel: float = 1
 var HP: float = 100
 
+var just_jumped : bool = false
+
 @export var player_id = 1
 @onready var Ray = $Ray
 @onready var Sprite = $Sprite2D
@@ -27,12 +29,13 @@ var HP: float = 100
 @onready var dash_timer = $DashTimer
 
 func _physics_process(delta: float) -> void:
-	print("ID : " , player_id, " Pos: " , position, "Health: ", HP)
+	#print("ID : " , player_id, " Pos: " , position, "Health: ", HP)
 	check_ground(delta)
 	handle_jump()
 	handle_movement(delta)
 	move_and_slide()
 	handle_attack()
+	just_jumped = false
 	
 func calculate_gravity() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
@@ -55,11 +58,16 @@ func check_ground(delta: float) -> void:
 		coyote_counter += delta 
 		jump_buffer_counter += delta
 
+func is_climbing():
+	return check_for_wall() and Input.is_action_pressed("trepar_%s" % [player_id])
+
 func handle_jump() -> void:
 	if Input.is_action_just_pressed("saltar_%s" % [player_id]):
 		jump_pressed = true
 		jump_buffer_counter = 0
-		if is_on_floor() or coyote_counter <= COYOTE_FRAME_WINDOW:
+		if is_on_floor() or coyote_counter or is_climbing() <= COYOTE_FRAME_WINDOW:
+			print('salto')
+			just_jumped = true
 			velocity.y = jump_velocity
 
 func handle_movement(delta: float) -> void:
@@ -77,7 +85,7 @@ func handle_movement(delta: float) -> void:
 			await get_tree().create_timer(0.05 * i).timeout
 			create_trail()
 	
-	if check_for_wall() and Input.is_action_pressed("trepar_%s" % [player_id]):
+	if is_climbing() and not just_jumped:
 		velocity.y = calculate_wall_movement() * CLIMB_SPEED * delta
 	elif not dashing:
 		var direction := Input.get_axis("mover_izquierda_%s" % [player_id],"mover_derecha_%s" % [player_id])
