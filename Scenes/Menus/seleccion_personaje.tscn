@@ -1,0 +1,160 @@
+[gd_scene load_steps=4 format=3 uid="uid://daeudgkx6e8ur"]
+
+[ext_resource type="Script" uid="uid://dwify2yr4vls6" path="res://Scripts/Menus/seleccion_personaje.gd" id="1_wxtg0"]
+[ext_resource type="Texture2D" uid="uid://b8iflu1m8tk18" path="res://Assets/background_monos_peleando.png" id="2_snsmm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wxtg0"]
+texture = ExtResource("2_snsmm")
+
+[node name="Seleccion_personaje" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wxtg0")
+
+[node name="Fondo" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wxtg0")
+
+[node name="MarginContainer" type="MarginContainer" parent="Fondo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="vbox_seleccion_2" type="VBoxContainer" parent="Fondo/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="hbox_jugadores" type="HBoxContainer" parent="Fondo/MarginContainer/vbox_seleccion_2"]
+layout_mode = 2
+
+[node name="hbox_nombre" type="HBoxContainer" parent="Fondo/MarginContainer/vbox_seleccion_2"]
+layout_mode = 2
+
+[node name="vbox_seleccion_1" type="VBoxContainer" parent="Fondo/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Fondo/MarginContainer/vbox_seleccion_1"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="label_jugadores" type="Label" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer"]
+custom_minimum_size = Vector2(340, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Numero de jugadores"
+
+[node name="VSeparator" type="VSeparator" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 240
+
+[node name="HSlider" type="HSlider" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath("../../HBoxContainer2/button_mapa")
+min_value = 1.0
+max_value = 4.0
+value = 1.0
+
+[node name="jugadores_value" type="Label" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Fondo/MarginContainer/vbox_seleccion_1"]
+layout_mode = 2
+
+[node name="label_mapa" type="Label" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer2"]
+custom_minimum_size = Vector2(340, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Seleccion de mapa"
+
+[node name="VSeparator" type="VSeparator" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 240
+
+[node name="button_mapa" type="OptionButton" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer2"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../HBoxContainer/HSlider")
+focus_neighbor_bottom = NodePath("../../HBoxContainer3/button_rondas")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Fondo/MarginContainer/vbox_seleccion_1"]
+layout_mode = 2
+
+[node name="label_rondas" type="Label" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer3"]
+custom_minimum_size = Vector2(340, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Número de rondas"
+
+[node name="VSeparator" type="VSeparator" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 240
+
+[node name="button_rondas" type="OptionButton" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer3"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../HBoxContainer2/button_mapa")
+focus_neighbor_bottom = NodePath("../../../../../atras")
+
+[node name="atras" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -261.0
+offset_top = -101.0
+offset_right = -141.0
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_left = NodePath("../Continuar")
+focus_neighbor_top = NodePath("../Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer3/button_rondas")
+focus_neighbor_right = NodePath("../Continuar")
+focus_neighbor_bottom = NodePath("../Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer/HSlider")
+text = "Atrás"
+
+[node name="Continuar" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 93.0
+offset_top = -101.0
+offset_right = 213.0
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_left = NodePath("../atras")
+focus_neighbor_top = NodePath("../Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer3/button_rondas")
+focus_neighbor_right = NodePath("../atras")
+focus_neighbor_bottom = NodePath("../Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer/HSlider")
+text = "Continuar"
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="value_changed" from="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="item_selected" from="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer2/button_mapa" to="." method="_on_button_mapa_item_selected"]
+[connection signal="item_selected" from="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer3/button_rondas" to="." method="_on_button_rondas_item_selected"]
+[connection signal="pressed" from="atras" to="." method="_on_atras_pressed"]
+[connection signal="pressed" from="Continuar" to="." method="_on_continuar_pressed"]

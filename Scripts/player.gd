@@ -11,10 +11,14 @@ var jump_buffer_counter = 0
 var dashing = false
 var can_dash = true
 var dash_accel: float = 1
+var HP: float = 100
+
+var just_jumped : bool = false
 
 @export var player_id = 1
 @onready var Ray = $Ray
 @onready var Sprite = $Sprite2D
+@onready var Hand = $Hand
 @export var jump_height: float
 @export var jump_time_to_peak: float
 @export var jump_time_to_descent: float
@@ -25,12 +29,14 @@ var dash_accel: float = 1
 @onready var dash_timer = $DashTimer
 
 func _physics_process(delta: float) -> void:
-	#print("ID : " , player_id, " Pos: " , position)
+	#print("ID : " , player_id, " Pos: " , position, "Health: ", HP)
 	check_ground(delta)
 	handle_jump()
 	handle_movement(delta)
 	move_and_slide()
-
+	handle_attack()
+	just_jumped = false
+	
 func calculate_gravity() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
 
@@ -52,11 +58,15 @@ func check_ground(delta: float) -> void:
 		coyote_counter += delta 
 		jump_buffer_counter += delta
 
+func is_climbing():
+	return check_for_wall() and Input.is_action_pressed("trepar_%s" % [player_id])
+
 func handle_jump() -> void:
 	if Input.is_action_just_pressed("saltar_%s" % [player_id]):
 		jump_pressed = true
 		jump_buffer_counter = 0
-		if is_on_floor() or coyote_counter <= COYOTE_FRAME_WINDOW:
+		if is_on_floor() or coyote_counter or is_climbing() <= COYOTE_FRAME_WINDOW:
+			just_jumped = true
 			velocity.y = jump_velocity
 
 func handle_movement(delta: float) -> void:
@@ -74,7 +84,7 @@ func handle_movement(delta: float) -> void:
 			await get_tree().create_timer(0.05 * i).timeout
 			create_trail()
 	
-	if check_for_wall() and Input.is_action_pressed("trepar_%s" % [player_id]):
+	if is_climbing() and not just_jumped:
 		velocity.y = calculate_wall_movement() * CLIMB_SPEED * delta
 	elif not dashing:
 		var direction := Input.get_axis("mover_izquierda_%s" % [player_id],"mover_derecha_%s" % [player_id])
@@ -83,13 +93,24 @@ func handle_movement(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 
-		if velocity.x < 0:
-			Sprite.flip_h = false
-			Ray.rotation_degrees = 0.0  
-		elif velocity.x > 0:
-			Sprite.flip_h = true
-			Ray.rotation_degrees = 180.0
-
+	if velocity.x < 0:
+		Sprite.flip_h = false
+		Ray.rotation_degrees = 0.0  
+		Hand.position.x = -10
+		
+	elif velocity.x > 0:
+		Sprite.flip_h = true
+		Ray.rotation_degrees = 180.0
+		Hand.position.x = 14
+		
+	if Hand.has_node("WeaponBase"):
+		var child = Hand.get_node("WeaponBase")
+		if child is WeaponBase:
+			child.get_node("Sprite2D").flip_h = Sprite.flip_h
+			if Sprite.flip_h:
+				child.position.x = Hand.position.x + child.get_node("CollisionShape2D").shape.extents.x
+			else:
+				child.position.x = Hand.position.x - child.get_node("CollisionShape2D").shape.extents.x
 func create_trail():
 	var trail_sprite = Sprite2D.new()
 	trail_sprite.texture = Sprite.texture
@@ -101,10 +122,33 @@ func create_trail():
 	get_parent().add_child(trail_sprite)
 	var tween = get_tree().create_tween()
 	tween.tween_property(trail_sprite, "modulate", Color(0.6, 0.4, 0.2, 0), 0.3)  # Se desvanece
-	tween.tween_callback(trail_sprite.queue_free)
 
 
 func _on_dash_timer_timeout() -> void:
 	dashing = false
 	velocity.x = 0
 	velocity.y /=10
+
+func take_damage(damage: int):
+	HP -= damage
+	if HP <= 0:
+		explode()
+		
+func explode():
+	$ExplosionParticles.emitting = true
+	$Sprite2D.visible = false
+	set_physics_process(false)
+	set_process(false)
+	await get_tree().create_timer(1.0).timeout
+	queue_free()
+
+
+func handle_attack():
+	if Hand.has_node("WeaponBase"):
+		print("Monitoring? ", Hand.get_node("WeaponBase").is_monitoring())
+
+
+	if Input.is_action_just_pressed("atacar_%s" % [player_id]) and Hand.has_node("WeaponBase"):
+		Hand.get_node("WeaponBase").attack()
+	
+	

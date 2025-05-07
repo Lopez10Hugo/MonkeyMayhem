@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bl2ecfduss1gr"]
+[gd_scene load_steps=12 format=3 uid="uid://bl2ecfduss1gr"]
 
 [ext_resource type="Script" uid="uid://cr8u2lu5ith3g" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://bk43fgn6eweog" path="res://Assets/un-pixilart.png" id="2_6t5aa"]
@@ -17,15 +17,6 @@ point_count = 2
 width = 2048
 curve = SubResource("Curve_cvnsp")
 
-[sub_resource type="Curve" id="Curve_6t5aa"]
-_limits = [-360.0, 360.0, 0.0, 1.0]
-_data = [Vector2(0.0909091, 360), 0.0, 0.0, 0, 0, Vector2(1, -360), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_vgqql"]
-width = 2048
-curve = SubResource("Curve_6t5aa")
-
 [sub_resource type="Gradient" id="Gradient_vgqql"]
 offsets = PackedFloat32Array(0.00260078, 0.270481, 0.539662)
 colors = PackedColorArray(0.834472, 0.756315, 0.612296, 1, 0.805527, 0.0541315, 0, 1, 1, 1, 1, 1)
@@ -43,15 +34,12 @@ width = 2048
 curve = SubResource("Curve_x3wgy")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8erm5"]
-lifetime_randomness = 1.0
+lifetime_randomness = 0.8
 particle_flag_disable_z = true
 angle_curve = SubResource("CurveTexture_6t5aa")
 spread = 180.0
 initial_velocity_min = 5.1
 initial_velocity_max = 521.74
-angular_velocity_min = 169.41
-angular_velocity_max = 648.13
-angular_velocity_curve = SubResource("CurveTexture_vgqql")
 gravity = Vector3(0, 0, 0)
 scale_min = 0.0
 scale_max = 11.55
@@ -91,8 +79,7 @@ target_position = Vector2(-18.262, 0)
 one_shot = true
 
 [node name="ExplosionParticles" type="GPUParticles2D" parent="."]
-emitting = false
-amount = 1000
+amount = 50
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_8erm5")
 
