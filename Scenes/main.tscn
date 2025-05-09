@@ -204,3 +204,5 @@ shape = SubResource("WorldBoundaryShape2D_jjvhh")
 
 [node name="WeaponBase" parent="." instance=ExtResource("5_kry3j")]
 position = Vector2(-128, -58)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]

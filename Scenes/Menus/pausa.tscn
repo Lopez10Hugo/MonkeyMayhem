@@ -63,26 +63,16 @@ vertical_alignment = 1
 [node name="Continuar" type="Button" parent="GridContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Salir")
-focus_neighbor_bottom = NodePath("../Opciones")
+focus_neighbor_bottom = NodePath("../Salir")
 theme_override_styles/focus = ExtResource("3_08lhq")
 theme_override_styles/hover = ExtResource("3_08lhq")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_xt4ld")
 theme_override_styles/normal = ExtResource("4_xt4ld")
 text = "Continuar"
 
-[node name="Opciones" type="Button" parent="GridContainer"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../Continuar")
-focus_neighbor_bottom = NodePath("../Salir")
-theme_override_styles/focus = ExtResource("3_08lhq")
-theme_override_styles/hover = ExtResource("3_08lhq")
-theme_override_styles/pressed = ExtResource("3_08lhq")
-theme_override_styles/normal = ExtResource("4_xt4ld")
-text = "Opciones"
-
 [node name="Salir" type="Button" parent="GridContainer"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../Opciones")
+focus_neighbor_top = NodePath("../Continuar")
 focus_neighbor_bottom = NodePath("../Continuar")
 theme_override_styles/focus = ExtResource("3_08lhq")
 theme_override_styles/hover = ExtResource("3_08lhq")
@@ -148,7 +138,6 @@ theme_override_font_sizes/font_size = 24
 text = "No"
 
 [connection signal="pressed" from="GridContainer/Continuar" to="." method="_on_continuar_pressed"]
-[connection signal="pressed" from="GridContainer/Opciones" to="." method="_on_opciones_pressed"]
 [connection signal="pressed" from="GridContainer/Salir" to="." method="_on_salir_pressed"]
 [connection signal="window_input" from="Window" to="." method="_on_confirmacion_salir_window_input"]
 [connection signal="pressed" from="Window/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Si" to="." method="_on_si_pressed"]

@@ -1,17 +1,20 @@
 extends Control
 
 @onready var vbox_seleccion_1: VBoxContainer = $Fondo/MarginContainer/vbox_seleccion_1
-@onready var vbox_seleccion_2: VBoxContainer = $Fondo/MarginContainer/vbox_seleccion_2
 @onready var h_slider: HSlider = $Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer/HSlider
 @onready var jugadores_value: Label = $Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer/jugadores_value
+@onready var button_rondas: OptionButton = $Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer3/button_rondas
+@onready var button_mapa: OptionButton = $Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer2/button_mapa
 
 func _on_ready() -> void:
 	vbox_seleccion_1.show()
-	vbox_seleccion_2.hide()
 	h_slider.value = SeleccionPersonaje.num_jugadores
 	set_jugadores_value()
+	_on_focus_entered()
+	create_buttons()
 
 func _on_focus_entered() -> void:
+	print('h_slider grabbed focus')
 	h_slider.grab_focus()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -49,3 +52,11 @@ func _on_button_rondas_item_selected(index: int) -> void:
 			SeleccionPersonaje.num_rondas = 4
 		3: 
 			SeleccionPersonaje.num_rondas = 8
+
+func create_buttons() -> void:
+	button_rondas.add_item("1 Ronda")
+	button_rondas.add_item("2 Rondas")
+	button_rondas.add_item("4 Rondas")
+	button_rondas.add_item("8 Ronda")
+	
+	button_mapa.add_item("Mapa por defecto")

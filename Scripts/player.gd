@@ -12,6 +12,7 @@ var dashing = false
 var can_dash = true
 var dash_accel: float = 1
 var HP: float = 100
+var is_dead = false
 
 var just_jumped : bool = false
 
@@ -135,17 +136,21 @@ func take_damage(damage: int):
 		explode()
 		
 func explode():
+	if is_dead:
+		return
 	$ExplosionParticles.emitting = true
 	$Sprite2D.visible = false
 	set_physics_process(false)
 	set_process(false)
 	await get_tree().create_timer(1.0).timeout
-	queue_free()
+	#queue_free()
+	visible = false
+	is_dead = true
 
 
 func handle_attack():
-	if Hand.has_node("WeaponBase"):
-		print("Monitoring? ", Hand.get_node("WeaponBase").is_monitoring())
+	#if Hand.has_node("WeaponBase"):
+		#print("Monitoring? ", Hand.get_node("WeaponBase").is_monitoring())
 
 
 	if Input.is_action_just_pressed("atacar_%s" % [player_id]) and Hand.has_node("WeaponBase"):

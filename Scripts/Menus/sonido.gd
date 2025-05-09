@@ -4,8 +4,9 @@ extends Control
 @onready var sonido: Control = $"."
 @onready var options_menu: Control = $".."
 
-func _on_focus_entered() -> void:
-	audio_slider._on_focus_entered()
+func _ready() -> void:
+	print('ready')
+	_on_focus_entered()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -17,3 +18,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_button_pressed() -> void:
 	options_menu._inicial_display()
 	options_menu._on_focus_entered()
+
+
+func _on_focus_entered() -> void:
+	print('audio focus')
+	audio_slider._on_focus_entered()

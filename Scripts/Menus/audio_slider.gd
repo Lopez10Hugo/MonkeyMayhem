@@ -3,6 +3,8 @@ extends Control
 @onready var audio_bus: Label = $HBoxContainer/Audio_bus
 @onready var audio_value: Label = $HBoxContainer/audio_value
 @onready var h_slider: HSlider = $HBoxContainer/HSlider
+@onready var audio_slider_3: Control = $"../audio_slider3"
+@onready var botn_atras: Button = $"../Button"
 
 @export_enum("Master","Musica","Efectos de sonido") var bus_name : String
 
@@ -50,3 +52,19 @@ func _on_h_slider_value_changed(value: float) -> void:
 func _on_focus_entered() -> void:
 	print("h slider grabbed focus")
 	h_slider.grab_focus()
+
+func call_focus_on_slider():
+	audio_slider_3._on_focus_entered()
+
+func _input(event: InputEvent) -> void:
+	if audio_slider_3.has_focus():
+		if event.is_action_pressed("ui_down"):
+			print('unhandled')
+			botn_atras.grab_focus()
+	if botn_atras.has_focus():
+		if event.is_action_pressed("ui_down"):
+			call_deferred("_on_focus_entered")
+			#print(get_viewport().gui_get_focus_owner())
+		if event.is_action_pressed("ui_up"):
+			print(get_viewport().gui_get_focus_owner())
+			call_deferred("call_focus_on_slider")

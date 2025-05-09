@@ -16,6 +16,16 @@ signal set_settings_dict(settings_dict : Dictionary)
 
 signal load_settings_data(settings_dict : Dictionary)
 
+signal on_slow_motion_toggled(value : bool)
+
+signal on_high_contrast_toggled(value : bool)
+
+func emit_on_slow_motion_toggled(value  : bool) ->void:
+	on_slow_motion_toggled.emit(value)
+
+func emit_on_high_contrast_toggled(value  : bool) ->void:
+	on_high_contrast_toggled.emit(value)
+
 func emit_load_settings_data(settings_dict : Dictionary) ->void:
 	load_settings_data.emit(settings_dict)
 

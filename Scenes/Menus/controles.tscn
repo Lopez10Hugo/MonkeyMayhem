@@ -47,6 +47,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_amvpp")
 
 [node name="Rebind_control" parent="MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer" instance=ExtResource("1_3os5v")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Volver al menu")
 focus_neighbor_bottom = NodePath("../Rebind_control2")
 focus_mode = 2
 action_name = "mover_derecha_2"
@@ -83,6 +84,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 focus_neighbor_top = NodePath("../Rebind_control4")
+focus_neighbor_bottom = NodePath("../Rebind_control")
 text = "Atrás"
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]

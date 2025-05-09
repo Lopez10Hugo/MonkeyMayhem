@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://6yd088206y4k"]
+[gd_scene load_steps=2 format=3 uid="uid://6yd088206y4k"]
 
-[ext_resource type="PackedScene" uid="uid://c6h54exjclvht" path="res://Scenes/Menus/subtitles_toggle_button.tscn" id="1_2elbh"]
 [ext_resource type="Script" uid="uid://cdkxrj0gl6bnr" path="res://Scripts/Menus/accesibilidad.gd" id="1_dk4dc"]
 
 [node name="Accesibilidad" type="Control"]
@@ -29,15 +28,50 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/separation = 64
 
-[node name="subtitles_toggle_button" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_2elbh")]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 240
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Alto contraste"
+
+[node name="high_contrast_check" type="CheckButton" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 
+[node name="high_contrast_state" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Off"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 240
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Camara lenta"
+
+[node name="slow_motion" type="CheckButton" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="slow_motion_state" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Off
+"
+
 [node name="volver" type="Button" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 text = "Atrás
 "
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="toggled" from="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2/high_contrast_check" to="." method="_on_high_contrast_check_toggled"]
+[connection signal="toggled" from="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/slow_motion" to="." method="_on_slow_motion_toggled"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/volver" to="." method="_on_volver_pressed"]

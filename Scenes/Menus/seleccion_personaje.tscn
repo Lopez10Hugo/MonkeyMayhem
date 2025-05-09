@@ -36,16 +36,6 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="vbox_seleccion_2" type="VBoxContainer" parent="Fondo/MarginContainer"]
-visible = false
-layout_mode = 2
-
-[node name="hbox_jugadores" type="HBoxContainer" parent="Fondo/MarginContainer/vbox_seleccion_2"]
-layout_mode = 2
-
-[node name="hbox_nombre" type="HBoxContainer" parent="Fondo/MarginContainer/vbox_seleccion_2"]
-layout_mode = 2
-
 [node name="vbox_seleccion_1" type="VBoxContainer" parent="Fondo/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20

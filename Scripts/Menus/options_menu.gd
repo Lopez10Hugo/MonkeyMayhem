@@ -24,8 +24,17 @@ func _on_volver_al_menu_pressed() -> void:
 	set_process(false)
 
 func _on_focus_entered() -> void:
-	print('boton controles grabbed focus')
-	boton_controles.grab_focus()
+	if controles_tab.is_visible_in_tree():
+		controles_tab._on_focus_entered()
+	elif sonido_tab.is_visible_in_tree():
+		sonido_tab._on_focus_entered()
+	elif graficos_tab.is_visible_in_tree():
+		graficos_tab._on_focus_entered()
+	elif accesibilidad_tab.is_visible_in_tree():
+		accesibilidad_tab._on_focus_entered()
+	else:
+		print('boton controles grabbed focus')
+		boton_controles.grab_focus()
 
 func _on_controles_pressed() -> void:
 	_hide_botones()
