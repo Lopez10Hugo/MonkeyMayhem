@@ -1,6 +1,9 @@
 extends Node2D
 
 @onready var canvas_modulate: CanvasModulate = $CanvasModulate
+@onready var tabla_puntuaciones: VBoxContainer = $Camera2D/tabla_puntuaciones
+@onready var mensaje_victoria_ronda: Label = $Camera2D/mensaje_victoria_ronda
+
 
 var PlayerScene = preload("res://Scenes/player.tscn")
 var jugadores = []
@@ -24,6 +27,22 @@ func _ready():
 	reset = true
 	crear_jugadores()
 	rondas_ganadas.clear()
+	tabla_puntuaciones.show()
+	actualizar_marcadores()
+	mensaje_victoria_ronda.hide()
+
+func actualizar_marcadores():
+	var contenedor = tabla_puntuaciones
+	for i in range(1, contenedor.get_child_count()):  # Saltamos el título (index 0)
+		var label = contenedor.get_child(i)
+		if i <= SeleccionPersonaje.num_jugadores:
+			label.visible = true
+			var player_id = i
+			var puntos = rondas_ganadas.get(player_id, 0)
+			label.text = "Jugador %d: %d puntos" % [player_id, puntos]
+		else:
+			label.visible = false
+
 
 func crear_jugadores():
 	jugadores.clear()
@@ -67,7 +86,9 @@ func _process(delta: float) -> void:
 		await get_tree().create_timer(1.0).timeout
 		var ganador_id = vivos[0].player_id
 		print('ganador id:',ganador_id)
-		await get_tree().create_timer(2.0).timeout
+		mensaje_victoria_ronda.text = "¡El jugador %d gana la ronda!" % [ganador_id]
+		mensaje_victoria_ronda.show()
+		await get_tree().create_timer(3.0).timeout
 		rondas_ganadas[ganador_id] = rondas_ganadas.get(ganador_id, 0) + 1
 		print('rondas ganadas ', rondas_ganadas[ganador_id])
 		rondas_jugadas += 1
@@ -90,6 +111,8 @@ func resetear_ronda():
 	ronda_en_progreso = true
 	crear_jugadores()
 	reset_armas()
+	actualizar_marcadores()
+	mensaje_victoria_ronda.hide()
 
 func reset_armas() -> void:
 	pass
@@ -102,10 +125,12 @@ func mostrar_resultado_final():
 		if rondas_ganadas[id] > max_puntos:
 			max_puntos = rondas_ganadas[id]
 			ganador_final = id
-
 	print("Jugador ganador final: ", ganador_final)
-
+	mensaje_victoria_ronda.text = "¡El jugador %d ha ganado la partida!" % [ganador_final]
+	mensaje_victoria_ronda.show()
+	await get_tree().create_timer(5.0).timeout
 	# Reiniciar o cambiar de escena si quieres
+	mensaje_victoria_ronda.hide()
 	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 
 		
