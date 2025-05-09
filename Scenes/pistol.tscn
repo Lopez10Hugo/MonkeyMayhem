@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4mmhhtssb7x7"]
+
+[ext_resource type="Script" uid="uid://r5726lnl3k07" path="res://Scripts/pistol.gd" id="1_j1qo2"]
+[ext_resource type="Texture2D" uid="uid://w0danyq1ht60" path="res://Assets/posibles armas/german_pistol_by_ashmo.png" id="2_v21tj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1qo2"]
+size = Vector2(51, 28)
+
+[node name="pistol" type="Area2D"]
+script = ExtResource("1_j1qo2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_j1qo2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_v21tj")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
