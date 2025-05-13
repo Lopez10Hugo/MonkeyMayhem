@@ -1,25 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4mmhhtssb7x7"]
+[gd_scene load_steps=4 format=3 uid="uid://bqprjxmtwpuu2"]
 
+[ext_resource type="PackedScene" uid="uid://bda7eklvavgdt" path="res://Scenes/WeaponBase.tscn" id="1_3s07g"]
 [ext_resource type="Script" uid="uid://r5726lnl3k07" path="res://Scripts/pistol.gd" id="1_j1qo2"]
-[ext_resource type="Texture2D" uid="uid://w0danyq1ht60" path="res://Assets/posibles armas/german_pistol_by_ashmo.png" id="2_v21tj"]
+[ext_resource type="PackedScene" uid="uid://c714t1d0cfn1" path="res://Scenes/bullet.tscn" id="3_ui64p"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1qo2"]
-size = Vector2(51, 28)
-
-[node name="pistol" type="Area2D"]
+[node name="WeaponBase" instance=ExtResource("1_3s07g")]
+scale = Vector2(0.678109, 0.678109)
+collision_mask = 2
 script = ExtResource("1_j1qo2")
+bullet_scene = ExtResource("3_ui64p")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -1)
-shape = SubResource("RectangleShape2D_j1qo2")
+[node name="CooldownTimer" parent="." index="2"]
+wait_time = 0.2
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_v21tj")
-
-[node name="CooldownTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="AttackTimer" type="Timer" parent="."]
-one_shot = true
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="AttackTimer" parent="." index="3"]
+wait_time = 0.2

@@ -1,25 +1,35 @@
 extends WeaponBase
-class_name Pistol
 
 @export var bullet_scene: PackedScene
-@export var fire_rate: float = 0.5
-@onready var fire_timer: Timer = $CooldownTimer
+@onready var Sprite = $Sprite2D
 
 func _ready():
+	weapon_name = "Pistol"
+	damage = 1000
+	is_melee = false
+	sprite_texture = preload("res://.godot/imported/german_pistol_by_ashmo.png-95c4c228a40b81685587a28f659a6679.ctex")
 	super._ready()
-	fire_timer.wait_time = fire_rate
-	fire_timer.one_shot = true
+
+
 
 func attack():
-	if can_attack:
-		can_attack = false
-		fire_timer.start()
-		shoot_bullet()
+	if not can_attack or is_attacking:
+		return
+	can_attack = false
+	is_attacking = true
+	shoot_bullet()
+	super.attack()
+
+
 
 func shoot_bullet():
 	if bullet_scene:
 		var bullet = bullet_scene.instantiate()
 		bullet.global_position = global_position
 		bullet.rotation = global_rotation
-		bullet.set_direction(Vector2.RIGHT.rotated(global_rotation))  # Assuming bullet uses this method
+		if(Sprite.flip_h):
+			bullet.set_direction(Vector2.RIGHT.rotated(global_rotation)) 
+		else:
+			bullet.set_direction(Vector2.LEFT.rotated(global_rotation)) 
+		bullet.damage = damage
 		get_tree().current_scene.add_child(bullet)

@@ -104,25 +104,29 @@ func handle_movement(delta: float) -> void:
 		Ray.rotation_degrees = 180.0
 		Hand.position.x = 14
 		
-	if Hand.has_node("WeaponBase"):
-		var child = Hand.get_node("WeaponBase")
-		if child is WeaponBase:
-			child.get_node("Sprite2D").flip_h = Sprite.flip_h
-			if Sprite.flip_h:
-				child.position.x = Hand.position.x + child.get_node("CollisionShape2D").shape.extents.x
-			else:
-				child.position.x = Hand.position.x - child.get_node("CollisionShape2D").shape.extents.x
+	var child: Node = null
+	var candidates = Hand.get_children().filter(func(c): return c.name.begins_with("WeaponBase"))
+	if candidates.size() > 0:
+		child= candidates.front()
+		
+	if child != null:
+		child.get_node("Sprite2D").flip_h = Sprite.flip_h
+		if Sprite.flip_h:
+			child.position.x = Hand.position.x + 10
+		else:
+			child.position.x = Hand.position.x - 10
+
 func create_trail():
 	var trail_sprite = Sprite2D.new()
 	trail_sprite.texture = Sprite.texture
 	trail_sprite.global_position = Sprite.global_position
 	trail_sprite.scale = Sprite.scale
-	trail_sprite.modulate = Color(0.6, 0.4, 0.2, 0.8)  # Marrón claro con transparencia
+	trail_sprite.modulate = Color(0.6, 0.4, 0.2, 0.8)  
 	trail_sprite.z_index = Sprite.z_index - 1
 	trail_sprite.flip_h = Sprite.flip_h
 	get_parent().add_child(trail_sprite)
 	var tween = get_tree().create_tween()
-	tween.tween_property(trail_sprite, "modulate", Color(0.6, 0.4, 0.2, 0), 0.3)  # Se desvanece
+	tween.tween_property(trail_sprite, "modulate", Color(0.6, 0.4, 0.2, 0), 0.3)  
 
 
 func _on_dash_timer_timeout() -> void:
@@ -149,11 +153,11 @@ func explode():
 
 
 func handle_attack():
-	#if Hand.has_node("WeaponBase"):
-		#print("Monitoring? ", Hand.get_node("WeaponBase").is_monitoring())
-
-
-	if Input.is_action_just_pressed("atacar_%s" % [player_id]) and Hand.has_node("WeaponBase"):
-		Hand.get_node("WeaponBase").attack()
+	var child: Node = null
+	var candidates = Hand.get_children().filter(func(c): return c.name.begins_with("WeaponBase"))
+	if candidates.size() > 0:
+		child= candidates.front()
+	if Input.is_action_just_pressed("atacar_%s" % [player_id]) and child != null:
+		child.attack()
 	
 	
