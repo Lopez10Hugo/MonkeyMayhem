@@ -2,7 +2,7 @@ extends Area2D
 
 @export var speed: float = 500.0
 var damage: int
-
+var shooter: Node = null
 var direction: Vector2 = Vector2.ZERO
 
 func _process(delta):
@@ -14,4 +14,6 @@ func set_direction(dir: Vector2):
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		body.take_damage(damage)
+		queue_free()
+	else:
 		queue_free()

@@ -2,14 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://bda7eklvavgdt" path="res://Scenes/WeaponBase.tscn" id="1_3s07g"]
 [ext_resource type="Script" uid="uid://r5726lnl3k07" path="res://Scripts/pistol.gd" id="1_j1qo2"]
-[ext_resource type="PackedScene" uid="uid://c714t1d0cfn1" path="res://Scenes/bullet.tscn" id="3_ui64p"]
+[ext_resource type="PackedScene" uid="uid://dmwpceyuk47fp" path="res://Scenes/bullet_directed.tscn" id="3_mix3b"]
 [ext_resource type="AudioStream" uid="uid://bbvcadddqc6du" path="res://Assets/Sounds/quePasaBala.mp3" id="4_mix3b"]
 
 [node name="WeaponBase" instance=ExtResource("1_3s07g")]
 scale = Vector2(0.678109, 0.678109)
 collision_mask = 2
 script = ExtResource("1_j1qo2")
-bullet_scene = ExtResource("3_ui64p")
+bullet_scene = ExtResource("3_mix3b")
 
 [node name="CooldownTimer" parent="." index="2"]
 wait_time = 0.2

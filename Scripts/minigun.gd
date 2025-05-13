@@ -5,10 +5,10 @@ extends WeaponBase
 @onready var shoot_sound = $AudioStreamPlayer
 
 func _ready():
-	weapon_name = "Pistol"
-	damage = 1000
+	weapon_name = "Minigun"
+	damage = 10
 	is_melee = false
-	sprite_texture = preload("res://.godot/imported/german_pistol_by_ashmo.png-95c4c228a40b81685587a28f659a6679.ctex")
+	sprite_texture = preload("res://Assets/posibles armas/m1_carbine_by_ashmo.png")
 	super._ready()
 
 func attack():
@@ -26,13 +26,18 @@ func shoot_bullet():
 		var bullet = bullet_scene.instantiate()
 		bullet.global_position = global_position
 		bullet.rotation = global_rotation
+
+		var base_dir = Vector2()
 		if Sprite.flip_h:
-			bullet.set_direction(Vector2.RIGHT.rotated(global_rotation)) 
+			base_dir = Vector2.RIGHT.rotated(global_rotation)
 		else:
-			bullet.set_direction(Vector2.LEFT.rotated(global_rotation)) 
+			base_dir = Vector2.LEFT.rotated(global_rotation)
+
+		var y_variation = randf_range(-0.1, 0.1)
+		var direction = (base_dir + Vector2(0, y_variation)).normalized()
+
+		bullet.set_direction(direction)
 		bullet.damage = damage
-		bullet.shooter = self.get_parent().get_parent()
 		get_tree().current_scene.add_child(bullet)
 
-		# Reproducir sonido de disparo
 		shoot_sound.play()

@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhfj2nokbem13"]
+
+[ext_resource type="PackedScene" uid="uid://bda7eklvavgdt" path="res://Scenes/WeaponBase.tscn" id="1_fvpnu"]
+[ext_resource type="Script" uid="uid://cttsqfieur3eu" path="res://Scripts/guided_pistol.gd" id="2_hma1t"]
+[ext_resource type="PackedScene" uid="uid://dmwpceyuk47fp" path="res://Scenes/bullet_directed.tscn" id="3_mas50"]
+[ext_resource type="AudioStream" uid="uid://bbvcadddqc6du" path="res://Assets/Sounds/quePasaBala.mp3" id="4_nadd4"]
+
+[node name="WeaponBase" instance=ExtResource("1_fvpnu")]
+scale = Vector2(1.87514, 1.93141)
+collision_mask = 2
+script = ExtResource("2_hma1t")
+bullet_scene = ExtResource("3_mas50")
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(-1.298, 1.298)
+
+[node name="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource("4_nadd4")

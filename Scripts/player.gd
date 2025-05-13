@@ -162,7 +162,7 @@ func handle_attack():
 	var candidates = Hand.get_children().filter(func(c): return c.name.begins_with("WeaponBase"))
 	if candidates.size() > 0:
 		child= candidates.front()
-	if Input.is_action_just_pressed("atacar_%s" % [player_id]) and child != null:
+	if Input.is_action_pressed("atacar_%s" % [player_id]) and child != null:
 		child.attack()
 	
 	
