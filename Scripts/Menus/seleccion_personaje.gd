@@ -38,9 +38,10 @@ func _on_h_slider_value_changed(value: float) -> void:
 func _on_button_mapa_item_selected(index: int) -> void:
 	match index:
 		0:
-			SeleccionPersonaje.mapa = 'mapa1'
+			SeleccionPersonaje.mapa = 'default'
+			print('mapa: ', SeleccionPersonaje.mapa)
 		1:
-			SeleccionPersonaje.mapa = 'mapa2'
+			SeleccionPersonaje.mapa = 'mapa_1'
 
 func _on_button_rondas_item_selected(index: int) -> void:
 	match index:
@@ -60,3 +61,4 @@ func create_buttons() -> void:
 	button_rondas.add_item("8 Ronda")
 	
 	button_mapa.add_item("Mapa por defecto")
+	button_mapa.add_item("Mapa 1: Jungla")
