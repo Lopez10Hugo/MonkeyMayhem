@@ -30,6 +30,7 @@ func _equip_to_hand(body):
 	get_parent().remove_child(self)
 	body.Hand.add_child(self)
 	global_position = body.Hand.global_position
+	set_monitoring(false)
 	
 func attack():
 	damaged_bodies.clear()

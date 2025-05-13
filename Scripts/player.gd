@@ -11,6 +11,7 @@ var jump_buffer_counter = 0
 var dashing = false
 var can_dash = true
 var dash_accel: float = 1
+var dash_ready: bool = true
 var HP: float = 100
 var is_dead = false
 
@@ -28,6 +29,7 @@ var just_jumped : bool = false
 @onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 @onready var dash_timer = $DashTimer
+@onready var dash_cooldown = $CooldownDashTimer
 
 func _physics_process(delta: float) -> void:
 	#print("ID : " , player_id, " Pos: " , position, "Health: ", HP)
@@ -49,7 +51,8 @@ func calculate_wall_movement() -> float:
 
 func check_ground(delta: float) -> void:
 	if is_on_floor():
-		can_dash = true
+		if(dash_ready):
+			can_dash = true
 		coyote_counter = 0
 		if jump_pressed and jump_buffer_counter <= JUMP_BUFFER_WINDOW:
 			velocity.y = jump_velocity
@@ -66,7 +69,7 @@ func handle_jump() -> void:
 	if Input.is_action_just_pressed("saltar_%s" % [player_id]):
 		jump_pressed = true
 		jump_buffer_counter = 0
-		if is_on_floor() or coyote_counter or is_climbing() <= COYOTE_FRAME_WINDOW:
+		if is_on_floor() or coyote_counter <= COYOTE_FRAME_WINDOW or is_climbing() :
 			just_jumped = true
 			velocity.y = jump_velocity
 
@@ -74,6 +77,8 @@ func handle_movement(delta: float) -> void:
 	if Input.is_action_just_pressed("dash_%s" % [player_id]) and not dashing and can_dash:
 		dashing = true
 		can_dash = false
+		dash_ready = false
+		dash_cooldown.start(2)
 		dash_timer.start(0.2)
 		var direction_x = Input.get_axis("mover_izquierda_%s" % [player_id],"mover_derecha_%s" % [player_id])
 		var direction_y = Input.get_axis("trepar_arriba_%s" % [player_id], "trepar_abajo_%s" % [player_id])
@@ -161,3 +166,7 @@ func handle_attack():
 		child.attack()
 	
 	
+
+
+func _on_cooldown_dash_timer_timeout() -> void:
+	dash_ready = true

@@ -1,5 +1,4 @@
-
-[gd_scene load_steps=11 format=4 uid="uid://cts2878rykdgr"]
+[gd_scene load_steps=12 format=4 uid="uid://cts2878rykdgr"]
 
 [ext_resource type="Script" uid="uid://b6j4c4ju0vxo6" path="res://Scripts/main.gd" id="1_8gbba"]
 [ext_resource type="FontFile" uid="uid://dkkt3xoq4ajcs" path="res://Assets/Fonts/kiwisoda/KiwiSoda.ttf" id="2_21xkr"]
@@ -248,12 +247,8 @@ shape = SubResource("WorldBoundaryShape2D_jjvhh")
 [node name="Pausa" parent="CanvasLayer" instance=ExtResource("4_jjvhh")]
 
 [node name="WeaponBase" parent="." instance=ExtResource("5_kry3j")]
-<<<<<<< HEAD
 position = Vector2(-128, -58)
 script = ExtResource("6_6bp64")
-=======
-position = Vector2(-131, -47)
->>>>>>> ab5c366a5c66043f6521444b4eeb984873c8f734
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
