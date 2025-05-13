@@ -1,6 +1,5 @@
 extends Node
 
-@onready var weapon_base: Area2D = $WeaponBase
 @onready var fondo: ParallaxBackground = $ParallaxBackground
 
 @export var camera_path: NodePath = "Camera2D"

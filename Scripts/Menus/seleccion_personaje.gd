@@ -39,6 +39,7 @@ func _on_button_mapa_item_selected(index: int) -> void:
 	match index:
 		0:
 			SeleccionPersonaje.mapa = 'default'
+			print('mapa: ', SeleccionPersonaje.mapa)
 		1:
 			SeleccionPersonaje.mapa = 'mapa_1'
 

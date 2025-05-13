@@ -30,7 +30,6 @@ var ronda_en_progreso = true
 func _ready():
 	#camara.current = true
 	mapa_actual = mapa_base
-	print('ready')
 	reset = true
 	crear_mapa()
 	crear_jugadores()
@@ -70,7 +69,6 @@ func crear_jugadores():
 		jugadores.append(player)
 		if reset:
 			print('reset')
-			print('i:',i)
 			rondas_ganadas[i] = 0
 			
 		if i>1:
@@ -156,8 +154,6 @@ func handle_camara(delta) -> void:
 
 	var suavizado_zoom = 1.5
 	camara.zoom = camara.zoom.lerp(Vector2(zoom_target, zoom_target), suavizado_zoom * delta)
-
-
 
 
 func resetear_ronda():
