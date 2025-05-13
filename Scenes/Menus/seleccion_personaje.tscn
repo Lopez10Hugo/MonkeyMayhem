@@ -99,7 +99,7 @@ theme_override_constants/separation = 240
 [node name="button_rondas" type="OptionButton" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer3"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../../HBoxContainer2/button_mapa")
-focus_neighbor_bottom = NodePath("../../../../../atras")
+focus_neighbor_bottom = NodePath("../../../../../Continuar")
 
 [node name="atras" type="Button" parent="."]
 custom_minimum_size = Vector2(120, 40)
