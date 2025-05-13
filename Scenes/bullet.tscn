@@ -1,12 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://c714t1d0cfn1"]
+[gd_scene load_steps=4 format=3 uid="uid://c714t1d0cfn1"]
 
 [ext_resource type="Script" uid="uid://bnpltfnerw5hh" path="res://Scripts/bullet.gd" id="1_xjght"]
+[ext_resource type="Texture2D" uid="uid://ddnp1a7241xa0" path="res://Assets/monkey.png" id="2_oduel"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycag2"]
 
 [node name="bullet" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_xjght")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_oduel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ycag2")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
