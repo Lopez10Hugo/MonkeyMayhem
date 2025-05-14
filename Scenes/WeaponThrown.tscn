@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://p2mxhml2sg4p"]
+
+[ext_resource type="Script" uid="uid://cwn2yisqyx2pv" path="res://Scripts/weapon_thrown.gd" id="1_0sqaw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0sqaw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttgb2"]
+
+[node name="WeaponThrown" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 3
+mass = 2.0
+script = ExtResource("1_0sqaw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0sqaw")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ttgb2")

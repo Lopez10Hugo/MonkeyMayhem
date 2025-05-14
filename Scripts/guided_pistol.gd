@@ -9,6 +9,7 @@ func _ready():
 	damage = 1000
 	is_melee = false
 	sprite_texture = preload("res://Assets/posibles armas/snoops_bows_and_guns/2px/24.png")
+	scale = Vector2(-1.2, 1.2) 
 	super._ready()
 
 func attack():

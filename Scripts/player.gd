@@ -86,7 +86,7 @@ func handle_movement(delta: float) -> void:
 		if dash_direction == Vector2.ZERO:
 			dash_direction.x = 1 if Sprite.flip_h else -1
 		velocity = dash_direction * SPEED * 3
-		for i in range(3):  # Creates multiple trail instances
+		for i in range(3):  
 			await get_tree().create_timer(0.05 * i).timeout
 			create_trail()
 	
@@ -141,8 +141,18 @@ func _on_dash_timer_timeout() -> void:
 
 func take_damage(damage: int):
 	HP -= damage
+	_flash_red()
 	if HP <= 0:
 		explode()
+
+func _flash_red():
+	var sprite = $Sprite2D
+	var tween = get_tree().create_tween()
+	
+	# Cambiar a rojo en 0.1 segundos
+	tween.tween_property(sprite, "modulate", Color(1, 0, 0), 0.1)
+	# Volver a color normal (blanco) en 0.1 segundos
+	tween.tween_property(sprite, "modulate", Color(1, 1, 1), 0.1)
 		
 func explode():
 	if is_dead:
@@ -156,6 +166,30 @@ func explode():
 	visible = false
 	is_dead = true
 
+func lanzar_arma(weapon):
+	if not weapon:
+		return
+
+	var thrown_weapon = preload("res://Scenes/WeaponThrown.tscn").instantiate()
+
+	# propiedades básicas
+	thrown_weapon.global_position = weapon.global_position
+	thrown_weapon.damage = weapon.damage
+	thrown_weapon.sprite_texture = weapon.sprite_texture
+
+	# le pasamos la escala que tenía en el editor para que _ready() la aplique
+	thrown_weapon.initial_scale = weapon.scale
+
+	# dirección de lanzamiento
+	var dir = Vector2(1 if Sprite.flip_h else -1, 0).normalized()
+	thrown_weapon.linear_velocity = dir * 500
+
+	# finalmente, la metemos en la escena y destruimos la original
+	get_parent().add_child(thrown_weapon)
+	weapon.queue_free()
+
+
+
 
 func handle_attack():
 	var child: Node = null
@@ -164,7 +198,8 @@ func handle_attack():
 		child= candidates.front()
 	if Input.is_action_pressed("atacar_%s" % [player_id]) and child != null:
 		child.attack()
-	
+	if Input.is_action_pressed("lanzar_arma_%s" % [player_id]) and child != null:
+		lanzar_arma(child)
 	
 
 

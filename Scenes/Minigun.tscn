@@ -10,9 +10,6 @@ collision_mask = 2
 script = ExtResource("2_jkprt")
 bullet_scene = ExtResource("3_jkprt")
 
-[node name="Sprite2D" parent="." index="1"]
-scale = Vector2(0.234934, 0.234934)
-
 [node name="CooldownTimer" parent="." index="2"]
 wait_time = 0.05
 

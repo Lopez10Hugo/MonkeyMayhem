@@ -11,8 +11,5 @@ collision_mask = 2
 script = ExtResource("2_hma1t")
 bullet_scene = ExtResource("3_mas50")
 
-[node name="Sprite2D" parent="." index="1"]
-scale = Vector2(-1.298, 1.298)
-
 [node name="AudioStreamPlayer" parent="." index="4"]
 stream = ExtResource("4_nadd4")
