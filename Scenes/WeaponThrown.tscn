@@ -1,10 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://p2mxhml2sg4p"]
+[gd_scene load_steps=11 format=3 uid="uid://p2mxhml2sg4p"]
 
 [ext_resource type="Script" uid="uid://cwn2yisqyx2pv" path="res://Scripts/weapon_thrown.gd" id="1_0sqaw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0sqaw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttgb2"]
+
+[sub_resource type="Gradient" id="Gradient_0sqaw"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ttgb2"]
+gradient = SubResource("Gradient_0sqaw")
+width = 128
+height = 128
+use_hdr = true
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_ccumd"]
+offsets = PackedFloat32Array(0, 0.486486, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.713726, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ttgb2"]
+gradient = SubResource("Gradient_ccumd")
+width = 4096
+
+[sub_resource type="Curve" id="Curve_sabut"]
+_data = [Vector2(0.0465839, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ccumd"]
+width = 4096
+curve = SubResource("Curve_sabut")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hotyf"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 60.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 5, 0)
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_ccumd")
+color_ramp = SubResource("GradientTexture1D_ttgb2")
 
 [node name="WeaponThrown" type="RigidBody2D"]
 collision_layer = 4
@@ -23,3 +61,12 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_ttgb2")
+
+[node name="BounceParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 20
+texture = SubResource("GradientTexture2D_ttgb2")
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_hotyf")

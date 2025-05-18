@@ -12,6 +12,7 @@ var turn_speed := 3.0
 var current_direction: Vector2 = Vector2.ZERO  
 
 func _process(delta):
+
 	life_time += delta
 	if life_time < delay_before_tracking:
 		# Primero va en la dirección inicial
@@ -34,6 +35,7 @@ func set_direction(dir: Vector2):
 
 func get_nearest_target() -> Node:
 	var players = get_tree().get_nodes_in_group("Player")
+	print(players)
 	var closest: Node = null
 	var min_dist = INF
 

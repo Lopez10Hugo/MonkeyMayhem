@@ -28,9 +28,9 @@ func shoot_bullet():
 		bullet.global_position = global_position
 		bullet.rotation = global_rotation
 		if Sprite.flip_h:
-			bullet.set_direction(Vector2.RIGHT.rotated(global_rotation)) 
-		else:
 			bullet.set_direction(Vector2.LEFT.rotated(global_rotation)) 
+		else:
+			bullet.set_direction(Vector2.RIGHT.rotated(global_rotation)) 
 		bullet.damage = damage
 		bullet.shooter = self.get_parent().get_parent()
 		get_tree().current_scene.add_child(bullet)

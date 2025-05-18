@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bl2ecfduss1gr"]
+[gd_scene load_steps=34 format=3 uid="uid://bl2ecfduss1gr"]
 
 [ext_resource type="Script" uid="uid://cr8u2lu5ith3g" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://bk43fgn6eweog" path="res://Assets/un-pixilart.png" id="2_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://bkjg7qyiynkom" path="res://Assets/monkeyAnimation.png" id="2_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://4ygl6bqyoh3s" path="res://Assets/idle_sprite.png" id="2_cvnsp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
 
@@ -58,8 +59,142 @@ scale_max = 11.55
 scale_curve = SubResource("CurveTexture_3smsa")
 color_ramp = SubResource("GradientTexture1D_fkybt")
 
+[sub_resource type="Gradient" id="Gradient_0sqaw"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cvnsp"]
+gradient = SubResource("Gradient_0sqaw")
+width = 128
+height = 128
+use_hdr = true
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_6t5aa"]
+offsets = PackedFloat32Array(0, 0.486486, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.713726, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rvfjc"]
+gradient = SubResource("Gradient_6t5aa")
+width = 4096
+
+[sub_resource type="Curve" id="Curve_vgqql"]
+_data = [Vector2(0.0465839, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_q4p6v"]
+width = 4096
+curve = SubResource("Curve_vgqql")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fkybt"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 77.94
+flatness = 1.0
+initial_velocity_min = 60.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 5, 0)
+scale_min = 0.03
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_q4p6v")
+color_ramp = SubResource("GradientTexture1D_rvfjc")
+collision_mode = 1
+collision_friction = 0.25
+collision_bounce = 0.6
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx1dd"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu2lt"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukyrk"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
+atlas = ExtResource("2_cvnsp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
+atlas = ExtResource("2_cvnsp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkybt"]
+atlas = ExtResource("2_cvnsp")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3wgy"]
+atlas = ExtResource("2_cvnsp")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3smsa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3smsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8erm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ek2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tx1dd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gymyn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pu2lt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukyrk")
+}],
+"loop": true,
+"name": &"climb",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t5aa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgqql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkybt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3wgy")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 20
 collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_cvnsp")
 jump_height = 50.0
 jump_time_to_peak = 0.4
@@ -77,11 +212,6 @@ position = Vector2(1, -0.25)
 shape = SubResource("RectangleShape2D_cvnsp")
 debug_color = Color(0.973109, 0, 0.436324, 0.42)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(1.00003, -0.999999)
-texture = ExtResource("2_6t5aa")
-
 [node name="Ray" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 scale = Vector2(1.04041, 2.27862)
@@ -97,6 +227,21 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_8erm5")
 
 [node name="CooldownDashTimer" type="Timer" parent="."]
+
+[node name="BounceParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 50
+texture = SubResource("GradientTexture2D_cvnsp")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_fkybt")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3smsa")
+animation = &"climb"
+frame_progress = 0.628503
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="CooldownDashTimer" to="." method="_on_cooldown_dash_timer_timeout"]
