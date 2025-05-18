@@ -1,8 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://bl2ecfduss1gr"]
+[gd_scene load_steps=46 format=3 uid="uid://bl2ecfduss1gr"]
 
 [ext_resource type="Script" uid="uid://cr8u2lu5ith3g" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://bkjg7qyiynkom" path="res://Assets/monkeyAnimation.png" id="2_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://4ygl6bqyoh3s" path="res://Assets/idle_sprite.png" id="2_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://dvh5lpkp732j4" path="res://Assets/Mono-andando-cycyle.png" id="4_fkybt"]
+[ext_resource type="Texture2D" uid="uid://0bgnokdydihs" path="res://Assets/WalkingMonkey.png" id="4_vgqql"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
 
@@ -145,6 +147,46 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("2_cvnsp")
 region = Rect2(96, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs7ks"]
+atlas = ExtResource("4_fkybt")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6n3p"]
+atlas = ExtResource("4_fkybt")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olqyp"]
+atlas = ExtResource("4_fkybt")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpjfl"]
+atlas = ExtResource("4_fkybt")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi64h"]
+atlas = ExtResource("4_fkybt")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dp3o"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4iuc"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fd4e3"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqcod"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igrcy"]
+atlas = ExtResource("4_vgqql")
+region = Rect2(256, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_3smsa"]
 animations = [{
 "frames": [{
@@ -171,7 +213,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"climb",
-"speed": 3.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -189,6 +231,46 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fs7ks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6n3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olqyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpjfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi64h")
+}],
+"loop": true,
+"name": &"walk-cycle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dp3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4iuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fd4e3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqcod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igrcy")
+}],
+"loop": false,
+"name": &"walk-init",
+"speed": 12.0
 }]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
@@ -201,9 +283,11 @@ jump_time_to_peak = 0.4
 jump_time_to_descent = 0.3
 
 [node name="Hand" type="Node2D" parent="."]
-position = Vector2(-9, 5)
+position = Vector2(-6, 5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
+position = Vector2(-4, 2)
+scale = Vector2(0.741358, 0.779438)
 shape = SubResource("RectangleShape2D_6t5aa")
 debug_color = Color(0.160047, 0.624549, 0.459465, 0.42)
 
@@ -240,8 +324,8 @@ process_material = SubResource("ParticleProcessMaterial_fkybt")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3smsa")
-animation = &"climb"
-frame_progress = 0.628503
+animation = &"walk-cycle"
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="CooldownDashTimer" to="." method="_on_cooldown_dash_timer_timeout"]
+[connection signal="animation_finished" from="Sprite2D" to="." method="_on_sprite_2d_animation_finished"]

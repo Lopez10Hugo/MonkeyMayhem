@@ -31,6 +31,7 @@ var just_jumped : bool = false
 @onready var dash_timer = $DashTimer
 @onready var dash_cooldown = $CooldownDashTimer
 
+
 func _physics_process(delta: float) -> void:
 	check_ground(delta)
 	handle_jump()
@@ -119,9 +120,9 @@ func handle_movement(delta: float) -> void:
 	if child != null:
 		child.get_node("Sprite2D").flip_h = Sprite.flip_h
 		if Sprite.flip_h:
-			child.position.x = Hand.position.x + 10
+			child.position.x = Hand.position.x + 5
 		else:
-			child.position.x = Hand.position.x - 10
+			child.position.x = Hand.position.x - 5
 
 	update_collision_position_while_climbing()
 	update_animation()
@@ -133,11 +134,30 @@ func update_collision_position_while_climbing():
 	else:
 		$Sprite2D.position.x = 0
 
+var walking_started = false
+var last_state = ""
+
 func update_animation():
 	if is_climbing():
-		$Sprite2D.play("climb")
+		if $Sprite2D.animation != "climb":
+			$Sprite2D.play("climb")
+		walking_started = false
+		last_state = "climb"
+
+	elif velocity.x != 0 and is_on_floor():
+		if last_state != "walk-init" and not walking_started:
+			$Sprite2D.play("walk-init")
+			last_state = "walk-init"
+			walking_started = true
+		elif $Sprite2D.animation == "walk-init" and !$Sprite2D.is_playing():
+			$Sprite2D.play("walk-cycle")
+			last_state = "walk-cycle"
 	else:
-		$Sprite2D.play("idle")
+		if $Sprite2D.animation != "idle":
+			$Sprite2D.play("idle")
+		walking_started = false
+		last_state = "idle"
+
 
 func create_trail():
 	var trail_sprite = AnimatedSprite2D.new()
@@ -213,3 +233,8 @@ func handle_attack():
 
 func _on_cooldown_dash_timer_timeout() -> void:
 	dash_ready = true
+
+func _on_sprite_2d_animation_finished() -> void:
+	if $Sprite2D.animation == "walk-init":
+		$Sprite2D.play("walk-cycle")
+		last_state = "walk-cycle"

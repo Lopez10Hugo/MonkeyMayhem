@@ -35,7 +35,6 @@ func set_direction(dir: Vector2):
 
 func get_nearest_target() -> Node:
 	var players = get_tree().get_nodes_in_group("Player")
-	print(players)
 	var closest: Node = null
 	var min_dist = INF
 

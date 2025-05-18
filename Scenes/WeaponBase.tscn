@@ -12,6 +12,7 @@ script = ExtResource("1_6efqm")
 shape = SubResource("RectangleShape2D_2jbto")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1000
 
 [node name="CooldownTimer" type="Timer" parent="."]
 one_shot = true

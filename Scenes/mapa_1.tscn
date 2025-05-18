@@ -464,10 +464,6 @@ sources/0 = SubResource("TileSetAtlasSource_cckvs")
 [node name="Mapa_1" type="Node"]
 script = ExtResource("1_cckvs")
 
-[node name="WeaponBase" parent="." instance=ExtResource("3_pru3k")]
-position = Vector2(-128, -58)
-script = ExtResource("3_skjeu")
-
 [node name="WeaponBase3" parent="." instance=ExtResource("3_pru3k")]
 position = Vector2(-82, 48)
 script = ExtResource("3_skjeu")
