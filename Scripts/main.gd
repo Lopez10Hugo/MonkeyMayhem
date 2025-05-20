@@ -9,6 +9,8 @@ extends Node2D
 
 
 var PlayerScene = preload("res://Scenes/player.tscn")
+var escena_espada = preload("res://Scenes/Sword.tscn")
+var escena_pistola = preload("res://Scenes/pistol.tscn")
 var mapa_actual 
 var jugadores = []
 var rondas_jugadas = 0
@@ -32,7 +34,6 @@ func _ready():
 	mapa_actual = mapa_base
 	reset = true
 	crear_mapa()
-	cargar_armas()
 	crear_jugadores()
 	rondas_ganadas.clear()
 	tabla_puntuaciones.show()
@@ -207,7 +208,23 @@ func crear_mapa():
 		print("Cargando mapa: ", ruta)
 		cargar_mapa(ruta)
 		mapa_base.hide()
-		arma_base.hide()
+		#arma_base.hide()
+		cargar_armas()
+		#var arma = escena_pistola.instantiate()
+		#arma.name = "WeaponBasePistola"  # Asignar un nombre único
+		#add_child(arma)
+		#print("arma es del tipo: ", arma.get_class())
+		#print("arma está en la ruta:", arma.get_path())
+#
+		#var arma2 = escena_espada.instantiate()
+		#arma2.name = "WeaponBaseEspada"  # Asignar un nombre único
+		#add_child(arma2)
+		#print("arma2 es del tipo: ", arma2.get_class())
+		#print("arma2 está en la ruta:", arma2.get_path())
+		#
+		#print('nodos:')
+		#for child in get_tree().get_current_scene().get_children():
+			#print(child.name)
 	else:
 		print("No se especificó un mapa. Usando mapa_base.")
 		mapa_base.show()
@@ -223,16 +240,21 @@ func cargar_armas() -> void:
 	if nodo_spawns == null:
 		print("No se encontraron puntos de spawn.")
 		return
-
+	var contador = 0
 	for marker in nodo_spawns.get_children():
 		if marker is Marker2D:
 			# Instanciar arma aleatoria
-			var arma_escena = SeleccionPersonaje.armas_disponibles.pick_random()
-			var arma = arma_escena.instantiate()
-			arma.add_to_group("armas")
+			var path_arma = SeleccionPersonaje.armas_disponibles.pick_random()
+			print('ruta arma', path_arma)
+			var arma = load(path_arma).instantiate()
+			#arma.add_to_group("armas")
 			arma.position = marker.global_position
+			arma.name = "WeaponBase" + str(contador)
 			add_child(arma)
-			arma._ready()
+			contador +=1
+			#print('nodos:')
+			#for child in get_tree().get_current_scene().get_children():
+				#print(child.name)
 
 func cargar_mapa(ruta_mapa: String):
 	if mapa_actual:

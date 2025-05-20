@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://cts2878rykdgr"]
+[gd_scene load_steps=9 format=4 uid="uid://cts2878rykdgr"]
 
 [ext_resource type="Script" uid="uid://b6j4c4ju0vxo6" path="res://Scripts/main.gd" id="1_8gbba"]
 [ext_resource type="FontFile" uid="uid://dkkt3xoq4ajcs" path="res://Assets/Fonts/kiwisoda/KiwiSoda.ttf" id="2_21xkr"]
 [ext_resource type="Texture2D" uid="uid://bqwwci3hr8p7r" path="res://Assets/sprites/Brackeys Bundle/world_tileset.png" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://cxfkewlgy5kpa" path="res://Scenes/killzone.tscn" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://6dybykqnfrcc" path="res://Scenes/Menus/pausa.tscn" id="4_jjvhh"]
-[ext_resource type="PackedScene" uid="uid://br3x7x57ka2cj" path="res://Scenes/Sword.tscn" id="5_kry3j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_21xkr"]
 texture = ExtResource("2_bo1nx")
@@ -243,8 +242,5 @@ shape = SubResource("WorldBoundaryShape2D_jjvhh")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Pausa" parent="CanvasLayer" instance=ExtResource("4_jjvhh")]
-
-[node name="WeaponBase" parent="." instance=ExtResource("5_kry3j")]
-position = Vector2(-128, -58)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
