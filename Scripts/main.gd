@@ -206,7 +206,6 @@ func crear_mapa():
 		ruta += ".tscn"
 		print("Cargando mapa: ", ruta)
 		cargar_mapa(ruta)
-		cargar_armas()
 		mapa_base.hide()
 		arma_base.hide()
 	else:

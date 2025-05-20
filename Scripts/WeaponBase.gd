@@ -19,9 +19,10 @@ func _ready():
 		$Sprite2D.texture = sprite_texture
 
 func _on_body_entered(body):
-	if body.is_in_group("Player") and not body.Hand.get_children().filter(func(c): return c.name.begins_with("WeaponBase")).size() > 0 and not is_equipped:
+	if body.is_in_group("Player") and not body.Hand.get_children().any(func(c): return c is WeaponBase) and not is_equipped:
 		is_equipped = true
 		call_deferred("_equip_to_hand", body)
+		print('equipado')
 	elif is_attacking and body.is_in_group("Player") and body not in damaged_bodies and self.get_parent().get_parent() != body:
 		body.take_damage(damage)
 		damaged_bodies.append(body)
