@@ -27,5 +27,5 @@ func on_resolucion_seleccionada(index : int) -> void:
 	DisplayServer.window_set_size(RESOLUTON_DICTIONARY.values()[index])
 
 func _on_focus_entered() -> void:
-	print('option button 2 grabbed focus')
+	#print('option button 2 grabbed focus')
 	option_button.grab_focus()

@@ -5,7 +5,7 @@ extends Control
 @onready var options_menu: Control = $".."
 
 func _ready() -> void:
-	print('ready')
+	#print('ready')
 	_on_focus_entered()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -21,5 +21,5 @@ func _on_button_pressed() -> void:
 
 
 func _on_focus_entered() -> void:
-	print('audio focus')
+	#print('audio focus')
 	audio_slider._on_focus_entered()

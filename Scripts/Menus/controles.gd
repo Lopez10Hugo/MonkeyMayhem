@@ -5,7 +5,7 @@ extends Control
 @onready var volver_al_menu: Button = $"MarginContainer/VBoxContainer2/ScrollContainer/VBoxContainer/Volver al menu"
 
 func _on_focus_entered() -> void:
-	print('rebind control grabbed focus')
+	#print('rebind control grabbed focus')
 	rebind_control._on_focus_entered()
 
 

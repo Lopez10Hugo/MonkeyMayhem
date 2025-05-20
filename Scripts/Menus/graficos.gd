@@ -14,7 +14,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_focus_entered() -> void:
 	boton_modo_ventana.grab_focus()
-	print('modo ventana grabbed focus')
+	#print('modo ventana grabbed focus')
 
 func _on_volver_al_menu_pressed() -> void:
 	options_menu._inicial_display()
