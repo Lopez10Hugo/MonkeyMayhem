@@ -21,5 +21,5 @@ func _on_check_button_toggled(toggled_on: bool) -> void:
 	SettingsSignalBus.emit_on_subtitles_toggled(toggled_on)
 
 func _on_focus_entered() -> void:
-	print('check button grabbed focus')
+	#print('check button grabbed focus')
 	check_button.grab_focus()

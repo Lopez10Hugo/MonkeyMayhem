@@ -17,6 +17,8 @@ var is_dead = false
 var airborne = false
 var just_jumped : bool = false
 
+var puede_moverse : bool = true
+
 @export var player_id = 1
 @onready var Ray = $Ray
 @onready var Sprite = $Sprite2D
@@ -34,10 +36,11 @@ var just_jumped : bool = false
 
 func _physics_process(delta: float) -> void:
 	check_ground(delta)
-	handle_jump()
-	handle_movement(delta)
-	move_and_slide()
-	handle_attack()
+	if puede_moverse:
+		handle_jump()
+		handle_movement(delta)
+		move_and_slide()
+		handle_attack()
 	just_jumped = false
 	
 func calculate_gravity() -> float:

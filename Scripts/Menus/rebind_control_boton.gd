@@ -106,5 +106,5 @@ func rebind_action_key(evento):
 	button.grab_focus()
 
 func _on_focus_entered() -> void:
-	print('button grabbed focus')
+	#print('button grabbed focus')
 	button.grab_focus()

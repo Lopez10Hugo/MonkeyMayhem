@@ -7,8 +7,11 @@ extends Node2D
 @onready var arma_base: Area2D = $WeaponBase
 @onready var camara: Camera2D = $Camera2D
 
+@onready var pantalla_carga: Control = $Pantalla_carga
 
 var PlayerScene = preload("res://Scenes/player.tscn")
+var escena_espada = preload("res://Scenes/Sword.tscn")
+var escena_pistola = preload("res://Scenes/pistol.tscn")
 var mapa_actual 
 var jugadores = []
 var rondas_jugadas = 0
@@ -37,6 +40,7 @@ func _ready():
 	tabla_puntuaciones.show()
 	actualizar_marcadores()
 	mensaje_victoria_ronda.hide()
+	poner_pantalla_carga(false,false)
 
 func actualizar_marcadores():
 	var contenedor = tabla_puntuaciones
@@ -68,7 +72,7 @@ func crear_jugadores():
 		add_child(player)
 		jugadores.append(player)
 		if reset:
-			print('reset')
+			#print('reset')
 			rondas_ganadas[i] = 0
 			
 		if i>1:
@@ -110,12 +114,34 @@ func _process(delta: float) -> void:
 		print("Jugador ", ganador_id, " gana la ronda. Total:", rondas_ganadas[ganador_id])
 
 		if rondas_jugadas >= SeleccionPersonaje.num_rondas:
-			print("Fin del juego.")
-			mostrar_resultado_final()
-			var reset = true
+			var ganadores = obtener_empate()
+			if ganadores.size() > 1:
+				print("Empate entre jugadores: ", ganadores)
+				jugadores = jugadores.filter(func(p): return ganadores.has(p.player_id))
+				SeleccionPersonaje.num_jugadores = ganadores.size()
+				SeleccionPersonaje.mapa = "mapa_2"  # usa un mapa especial si querés
+				rondas_jugadas -= 1  # no contar esta ronda como una "oficial"
+				resetear_ronda(true)
+			else:
+				print("Fin del juego.")
+				mostrar_resultado_final()
+				var reset = true
 		else:
-			resetear_ronda()
-		
+			resetear_ronda(false)
+
+func obtener_empate() -> Array:
+	var max_puntos = -1
+	var ganadores = []
+
+	for id in rondas_ganadas.keys():
+		var puntos = rondas_ganadas[id]
+		if puntos > max_puntos:
+			max_puntos = puntos
+			ganadores = [id]
+		elif puntos == max_puntos:
+			ganadores.append(id)
+
+	return ganadores
 
 func handle_camara(delta) -> void:
 	if jugadores.size() == 0:
@@ -156,7 +182,7 @@ func handle_camara(delta) -> void:
 	camara.zoom = camara.zoom.lerp(Vector2(zoom_target, zoom_target), suavizado_zoom * delta)
 
 
-func resetear_ronda():
+func resetear_ronda(empate : bool):
 	for p in jugadores:
 		p.queue_free()
 	jugadores.clear()
@@ -164,12 +190,21 @@ func resetear_ronda():
 	await get_tree().create_timer(1.0).timeout
 	ronda_en_progreso = true
 	crear_jugadores()
+	if empate:
+		crear_mapa()
 	reset_armas()
 	actualizar_marcadores()
 	mensaje_victoria_ronda.hide()
+	poner_pantalla_carga(true,empate)
 
 func reset_armas() -> void:
-	pass
+	print('reset_armas')
+	# Eliminar armas actuales
+	for arma in get_tree().get_nodes_in_group("armas"):
+		arma.queue_free()
+		print('Borrando arma, ', arma.name)
+	# Volver a cargar armas aleatorias
+	cargar_armas()
 
 func mostrar_resultado_final():
 	var ganador_final = rondas_ganadas.keys()[0]
@@ -182,31 +217,48 @@ func mostrar_resultado_final():
 	print("Jugador ganador final: ", ganador_final)
 	mensaje_victoria_ronda.text = "¡El jugador %d ha ganado la partida!" % [ganador_final]
 	mensaje_victoria_ronda.show()
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(4.0).timeout
 	# Reiniciar o cambiar de escena si quieres
 	mensaje_victoria_ronda.hide()
-	
-	#pantalla de carga
-	#pantalla_carga.visible = true
-	#await get_tree().create_timer(3.0).timeout  # Duración de pantalla de carga
 	
 	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 
 func crear_mapa():
 	if SeleccionPersonaje.mapa != 'default':
-		print("Cargando mapa desde SeleccionPersonaje:", SeleccionPersonaje.mapa)
+		#print("Cargando mapa desde SeleccionPersonaje:", SeleccionPersonaje.mapa)
 		var ruta = "res://Scenes/"
 		ruta += SeleccionPersonaje.mapa
 		ruta += ".tscn"
 		print("Cargando mapa: ", ruta)
 		cargar_mapa(ruta)
-		mapa_base.hide()
-		arma_base.hide()
+		if mapa_base != null:
+			mapa_base.hide()
+		cargar_armas()
 	else:
 		print("No se especificó un mapa. Usando mapa_base.")
 		mapa_base.show()
 		arma_base.show()
 
+func cargar_armas() -> void:
+	if mapa_actual == null:
+		print("No hay mapa cargado.")
+		return
+	
+	var nodo_spawns = mapa_actual.get_node_or_null("Spawns_armas")
+	if nodo_spawns == null:
+		print("No se encontraron puntos de spawn.")
+		return
+	var contador = 0
+	for marker in nodo_spawns.get_children():
+		if marker is Marker2D:
+			# Instanciar arma aleatoria
+			var path_arma = SeleccionPersonaje.armas_disponibles.pick_random()
+			var arma = load(path_arma).instantiate()
+			arma.add_to_group("armas")
+			arma.position = marker.global_position
+			arma.name = "WeaponBase" + str(contador)
+			add_child(arma)
+			contador +=1
 
 func cargar_mapa(ruta_mapa: String):
 	if mapa_actual:
@@ -223,3 +275,17 @@ func cargar_mapa(ruta_mapa: String):
 				puntos_spawn.append(child.global_position)
 	else:
 		print("Advertencia: No se encontraron puntos de spawn en el mapa.")
+
+func poner_pantalla_carga(next_round: bool,empate : bool) -> void:
+	# Bloquea movimiento
+	for jugador in jugadores:
+		jugador.puede_moverse = false
+	
+	pantalla_carga.show()
+	print('Cargando...')
+	await pantalla_carga.iniciar(next_round,empate)
+	pantalla_carga.hide()
+	print('Carga terminada')
+	# Desbloquea movimiento
+	for jugador in jugadores:
+		jugador.puede_moverse = true

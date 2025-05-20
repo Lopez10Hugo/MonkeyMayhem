@@ -31,7 +31,7 @@ func set_high_contrast_state(button_pressed: bool) -> void:
 		high_contrast_state.text = "Off"
 
 func _on_focus_entered() -> void:
-	print('toggle grabbed focus')
+	#print('toggle grabbed focus')
 	high_contrast_check.grab_focus()
 
 func _on_volver_pressed() -> void:

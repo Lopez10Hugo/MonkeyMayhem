@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dmhhh07lfvc5j" path="res://Assets/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Jungle/preview.png" id="2_ce3w2"]
 [ext_resource type="FontFile" uid="uid://dkkt3xoq4ajcs" path="res://Assets/Fonts/kiwisoda/KiwiSoda.ttf" id="3_n45e2"]
 [ext_resource type="PackedScene" uid="uid://duvnfsjytk38v" path="res://Scenes/Menus/options_menu.tscn" id="4_ce3w2"]
-[ext_resource type="AudioStream" uid="uid://bbt3t6m6dhh5v" path="res://Assets/Music/jungle-story-168459.mp3" id="5_5wi6m"]
+[ext_resource type="AudioStream" uid="uid://bbt3t6m6dhh5v" path="res://Assets/Music_and_sounds/jungle-story-168459.mp3" id="5_5wi6m"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_opfnp"]
 texture = ExtResource("2_ce3w2")

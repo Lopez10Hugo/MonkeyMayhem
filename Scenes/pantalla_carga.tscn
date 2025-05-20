@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6knsfh0tbp35"]
+
+[ext_resource type="Script" uid="uid://drkwhle14co2v" path="res://Scripts/pantalla_carga.gd" id="1_8v8tq"]
+[ext_resource type="Texture2D" uid="uid://5jk8j2dgdqal" path="res://Assets/monillo_vergil.png" id="2_v26f5"]
+[ext_resource type="FontFile" uid="uid://dkkt3xoq4ajcs" path="res://Assets/Fonts/kiwisoda/KiwiSoda.ttf" id="3_b8s5c"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mhob2"]
+texture = ExtResource("2_v26f5")
+
+[node name="Pantalla_carga" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_8v8tq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="fondo" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_mhob2")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/fondo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="mensaje" type="Label" parent="CanvasLayer/fondo/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.219627, 0.445709, 1, 1)
+theme_override_constants/shadow_offset_x = -10
+theme_override_fonts/font = ExtResource("3_b8s5c")
+theme_override_font_sizes/font_size = 128
+text = "Ejemplo"
+horizontal_alignment = 1
+vertical_alignment = 1

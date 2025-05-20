@@ -33,20 +33,20 @@ func _on_focus_entered() -> void:
 	elif accesibilidad_tab.is_visible_in_tree():
 		accesibilidad_tab._on_focus_entered()
 	else:
-		print('boton controles grabbed focus')
+		#print('boton controles grabbed focus')
 		boton_controles.grab_focus()
 
 func _on_controles_pressed() -> void:
 	_hide_botones()
 	controles_tab.show()
-	print('controles tab grabbed focus')
+	#print('controles tab grabbed focus')
 	controles_tab._on_focus_entered()
 
 func _on_graficos_pressed() -> void:
 	_hide_botones()
 	graficos_tab.show()
 	graficos_tab._on_focus_entered()
-	print('graficos tab grabbes focus')
+	#print('graficos tab grabbes focus')
 
 func _on_sonido_pressed() -> void:
 	_hide_botones()

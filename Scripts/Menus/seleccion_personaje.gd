@@ -14,7 +14,7 @@ func _on_ready() -> void:
 	create_buttons()
 
 func _on_focus_entered() -> void:
-	print('h_slider grabbed focus')
+	#print('h_slider grabbed focus')
 	h_slider.grab_focus()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -39,7 +39,7 @@ func _on_button_mapa_item_selected(index: int) -> void:
 	match index:
 		0:
 			SeleccionPersonaje.mapa = 'default'
-			print('mapa: ', SeleccionPersonaje.mapa)
+			#print('mapa: ', SeleccionPersonaje.mapa)
 		1:
 			SeleccionPersonaje.mapa = 'mapa_1'
 		2:
