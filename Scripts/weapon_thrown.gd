@@ -46,5 +46,6 @@ func _queue_destruction():
 	$Sprite2D.visible = false
 	$BounceParticles.global_position = global_position
 	$BounceParticles.emitting = true
+	$AudioStreamPlayer2D.play()
 	await get_tree().create_timer(0.3).timeout  
 	queue_free()

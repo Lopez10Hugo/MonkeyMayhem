@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=4 uid="uid://sclbblpt8iy4"]
+[gd_scene load_steps=9 format=4 uid="uid://sclbblpt8iy4"]
 
 [ext_resource type="Script" uid="uid://clauc5vdjf6i0" path="res://Scripts/mapa_1.gd" id="1_cckvs"]
 [ext_resource type="Texture2D" uid="uid://bqwwci3hr8p7r" path="res://Assets/sprites/Brackeys Bundle/world_tileset.png" id="1_g68pe"]
+[ext_resource type="AudioStream" uid="uid://cfqn7oke0acs5" path="res://Assets/Sounds/66011_newgrounds_jungle.mp3" id="4_cckvs"]
 [ext_resource type="Texture2D" uid="uid://dmhhh07lfvc5j" path="res://Assets/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Jungle/preview.png" id="5_802xl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o0n4i"]
@@ -505,3 +506,10 @@ position = Vector2(-73, -165)
 
 [node name="spawn_arma4" type="Marker2D" parent="Spawns_armas"]
 position = Vector2(-79, 64)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_cckvs")
+volume_db = -10.0
+autoplay = true
+bus = &"Musica"
+parameters/looping = true

@@ -36,7 +36,7 @@ var puede_moverse : bool = true
 @onready var jump_sound: AudioStreamPlayer2D = $jump_sound
 @onready var landing_sound: AudioStreamPlayer2D = $landing_sound
 @onready var throw_sound: AudioStreamPlayer2D = $throw_sound
-
+@onready var dash_sound: AudioStreamPlayer2D = $dash_sound
 func _physics_process(delta: float) -> void:
 	check_ground(delta)
 	if puede_moverse:
@@ -90,8 +90,9 @@ func handle_movement(delta: float) -> void:
 		dashing = true
 		can_dash = false
 		dash_ready = false
-		dash_cooldown.start(2)
+		dash_cooldown.start(1)
 		dash_timer.start(0.2)
+		dash_sound.play()
 		var direction_x = Input.get_axis("mover_izquierda_%s" % [player_id], "mover_derecha_%s" % [player_id])
 		var direction_y = Input.get_axis("trepar_arriba_%s" % [player_id], "trepar_abajo_%s" % [player_id])
 		var dash_direction = Vector2(direction_x, direction_y).normalized()

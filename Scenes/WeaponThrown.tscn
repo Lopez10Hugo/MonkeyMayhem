@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://p2mxhml2sg4p"]
+[gd_scene load_steps=12 format=3 uid="uid://p2mxhml2sg4p"]
 
 [ext_resource type="Script" uid="uid://cwn2yisqyx2pv" path="res://Scripts/weapon_thrown.gd" id="1_0sqaw"]
+[ext_resource type="AudioStream" uid="uid://cvfa8ppc0ucb5" path="res://Assets/Sounds/jump.wav" id="2_ttgb2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0sqaw"]
 
@@ -70,3 +71,6 @@ lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_hotyf")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_ttgb2")
