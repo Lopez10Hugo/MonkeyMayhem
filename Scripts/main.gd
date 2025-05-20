@@ -232,6 +232,7 @@ func cargar_armas() -> void:
 			arma.add_to_group("armas")
 			arma.position = marker.global_position
 			add_child(arma)
+			arma._ready()
 
 func cargar_mapa(ruta_mapa: String):
 	if mapa_actual:
