@@ -1,9 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://dmwpceyuk47fp"]
 
 [ext_resource type="Script" uid="uid://dj2k6b37o3wpp" path="res://Scripts/bullet_directed.gd" id="1_pgvp5"]
-[ext_resource type="Texture2D" uid="uid://de7x7773n2cq3" path="res://Assets/bala.png" id="2_tq3tn"]
+[ext_resource type="Texture2D" uid="uid://bprwtfg21n864" path="res://Assets/posibles armas/sprites_-_lasers_bullets_1_66v2.5/Laser Sprites/33.png" id="2_pgvp5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycag2"]
+size = Vector2(27, 9)
 
 [node name="bullet" type="Area2D"]
 collision_layer = 4
@@ -11,11 +12,12 @@ collision_mask = 3
 script = ExtResource("1_pgvp5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -10)
-scale = Vector2(0.277734, 0.147583)
-texture = ExtResource("2_tq3tn")
+position = Vector2(9.53674e-07, 0)
+scale = Vector2(0.308098, 0.166228)
+texture = ExtResource("2_pgvp5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -0.5)
 shape = SubResource("RectangleShape2D_ycag2")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -33,6 +33,9 @@ var puede_moverse : bool = true
 @onready var dash_timer = $DashTimer
 @onready var dash_cooldown = $CooldownDashTimer
 
+@onready var jump_sound: AudioStreamPlayer2D = $jump_sound
+@onready var landing_sound: AudioStreamPlayer2D = $landing_sound
+@onready var throw_sound: AudioStreamPlayer2D = $throw_sound
 
 func _physics_process(delta: float) -> void:
 	check_ground(delta)
@@ -56,6 +59,7 @@ func check_ground(delta: float) -> void:
 	if is_on_floor():
 		if airborne:
 			$BounceParticles.emitting = true
+			landing_sound.play()
 		airborne = false
 		if dash_ready:
 			can_dash = true
@@ -79,6 +83,7 @@ func handle_jump() -> void:
 		if is_on_floor() or coyote_counter <= COYOTE_FRAME_WINDOW or is_climbing():
 			just_jumped = true
 			velocity.y = jump_velocity
+			jump_sound.play()
 
 func handle_movement(delta: float) -> void:
 	if Input.is_action_just_pressed("dash_%s" % [player_id]) and not dashing and can_dash:
@@ -233,6 +238,7 @@ func handle_attack():
 		child.attack()
 	if Input.is_action_pressed("lanzar_arma_%s" % [player_id]) and child != null:
 		lanzar_arma(child)
+		throw_sound.play()
 
 func _on_cooldown_dash_timer_timeout() -> void:
 	dash_ready = true

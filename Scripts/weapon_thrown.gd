@@ -6,10 +6,12 @@ class_name WeaponThrown
 @export var initial_scale: Vector2 = Vector2.ONE
 @export var rotation_speed: float = 30.0
 
+
 var damaged_players: Array = []
 var gravity_disabled_time: float = 0.5
 var apply_gravity: bool = true
 var apply_map_collision = false
+
 func _ready():
 	$Area2D.body_entered.connect(_on_body_entered)
 	$Sprite2D.texture = sprite_texture
@@ -39,7 +41,6 @@ func _on_body_entered(body):
 		_queue_destruction()
 	elif apply_map_collision:
 		_queue_destruction()
-
 
 func _queue_destruction():
 	$Sprite2D.visible = false

@@ -1,10 +1,13 @@
-[gd_scene load_steps=46 format=3 uid="uid://bl2ecfduss1gr"]
+[gd_scene load_steps=49 format=3 uid="uid://bl2ecfduss1gr"]
 
 [ext_resource type="Script" uid="uid://cr8u2lu5ith3g" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://bkjg7qyiynkom" path="res://Assets/monkeyAnimation.png" id="2_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://4ygl6bqyoh3s" path="res://Assets/idle_sprite.png" id="2_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://dvh5lpkp732j4" path="res://Assets/Mono-andando-cycyle.png" id="4_fkybt"]
 [ext_resource type="Texture2D" uid="uid://0bgnokdydihs" path="res://Assets/WalkingMonkey.png" id="4_vgqql"]
+[ext_resource type="AudioStream" uid="uid://sfrfqg22sdmy" path="res://Assets/Sounds/jump_2.mp3" id="6_8erm5"]
+[ext_resource type="AudioStream" uid="uid://brpf8kdpfr77j" path="res://Assets/Sounds/landing_sound_2.mp3" id="7_f1ek2"]
+[ext_resource type="AudioStream" uid="uid://d0o15todcbfm4" path="res://Assets/Sounds/throw_sound.mp3" id="8_8erm5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
 
@@ -325,6 +328,18 @@ process_material = SubResource("ParticleProcessMaterial_fkybt")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3smsa")
 animation = &"walk-cycle"
+
+[node name="jump_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_8erm5")
+bus = &"Efectos de sonido"
+
+[node name="landing_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_f1ek2")
+bus = &"Efectos de sonido"
+
+[node name="throw_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_8erm5")
+bus = &"Efectos de sonido"
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="CooldownDashTimer" to="." method="_on_cooldown_dash_timer_timeout"]

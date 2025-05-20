@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=4 uid="uid://sclbblpt8iy4"]
+[gd_scene load_steps=8 format=4 uid="uid://sclbblpt8iy4"]
 
 [ext_resource type="Script" uid="uid://clauc5vdjf6i0" path="res://Scripts/mapa_1.gd" id="1_cckvs"]
 [ext_resource type="Texture2D" uid="uid://bqwwci3hr8p7r" path="res://Assets/sprites/Brackeys Bundle/world_tileset.png" id="1_g68pe"]
 [ext_resource type="Texture2D" uid="uid://dmhhh07lfvc5j" path="res://Assets/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Jungle/preview.png" id="5_802xl"]
-[ext_resource type="Texture2D" uid="uid://cc0av8as2cyko" path="res://Assets/vini.png" id="8_3fyjs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o0n4i"]
 texture = ExtResource("1_g68pe")
@@ -291,8 +290,6 @@ texture = ExtResource("1_g68pe")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_o0n4i")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2481d"]
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cckvs"]
 texture = ExtResource("1_g68pe")
 0:0/0 = 0
@@ -482,17 +479,6 @@ position = Vector2(158, -6)
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.5, 0.5)
 motion_offset = Vector2(190, 100)
-
-[node name="Area2D" type="Area2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(-381, -96)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ParallaxLayer/Area2D"]
-shape = SubResource("RectangleShape2D_2481d")
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Area2D"]
-visible = false
-scale = Vector2(0.267164, 0.267164)
-texture = ExtResource("8_3fyjs")
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 z_index = -1

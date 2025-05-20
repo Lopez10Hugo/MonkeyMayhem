@@ -1,5 +1,7 @@
 extends WeaponBase
 
+@onready var attack_sound: AudioStreamPlayer2D = $attack_sound
+
 func _ready():
 	weapon_name = "Espada"
 	damage = 1000
@@ -14,6 +16,8 @@ var attack_tween: Tween
 func attack():
 	if not can_attack or is_attacking:
 		return
+	
+	attack_sound.play()
 	can_attack = false
 	is_attacking = true
 	set_monitoring(true)

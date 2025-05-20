@@ -2,7 +2,8 @@ extends WeaponBase
 
 @export var bullet_scene: PackedScene
 @onready var Sprite = $Sprite2D
-@onready var shoot_sound = $AudioStreamPlayer
+@onready var shoot_sound_2 = $AudioStreamPlayer
+@onready var shoot_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready():
 	weapon_name = "Pistol"

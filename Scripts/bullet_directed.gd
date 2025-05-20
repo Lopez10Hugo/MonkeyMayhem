@@ -1,5 +1,6 @@
 extends Area2D
 
+@onready var sprite_2d: Sprite2D = $Sprite2D
 @export var speed: float = 400.0
 var damage: int
 var shooter: Node = null
@@ -12,7 +13,7 @@ var turn_speed := 3.0
 var current_direction: Vector2 = Vector2.ZERO  
 
 func _process(delta):
-
+	sprite_2d.rotation = current_direction.angle() + PI
 	life_time += delta
 	if life_time < delay_before_tracking:
 		# Primero va en la dirección inicial

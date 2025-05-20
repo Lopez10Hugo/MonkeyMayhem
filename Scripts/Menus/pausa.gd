@@ -2,7 +2,6 @@ extends Control
 @onready var grid_container: GridContainer = $GridContainer
 @onready var continuar: Button = $GridContainer/Continuar
 @onready var salir: Button = $GridContainer/Salir
-@onready var opciones: Button = $GridContainer/Opciones
 #@onready var confirmacion_salir: Window = $"Confirmacion salir"
 @onready var confirmacion_salir: Window = $Window
 @onready var si_salir: Button = $Window/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Si
@@ -43,7 +42,7 @@ func set_in_opciones(valor : bool):
 	change_visibilidad_opciones(!in_opciones)
 
 func change_visibilidad_opciones(valor : bool):
-	opciones.visible = valor
+#	opciones.visible = valor
 	continuar.visible = valor
 
 # funciones para manejar los eventos de los distinos botones:

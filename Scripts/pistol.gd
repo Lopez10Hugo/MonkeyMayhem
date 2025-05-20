@@ -2,7 +2,8 @@ extends WeaponBase
 
 @export var bullet_scene: PackedScene
 @onready var Sprite = $Sprite2D
-@onready var shoot_sound = $AudioStreamPlayer
+@onready var shoot_sound_2 = $AudioStreamPlayer
+@onready var shoot_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready():
 	weapon_name = "Pistol"
@@ -19,8 +20,6 @@ func attack():
 	shoot_bullet()
 	super.attack()
 
-
-
 func shoot_bullet():
 	if bullet_scene:
 		var bullet = bullet_scene.instantiate()
@@ -35,4 +34,6 @@ func shoot_bullet():
 		get_tree().current_scene.add_child(bullet)
 
 		# Reproducir sonido de disparo
+		#shoot_sound_2.play()
 		shoot_sound.play()
+		

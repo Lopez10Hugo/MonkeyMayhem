@@ -4,7 +4,7 @@ extends Node2D
 @onready var tabla_puntuaciones: VBoxContainer = $Camera2D/tabla_puntuaciones
 @onready var mensaje_victoria_ronda: Label = $Camera2D/mensaje_victoria_ronda
 @onready var mapa_base: TileMapLayer = $TileMapLayer
-@onready var arma_base: Area2D = $WeaponBase
+#@onready var arma_base: Area2D = $WeaponBase
 @onready var camara: Camera2D = $Camera2D
 
 @onready var pantalla_carga: Control = $Pantalla_carga
@@ -237,7 +237,7 @@ func crear_mapa():
 	else:
 		print("No se especificó un mapa. Usando mapa_base.")
 		mapa_base.show()
-		arma_base.show()
+		#arma_base.show()
 
 func cargar_armas() -> void:
 	if mapa_actual == null:
