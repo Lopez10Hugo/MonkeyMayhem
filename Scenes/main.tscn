@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cts2878rykdgr"]
+[gd_scene load_steps=11 format=4 uid="uid://cts2878rykdgr"]
 
 [ext_resource type="Script" uid="uid://b6j4c4ju0vxo6" path="res://Scripts/main.gd" id="1_8gbba"]
 [ext_resource type="FontFile" uid="uid://dkkt3xoq4ajcs" path="res://Assets/Fonts/kiwisoda/KiwiSoda.ttf" id="2_21xkr"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://6dybykqnfrcc" path="res://Scenes/Menus/pausa.tscn" id="4_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://br3x7x57ka2cj" path="res://Scenes/Sword.tscn" id="5_kry3j"]
 [ext_resource type="Script" uid="uid://dvjoi1ixhnx5c" path="res://Scripts/sword.gd" id="6_6bp64"]
-[ext_resource type="PackedScene" uid="uid://bqprjxmtwpuu2" path="res://Scenes/pistol.tscn" id="6_21xkr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_21xkr"]
 texture = ExtResource("2_bo1nx")
@@ -251,6 +250,3 @@ position = Vector2(-128, -58)
 script = ExtResource("6_6bp64")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-
-[node name="WeaponBase2" parent="." instance=ExtResource("6_21xkr")]
-position = Vector2(-343, -38)

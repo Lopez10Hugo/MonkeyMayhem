@@ -32,6 +32,7 @@ func _ready():
 	mapa_actual = mapa_base
 	reset = true
 	crear_mapa()
+	cargar_armas()
 	crear_jugadores()
 	rondas_ganadas.clear()
 	tabla_puntuaciones.show()
@@ -169,7 +170,12 @@ func resetear_ronda():
 	mensaje_victoria_ronda.hide()
 
 func reset_armas() -> void:
-	pass
+	# Eliminar armas actuales
+	for arma in get_tree().get_nodes_in_group("armas"):
+		arma.queue_free()
+	# Volver a cargar armas aleatorias
+	cargar_armas()
+
 
 func mostrar_resultado_final():
 	var ganador_final = rondas_ganadas.keys()[0]
@@ -200,6 +206,7 @@ func crear_mapa():
 		ruta += ".tscn"
 		print("Cargando mapa: ", ruta)
 		cargar_mapa(ruta)
+		cargar_armas()
 		mapa_base.hide()
 		arma_base.hide()
 	else:
@@ -207,6 +214,25 @@ func crear_mapa():
 		mapa_base.show()
 		arma_base.show()
 
+func cargar_armas() -> void:
+	print('cargando armas...')
+	if mapa_actual == null:
+		print("No hay mapa cargado.")
+		return
+	
+	var nodo_spawns = mapa_actual.get_node_or_null("Spawns_armas")
+	if nodo_spawns == null:
+		print("No se encontraron puntos de spawn.")
+		return
+
+	for marker in nodo_spawns.get_children():
+		if marker is Marker2D:
+			# Instanciar arma aleatoria
+			var arma_escena = SeleccionPersonaje.armas_disponibles.pick_random()
+			var arma = arma_escena.instantiate()
+			arma.add_to_group("armas")
+			arma.position = marker.global_position
+			add_child(arma)
 
 func cargar_mapa(ruta_mapa: String):
 	if mapa_actual:
