@@ -37,6 +37,7 @@ var puede_moverse : bool = true
 @onready var landing_sound: AudioStreamPlayer2D = $landing_sound
 @onready var throw_sound: AudioStreamPlayer2D = $throw_sound
 @onready var dash_sound: AudioStreamPlayer2D = $dash_sound
+
 func _physics_process(delta: float) -> void:
 	check_ground(delta)
 	if puede_moverse:
