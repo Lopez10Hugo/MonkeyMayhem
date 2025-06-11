@@ -1,12 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://b16ie1d2dkvrs"]
+[gd_scene load_steps=4 format=3 uid="uid://b16ie1d2dkvrs"]
 
 [ext_resource type="PackedScene" uid="uid://c1aa63y5vrb0s" path="res://Scenes/Menus/graficos_boton.tscn" id="1_u0077"]
 [ext_resource type="Script" uid="uid://cstqnwca2iiqp" path="res://Scripts/Menus/boton_resolucion.gd" id="2_0v7eq"]
+[ext_resource type="Theme" uid="uid://d28wke34y3qap" path="res://Themes/tema_general.tres" id="3_mgt7e"]
 
 [node name="boton_resolucion" instance=ExtResource("1_u0077")]
 script = ExtResource("2_0v7eq")
 
 [node name="Label" parent="HBoxContainer" index="0"]
+theme = ExtResource("3_mgt7e")
 text = "Resolución"
+
+[node name="OptionButton" parent="HBoxContainer" index="2"]
+theme = ExtResource("3_mgt7e")
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]

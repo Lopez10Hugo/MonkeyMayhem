@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://by8ycvahi1byv"]
+[gd_scene load_steps=4 format=3 uid="uid://by8ycvahi1byv"]
 
 [ext_resource type="PackedScene" uid="uid://bxg4e7ks4g1ux" path="res://Scenes/Menus/audio_slider.tscn" id="1_psryd"]
 [ext_resource type="Script" uid="uid://qrksr0qoat4e" path="res://Scripts/Menus/sonido.gd" id="1_qlu0g"]
+[ext_resource type="Theme" uid="uid://v4fhi7j0s34" path="res://Themes/botones.tres" id="3_g2thq"]
 
 [node name="Sonido" type="Control"]
 layout_mode = 3
@@ -59,6 +60,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 focus_neighbor_top = NodePath("../audio_slider3")
 focus_neighbor_bottom = NodePath("../audio_slider")
+theme = ExtResource("3_g2thq")
 text = "Atrás"
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]

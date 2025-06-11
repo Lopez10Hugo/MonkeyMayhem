@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ci623np0twgr4"]
+[gd_scene load_steps=6 format=3 uid="uid://ci623np0twgr4"]
 
 [ext_resource type="PackedScene" uid="uid://d34udydjwtjb5" path="res://Scenes/Menus/rebind_control.tscn" id="1_3os5v"]
 [ext_resource type="Script" uid="uid://dfcptatypsvfk" path="res://Scripts/Menus/controles.gd" id="1_amvpp"]
+[ext_resource type="Theme" uid="uid://d28wke34y3qap" path="res://Themes/tema_general.tres" id="3_g4yem"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_amvpp"]
 
@@ -85,6 +86,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 focus_neighbor_top = NodePath("../Rebind_control4")
 focus_neighbor_bottom = NodePath("../Rebind_control")
+theme = ExtResource("3_g4yem")
 text = "Atrás"
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
