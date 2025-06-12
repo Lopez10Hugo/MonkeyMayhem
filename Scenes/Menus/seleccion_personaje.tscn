@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://daeudgkx6e8ur"]
+[gd_scene load_steps=6 format=3 uid="uid://daeudgkx6e8ur"]
 
 [ext_resource type="Script" uid="uid://dwify2yr4vls6" path="res://Scripts/Menus/seleccion_personaje.gd" id="1_wxtg0"]
 [ext_resource type="Texture2D" uid="uid://b8iflu1m8tk18" path="res://Assets/background_monos_peleando.png" id="2_snsmm"]
+[ext_resource type="FontFile" uid="uid://dkkt3xoq4ajcs" path="res://Assets/Fonts/kiwisoda/KiwiSoda.ttf" id="3_li3nn"]
+[ext_resource type="Theme" uid="uid://d28wke34y3qap" path="res://Themes/tema_general.tres" id="3_wv6jt"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wxtg0"]
 texture = ExtResource("2_snsmm")
@@ -45,9 +47,11 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="label_jugadores" type="Label" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer"]
-custom_minimum_size = Vector2(340, 80)
+custom_minimum_size = Vector2(650, 100)
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme = ExtResource("3_wv6jt")
+theme_override_fonts/font = ExtResource("3_li3nn")
+theme_override_font_sizes/font_size = 76
 text = "Numero de jugadores"
 
 [node name="VSeparator" type="VSeparator" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer"]
@@ -55,12 +59,14 @@ layout_mode = 2
 theme_override_constants/separation = 240
 
 [node name="HSlider" type="HSlider" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer"]
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 focus_neighbor_top = NodePath(".")
 focus_neighbor_bottom = NodePath("../../HBoxContainer2/button_mapa")
+theme = ExtResource("3_wv6jt")
 min_value = 1.0
 max_value = 4.0
-value = 1.0
+value = 4.0
 
 [node name="jugadores_value" type="Label" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer"]
 layout_mode = 2
@@ -69,9 +75,11 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="label_mapa" type="Label" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer2"]
-custom_minimum_size = Vector2(340, 80)
+custom_minimum_size = Vector2(650, 100)
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme = ExtResource("3_wv6jt")
+theme_override_fonts/font = ExtResource("3_li3nn")
+theme_override_font_sizes/font_size = 76
 text = "Seleccion de mapa"
 
 [node name="VSeparator" type="VSeparator" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer2"]
@@ -79,17 +87,21 @@ layout_mode = 2
 theme_override_constants/separation = 240
 
 [node name="button_mapa" type="OptionButton" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../HBoxContainer/HSlider")
 focus_neighbor_bottom = NodePath("../../HBoxContainer3/button_rondas")
+theme = ExtResource("3_wv6jt")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Fondo/MarginContainer/vbox_seleccion_1"]
 layout_mode = 2
 
 [node name="label_rondas" type="Label" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer3"]
-custom_minimum_size = Vector2(340, 80)
+custom_minimum_size = Vector2(650, 100)
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme = ExtResource("3_wv6jt")
+theme_override_fonts/font = ExtResource("3_li3nn")
+theme_override_font_sizes/font_size = 76
 text = "Número de rondas"
 
 [node name="VSeparator" type="VSeparator" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer3"]
@@ -97,9 +109,11 @@ layout_mode = 2
 theme_override_constants/separation = 240
 
 [node name="button_rondas" type="OptionButton" parent="Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../HBoxContainer2/button_mapa")
 focus_neighbor_bottom = NodePath("../../../../../Continuar")
+theme = ExtResource("3_wv6jt")
 
 [node name="atras" type="Button" parent="."]
 custom_minimum_size = Vector2(120, 40)
@@ -109,17 +123,19 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 100.0
-offset_top = -138.0
-offset_right = 220.0
-offset_bottom = -98.0
+offset_left = 341.0
+offset_top = -126.0
+offset_right = 473.0
+offset_bottom = -74.0
 grow_horizontal = 2
 grow_vertical = 0
 focus_neighbor_left = NodePath("../Continuar")
 focus_neighbor_top = NodePath("../Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer3/button_rondas")
 focus_neighbor_right = NodePath("../Continuar")
 focus_neighbor_bottom = NodePath("../Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer/HSlider")
-text = "Atrás"
+theme = ExtResource("3_wv6jt")
+theme_override_font_sizes/font_size = 22
+text = "Volver atrás"
 
 [node name="Continuar" type="Button" parent="."]
 custom_minimum_size = Vector2(120, 40)
@@ -129,17 +145,19 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -257.0
-offset_top = -142.0
-offset_right = -137.0
-offset_bottom = -102.0
+offset_left = -133.0
+offset_top = -159.0
+offset_right = 147.0
+offset_bottom = -65.0
 grow_horizontal = 2
 grow_vertical = 0
 focus_neighbor_left = NodePath("../atras")
 focus_neighbor_top = NodePath("../Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer3/button_rondas")
 focus_neighbor_right = NodePath("../atras")
 focus_neighbor_bottom = NodePath("../Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer/HSlider")
-text = "Continuar"
+theme = ExtResource("3_wv6jt")
+theme_override_font_sizes/font_size = 32
+text = "Empezar partida"
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="ready" from="." to="." method="_on_ready"]

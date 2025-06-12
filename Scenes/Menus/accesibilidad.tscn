@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://6yd088206y4k"]
+[gd_scene load_steps=3 format=3 uid="uid://6yd088206y4k"]
 
 [ext_resource type="Script" uid="uid://cdkxrj0gl6bnr" path="res://Scripts/Menus/accesibilidad.gd" id="1_dk4dc"]
+[ext_resource type="Theme" uid="uid://d28wke34y3qap" path="res://Themes/tema_general.tres" id="2_dk4dc"]
 
 [node name="Accesibilidad" type="Control"]
 layout_mode = 3
@@ -38,6 +39,7 @@ theme_override_constants/separation = 240
 
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
+theme = ExtResource("2_dk4dc")
 theme_override_font_sizes/font_size = 32
 text = "Alto contraste"
 
@@ -46,6 +48,7 @@ layout_mode = 2
 
 [node name="high_contrast_state" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
+theme = ExtResource("2_dk4dc")
 text = "Off"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
@@ -54,6 +57,7 @@ theme_override_constants/separation = 240
 
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_dk4dc")
 theme_override_font_sizes/font_size = 32
 text = "Camara lenta"
 
@@ -62,12 +66,14 @@ layout_mode = 2
 
 [node name="slow_motion_state" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_dk4dc")
 text = "Off
 "
 
 [node name="volver" type="Button" parent="MarginContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
+theme = ExtResource("2_dk4dc")
 text = "Atrás
 "
 

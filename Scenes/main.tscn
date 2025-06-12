@@ -191,6 +191,7 @@ position = Vector2(-75, -51)
 zoom = Vector2(2, 2)
 
 [node name="tabla_puntuaciones" type="VBoxContainer" parent="Camera2D"]
+z_index = -1
 offset_left = -318.0
 offset_top = -155.0
 offset_right = -208.0

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d34udydjwtjb5"]
+[gd_scene load_steps=3 format=3 uid="uid://d34udydjwtjb5"]
 
 [ext_resource type="Script" uid="uid://td3x7qq41kon" path="res://Scripts/Menus/rebind_control_boton.gd" id="1_6nkaq"]
+[ext_resource type="Theme" uid="uid://d28wke34y3qap" path="res://Themes/tema_general.tres" id="2_bjg73"]
 
 [node name="Rebind_control" type="Control"]
 custom_minimum_size = Vector2(380, 30)
@@ -27,6 +28,7 @@ alignment = 1
 [node name="Label" type="Label" parent="HBoxContainer"]
 custom_minimum_size = Vector2(400, 30)
 layout_mode = 2
+theme = ExtResource("2_bjg73")
 theme_override_font_sizes/font_size = 32
 text = "Action"
 vertical_alignment = 1
@@ -38,6 +40,7 @@ theme_override_constants/separation = 200
 
 [node name="Button" type="Button" parent="HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_bjg73")
 theme_override_font_sizes/font_size = 24
 toggle_mode = true
 text = "Action_key"

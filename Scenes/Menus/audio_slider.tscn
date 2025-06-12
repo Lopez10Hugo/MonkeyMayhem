@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxg4e7ks4g1ux"]
+[gd_scene load_steps=3 format=3 uid="uid://bxg4e7ks4g1ux"]
 
 [ext_resource type="Script" uid="uid://xkkfuvmongvr" path="res://Scripts/Menus/audio_slider.gd" id="1_ibtu0"]
+[ext_resource type="Theme" uid="uid://d28wke34y3qap" path="res://Themes/tema_general.tres" id="2_k7fsr"]
 
 [node name="audio_slider" type="Control"]
 layout_mode = 3
@@ -21,6 +22,7 @@ theme_override_constants/separation = 42
 [node name="Audio_bus" type="Label" parent="HBoxContainer"]
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
+theme = ExtResource("2_k7fsr")
 theme_override_font_sizes/font_size = 32
 text = "Master audio"
 
@@ -31,8 +33,9 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 32)
 layout_mode = 2
 size_flags_vertical = 1
+theme = ExtResource("2_k7fsr")
 max_value = 1.0
-step = 0.001
+step = 0.01
 
 [node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
@@ -42,6 +45,7 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
+theme = ExtResource("2_k7fsr")
 theme_override_font_sizes/font_size = 32
 text = "100
 "
