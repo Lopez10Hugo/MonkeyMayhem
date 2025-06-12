@@ -18,3 +18,9 @@ stream = ExtResource("4_nadd4")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="5"]
 stream = ExtResource("5_nadd4")
 bus = &"Efectos de sonido"
+
+[node name="MagicGlow" parent="." index="6"]
+scale = Vector2(0.818463, 0.818463)
+
+[node name="MagicAura" parent="." index="7"]
+scale = Vector2(0.818463, 0.818463)

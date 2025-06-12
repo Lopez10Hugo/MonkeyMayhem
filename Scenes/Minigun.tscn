@@ -20,3 +20,9 @@ wait_time = 0.05
 stream = ExtResource("4_qjiol")
 mix_target = 1
 max_polyphony = 10
+
+[node name="MagicGlow" parent="." index="5"]
+scale = Vector2(3.03734, 3.03734)
+
+[node name="MagicAura" parent="." index="6"]
+scale = Vector2(3.03734, 3.03734)

@@ -16,3 +16,12 @@ wait_time = 0.3
 
 [node name="attack_sound" type="AudioStreamPlayer2D" parent="." index="5"]
 stream = ExtResource("3_hsagk")
+volume_db = -10.0
+
+[node name="MagicGlow" parent="." index="6"]
+position = Vector2(6.69328, 17.4933)
+scale = Vector2(5.24042, 3.85916)
+
+[node name="MagicAura" parent="." index="7"]
+position = Vector2(5.69328, 28.4933)
+scale = Vector2(5.24042, 3.85916)

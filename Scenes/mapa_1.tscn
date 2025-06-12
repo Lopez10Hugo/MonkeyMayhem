@@ -478,13 +478,14 @@ position = Vector2(158, -6)
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+scale = Vector2(1.66236, 1.66236)
 motion_scale = Vector2(0.5, 0.5)
 motion_offset = Vector2(190, 100)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 z_index = -1
-position = Vector2(-24, 4)
-scale = Vector2(2, 2)
+position = Vector2(137.444, 67.185)
+scale = Vector2(2.5158, 2.5158)
 texture = ExtResource("5_802xl")
 region_enabled = true
 region_rect = Rect2(-0.25, -3.25, 626, 245)

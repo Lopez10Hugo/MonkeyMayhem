@@ -1,8 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bda7eklvavgdt"]
+[gd_scene load_steps=5 format=3 uid="uid://bda7eklvavgdt"]
 
 [ext_resource type="Script" uid="uid://ndld0s3y7kno" path="res://Scripts/WeaponBase.gd" id="1_6efqm"]
+[ext_resource type="Texture2D" uid="uid://q2oe6esva63w" path="res://Assets/sprites/pixil-frame-0.png" id="2_2jbto"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2jbto"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_56eu1"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 35.0
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, -15, 0)
 
 [node name="WeaponBase" type="Area2D"]
 collision_layer = 4
@@ -21,6 +32,21 @@ one_shot = true
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="MagicGlow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(2.20962, 6.20962)
+scale = Vector2(1.4128, 1.4128)
+texture = ExtResource("2_2jbto")
+
+[node name="MagicAura" type="GPUParticles2D" parent="."]
+position = Vector2(1.20962, 17.2096)
+scale = Vector2(1.4128, 1.4128)
+amount = 50
+lifetime = 2.0
+preprocess = 1.5
+speed_scale = 0.5
+process_material = SubResource("ParticleProcessMaterial_56eu1")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
