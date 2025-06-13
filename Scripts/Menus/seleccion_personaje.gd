@@ -22,7 +22,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 
 func _on_continuar_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/main.tscn") # cambiar cuando tengamos mas mapas
+	get_tree().change_scene_to_file("res://Scenes/Menus/Seleccion_skin.tscn") # cambiar cuando tengamos mas mapas
 
 func set_jugadores_value():
 	jugadores_value.text = str(h_slider.value)

@@ -17,16 +17,7 @@ var jugadores = []
 var rondas_jugadas = 0
 var puntos_spawn = []
 var rondas_ganadas : Dictionary = {}
-var colores = [
-		Color(1, 0, 0),    # Rojo
-		Color(0, 1, 0),    # Verde
-		Color(0, 0, 1),    # Azul
-		Color(1, 1, 0),    # Amarillo
-		Color(1, 0, 1),    # Magenta
-		Color(0, 1, 1),    # Cian
-		Color(1, 0.5, 0),  # Naranja
-		Color(0.6, 0.2, 1) # Violeta
-	]
+
 var reset = false
 var ronda_en_progreso = true
 
@@ -89,8 +80,7 @@ func crear_jugadores():
 			#print('reset')
 			rondas_ganadas[i] = 0
 			
-		if i>1:
-			player.get_node("Sprite2D").modulate = colores[i]
+		player.get_node("Sprite2D").modulate = SeleccionPersonaje.skins_elegidas[i-1]
 	
 	reset = false
 

@@ -119,10 +119,10 @@ func handle_movement(delta: float) -> void:
 	elif not dashing:
 		var direction := Input.get_axis("mover_izquierda_%s" % [player_id], "mover_derecha_%s" % [player_id])
 		if direction:
-			print(velocity)
+			#print(velocity)
 			velocity.x = move_toward(velocity.x,direction * SPEED,SPEED)
 		else:
-			print(velocity)
+			#print(velocity)
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	if velocity.x < 0:

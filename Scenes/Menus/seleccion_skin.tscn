@@ -1,0 +1,203 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckvmm75fsq0u0"]
+
+[ext_resource type="Script" uid="uid://dkqyidcywy7qe" path="res://Scripts/Menus/seleccion_skin.gd" id="1_f0xjd"]
+[ext_resource type="Texture2D" uid="uid://b8iflu1m8tk18" path="res://Assets/background_monos_peleando.png" id="2_fv4wd"]
+[ext_resource type="Theme" uid="uid://d28wke34y3qap" path="res://Themes/tema_general.tres" id="3_p0284"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kwjqt"]
+texture = ExtResource("2_fv4wd")
+
+[node name="Seleccion_skin" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f0xjd")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_kwjqt")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 300
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_p0284")
+theme_override_constants/separation = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_p0284")
+theme_override_font_sizes/font_size = 64
+text = "Jugador 1"
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/HBoxContainer/Label"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = -228.0
+offset_right = 239.0
+offset_bottom = -11.0
+
+[node name="skin1" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Label/Panel"]
+layout_mode = 0
+offset_right = 224.0
+offset_bottom = 219.0
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_p0284")
+theme_override_font_sizes/font_size = 64
+text = "Jugador 2"
+
+[node name="Panel2" type="Panel" parent="MarginContainer/VBoxContainer/HBoxContainer/Label2"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -228.0
+offset_right = 241.0
+offset_bottom = -11.0
+
+[node name="skin2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Label2/Panel2"]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 225.0
+offset_bottom = 214.0
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_p0284")
+theme_override_font_sizes/font_size = 64
+text = "Jugador 3"
+
+[node name="Panel3" type="Panel" parent="MarginContainer/VBoxContainer/HBoxContainer/Label3"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = -228.0
+offset_right = 246.0
+offset_bottom = -11.0
+
+[node name="skin3" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Label3/Panel3"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 221.0
+offset_bottom = 216.0
+
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_p0284")
+theme_override_font_sizes/font_size = 64
+text = "Jugador 4"
+
+[node name="Panel4" type="Panel" parent="MarginContainer/VBoxContainer/HBoxContainer/Label4"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = -228.0
+offset_right = 252.0
+offset_bottom = -11.0
+
+[node name="skin4" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Label4/Panel4"]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 223.0
+offset_bottom = 215.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_p0284")
+theme_override_constants/separation = 105
+
+[node name="izq_1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../der_4")
+focus_neighbor_right = NodePath("../der_1")
+focus_neighbor_bottom = NodePath("../../../empezar")
+theme_override_font_sizes/font_size = 64
+text = "<"
+
+[node name="der_1" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../izq_1")
+focus_neighbor_right = NodePath("../izq_2")
+theme_override_font_sizes/font_size = 64
+text = ">"
+
+[node name="izq_2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../der_1")
+focus_neighbor_right = NodePath("../der_2")
+theme_override_font_sizes/font_size = 64
+text = "<"
+
+[node name="der_2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../izq_2")
+focus_neighbor_right = NodePath("../izq_3")
+theme_override_font_sizes/font_size = 64
+text = ">"
+
+[node name="izq_3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../der_2")
+focus_neighbor_right = NodePath("../der_3")
+theme_override_font_sizes/font_size = 64
+text = "<"
+
+[node name="der_3" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../izq_3")
+focus_neighbor_right = NodePath("../izq_4")
+theme_override_font_sizes/font_size = 64
+text = ">"
+
+[node name="izq_4" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../der_3")
+focus_neighbor_right = NodePath("../der_4")
+theme_override_font_sizes/font_size = 64
+text = "<"
+
+[node name="der_4" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../izq_4")
+focus_neighbor_right = NodePath("../izq_1")
+theme_override_font_sizes/font_size = 64
+text = ">"
+
+[node name="empezar" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Empezar"
+
+[node name="atras" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Volver"
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/empezar" to="." method="_on_empezar_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/atras" to="." method="_on_atras_pressed"]
