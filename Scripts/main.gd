@@ -30,6 +30,20 @@ var colores = [
 var reset = false
 var ronda_en_progreso = true
 
+@onready var tutorial_1: Label = $Tutorial1
+@onready var foto_tutorial_1: Panel = $Tutorial1/Foto_tutorial1
+@onready var pistola_tutorial: Area2D = $WeaponBase
+@onready var tutorial_2: Label = $tutorial2
+@onready var foto_tutorial_2: Panel = $tutorial2/foto_tutorial2
+@onready var tutorial_3: Label = $tutorial3
+@onready var foto_tutorial_3: Panel = $tutorial3/foto_tutorial3
+@onready var tutorial_4: Label = $tutorial4
+@onready var foto_tutorial_4: Panel = $tutorial4/foto_tutorial4
+@onready var tutorial_5: Label = $tutorial5
+@onready var foto_tutorial_5: Panel = $tutorial5/foto_tutorial5
+@onready var tutorial_6: Label = $tutorial6
+@onready var foto_tutorial_6: Panel = $tutorial6/foto_tutorial6
+
 func _ready():
 	#camara.current = true
 	mapa_actual = mapa_base
@@ -99,7 +113,7 @@ func _process(delta: float) -> void:
 	handle_camara(delta)
 	var vivos = jugadores.filter(func(p): return not p.is_dead)
 
-	if vivos.size() == 1:
+	if vivos.size() == 1 and SeleccionPersonaje.mapa != 'default':
 		ronda_en_progreso = false
 		await get_tree().create_timer(1.0).timeout
 		var ganador_id = vivos[0].player_id
@@ -227,6 +241,7 @@ func crear_mapa():
 	if SeleccionPersonaje.mapa != 'default':
 		#print("Cargando mapa desde SeleccionPersonaje:", SeleccionPersonaje.mapa)
 		var ruta = "res://Scenes/"
+		mostrar_tutoriales(false)
 		ruta += SeleccionPersonaje.mapa
 		ruta += ".tscn"
 		print("Cargando mapa: ", ruta)
@@ -237,7 +252,40 @@ func crear_mapa():
 	else:
 		print("No se especificó un mapa. Usando mapa_base.")
 		mapa_base.show()
+		mostrar_tutoriales(true)
 		#arma_base.show()
+
+func mostrar_tutoriales(mostrar : bool):
+	if mostrar:
+		tutorial_1.show()
+		foto_tutorial_1.show()
+		pistola_tutorial.show()
+		tabla_puntuaciones.show()
+		tutorial_2.show()
+		foto_tutorial_2.show()
+		tutorial_3.show()
+		foto_tutorial_3.show()
+		tutorial_4.show()
+		foto_tutorial_4.show()
+		tutorial_5.show()
+		foto_tutorial_5.show()
+		tutorial_6.show()
+		foto_tutorial_6.show()
+	else:
+		tutorial_1.hide()
+		foto_tutorial_1.hide()
+		pistola_tutorial.hide()
+		tabla_puntuaciones.hide()
+		tutorial_2.hide()
+		foto_tutorial_2.hide()
+		tutorial_3.hide()
+		foto_tutorial_3.hide()
+		tutorial_4.hide()
+		foto_tutorial_4.hide()
+		tutorial_5.hide()
+		foto_tutorial_5.hide()
+		tutorial_6.hide()
+		foto_tutorial_6.hide()
 
 func cargar_armas() -> void:
 	if mapa_actual == null:

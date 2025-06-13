@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://cts2878rykdgr"]
+[gd_scene load_steps=23 format=4 uid="uid://cts2878rykdgr"]
 
 [ext_resource type="Script" uid="uid://b6j4c4ju0vxo6" path="res://Scripts/main.gd" id="1_8gbba"]
 [ext_resource type="FontFile" uid="uid://dkkt3xoq4ajcs" path="res://Assets/Fonts/kiwisoda/KiwiSoda.ttf" id="2_21xkr"]
@@ -6,6 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://cxfkewlgy5kpa" path="res://Scenes/killzone.tscn" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://6dybykqnfrcc" path="res://Scenes/Menus/pausa.tscn" id="4_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://b6knsfh0tbp35" path="res://Scenes/pantalla_carga.tscn" id="6_21xkr"]
+[ext_resource type="PackedScene" uid="uid://bqprjxmtwpuu2" path="res://Scenes/pistol.tscn" id="7_6bp64"]
+[ext_resource type="Texture2D" uid="uid://7m4e0ghqbngf" path="res://Assets/flechas_mando.png" id="8_344ge"]
+[ext_resource type="Texture2D" uid="uid://boxoym0oo5xgc" path="res://Themes/boton_x.jpeg" id="9_fdnlq"]
+[ext_resource type="Texture2D" uid="uid://wt1rr1lj1vpn" path="res://Assets/l2.png" id="10_jkdf5"]
+[ext_resource type="Texture2D" uid="uid://dkt0ps5xjfsx5" path="res://Assets/r2.png" id="11_wsu2k"]
+[ext_resource type="Texture2D" uid="uid://c88by4twwfw0m" path="res://Assets/triangulo.jpeg" id="12_k12tt"]
+[ext_resource type="Texture2D" uid="uid://dpyrefq2fq1y" path="res://Assets/cuadrado.jpeg" id="13_h1bgf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_21xkr"]
 texture = ExtResource("2_bo1nx")
@@ -181,6 +188,24 @@ sources/0 = SubResource("TileSetAtlasSource_21xkr")
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jjvhh"]
 distance = -386.0
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ynf5e"]
+texture = ExtResource("8_344ge")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b3802"]
+texture = ExtResource("9_fdnlq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fevyy"]
+texture = ExtResource("10_jkdf5")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hibaj"]
+texture = ExtResource("11_wsu2k")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pdsj5"]
+texture = ExtResource("12_k12tt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ee4r6"]
+texture = ExtResource("13_h1bgf")
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8gbba")
 
@@ -191,6 +216,7 @@ position = Vector2(-75, -51)
 zoom = Vector2(2, 2)
 
 [node name="tabla_puntuaciones" type="VBoxContainer" parent="Camera2D"]
+visible = false
 z_index = -1
 offset_left = -318.0
 offset_top = -155.0
@@ -248,3 +274,96 @@ shape = SubResource("WorldBoundaryShape2D_jjvhh")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
 [node name="Pantalla_carga" parent="." instance=ExtResource("6_21xkr")]
+
+[node name="WeaponBase" parent="." instance=ExtResource("7_6bp64")]
+position = Vector2(-111, -132)
+
+[node name="Tutorial1" type="Label" parent="."]
+offset_left = -390.0
+offset_top = -166.0
+offset_right = -45.0
+offset_bottom = -132.0
+text = "Para moverte usa la flechas de dirección: "
+
+[node name="Foto_tutorial1" type="Panel" parent="Tutorial1"]
+layout_mode = 0
+offset_left = 319.0
+offset_top = -2.0
+offset_right = 360.0
+offset_bottom = 38.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ynf5e")
+
+[node name="tutorial2" type="Label" parent="."]
+offset_left = -387.0
+offset_top = -123.0
+offset_right = -240.0
+offset_bottom = -100.0
+text = "Para saltar pulsa x:"
+
+[node name="foto_tutorial2" type="Panel" parent="tutorial2"]
+layout_mode = 0
+offset_left = 154.0
+offset_top = -1.0
+offset_right = 194.0
+offset_bottom = 39.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_b3802")
+
+[node name="tutorial3" type="Label" parent="."]
+offset_left = -17.0
+offset_top = -168.0
+offset_right = 192.0
+offset_bottom = -145.0
+text = "Para saltar trepar pulsa L2:"
+
+[node name="foto_tutorial3" type="Panel" parent="tutorial3"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = -4.0
+offset_right = 254.0
+offset_bottom = 36.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_fevyy")
+
+[node name="tutorial4" type="Label" parent="."]
+offset_left = -17.0
+offset_top = -121.0
+offset_right = 192.0
+offset_bottom = -98.0
+text = "Para disparar pulsa R2:"
+
+[node name="foto_tutorial4" type="Panel" parent="tutorial4"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = -4.0
+offset_right = 254.0
+offset_bottom = 36.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_hibaj")
+
+[node name="tutorial5" type="Label" parent="."]
+offset_left = -385.0
+offset_top = -78.0
+offset_right = -163.0
+offset_bottom = -55.0
+text = "Suelta el arma con triángulo:"
+
+[node name="foto_tutorial5" type="Panel" parent="tutorial5"]
+layout_mode = 0
+offset_left = 226.0
+offset_top = -5.0
+offset_right = 266.0
+offset_bottom = 35.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_pdsj5")
+
+[node name="tutorial6" type="Label" parent="."]
+offset_left = -27.0
+offset_top = -74.0
+offset_right = 195.0
+offset_bottom = -51.0
+text = "Dashea con cuadrado:"
+
+[node name="foto_tutorial6" type="Panel" parent="tutorial6"]
+layout_mode = 0
+offset_left = 226.0
+offset_top = -5.0
+offset_right = 266.0
+offset_bottom = 35.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ee4r6")
