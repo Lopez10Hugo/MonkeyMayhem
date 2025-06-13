@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfj7pca7x343s"]
+
+[ext_resource type="PackedScene" uid="uid://bda7eklvavgdt" path="res://Scenes/WeaponBase.tscn" id="1_voe37"]
+[ext_resource type="Script" uid="uid://tp1hwt8i7ebo" path="res://Scripts/shotgun.gd" id="2_0vijm"]
+[ext_resource type="PackedScene" uid="uid://c714t1d0cfn1" path="res://Scenes/bullet.tscn" id="3_nc2j0"]
+[ext_resource type="AudioStream" uid="uid://df7x7ripkyp8h" path="res://Assets/Sounds/shootgun_shoot.mp3" id="4_voe37"]
+[ext_resource type="AudioStream" uid="uid://cstblr0y5xfpw" path="res://Assets/Sounds/provisional_gun_sound.mp3" id="5_32p8t"]
+
+[node name="WeaponBase" instance=ExtResource("1_voe37")]
+scale = Vector2(0.678109, 0.678109)
+collision_mask = 2
+script = ExtResource("2_0vijm")
+bullet_scene = ExtResource("3_nc2j0")
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(0.331234, 0.331234)
+
+[node name="CooldownTimer" parent="." index="2"]
+wait_time = 2.0
+
+[node name="AttackTimer" parent="." index="3"]
+wait_time = 0.2
+
+[node name="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource("4_voe37")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="5"]
+stream = ExtResource("5_32p8t")
+bus = &"Efectos de sonido"

@@ -9,7 +9,7 @@ func _ready():
 	damage = 10
 	is_melee = false
 	sprite_texture = preload("res://Assets/posibles armas/m1_carbine_by_ashmo.png")
-	scale = Vector2(0.235, 0.235) 
+	scale = Vector2(0.4, 0.4) 
 	super._ready()
 	
 

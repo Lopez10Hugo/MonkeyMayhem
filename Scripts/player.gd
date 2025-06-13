@@ -37,8 +37,18 @@ var puede_moverse : bool = true
 @onready var landing_sound: AudioStreamPlayer2D = $landing_sound
 @onready var throw_sound: AudioStreamPlayer2D = $throw_sound
 @onready var dash_sound: AudioStreamPlayer2D = $dash_sound
+var recoil_velocity := Vector2.ZERO
+var recoil_timer := 0.0
+var recoil_duration := 0.1
 
-func _physics_process(delta: float) -> void:
+func apply_recoil(force: Vector2):
+	recoil_velocity = force
+	recoil_timer = recoil_duration
+
+func _physics_process(delta):
+	if recoil_timer > 0:
+		velocity += recoil_velocity
+		recoil_timer -= delta
 	check_ground(delta)
 	if puede_moverse:
 		handle_jump()
@@ -109,8 +119,10 @@ func handle_movement(delta: float) -> void:
 	elif not dashing:
 		var direction := Input.get_axis("mover_izquierda_%s" % [player_id], "mover_derecha_%s" % [player_id])
 		if direction:
-			velocity.x = direction * SPEED
+			print(velocity)
+			velocity.x = move_toward(velocity.x,direction * SPEED,SPEED)
 		else:
+			print(velocity)
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	if velocity.x < 0:

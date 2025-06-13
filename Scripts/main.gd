@@ -156,7 +156,7 @@ func handle_camara(delta) -> void:
 	for p in vivos:
 		centro += p.global_position
 	centro /= vivos.size()
-
+	centro += Vector2(0,-50)
 	# Suavemente mover la cámara hacia el centro
 	var velocidad_suavizado = 3.0
 	camara.global_position = camara.global_position.lerp(centro, velocidad_suavizado * delta)

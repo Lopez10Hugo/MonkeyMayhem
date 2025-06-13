@@ -34,7 +34,7 @@ one_shot = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="MagicGlow" type="Sprite2D" parent="."]
-z_index = -1
+z_index = 1000
 position = Vector2(2.20962, 6.20962)
 scale = Vector2(1.4128, 1.4128)
 texture = ExtResource("2_2jbto")
