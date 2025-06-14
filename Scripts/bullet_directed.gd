@@ -45,6 +45,8 @@ func get_nearest_target() -> Node:
 		# No seleccionar al jugador que disparó
 		if p == shooter:
 			continue
+		if p.is_dead:
+			continue
 		# Seleccionar al jugador más cercano
 		var dist = global_position.distance_squared_to(p.global_position)
 		if dist < min_dist:

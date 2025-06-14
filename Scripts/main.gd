@@ -79,9 +79,11 @@ func crear_jugadores():
 		if reset:
 			#print('reset')
 			rondas_ganadas[i] = 0
-			
-		player.get_node("Sprite2D").modulate = SeleccionPersonaje.skins_elegidas[i-1]
-	
+		match SeleccionPersonaje.skins_elegidas[i - 1]:
+			Color.RED:
+				player.get_node("Sprite2D").sprite_frames = $Rojo.sprite_frames
+			Color.GREEN:
+				player.get_node("Sprite2D").sprite_frames = $Graduado.sprite_frames
 	reset = false
 
 func _process(delta: float) -> void:

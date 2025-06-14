@@ -7,7 +7,7 @@ extends WeaponBase
 
 func _ready():
 	weapon_name = "Shotgun"
-	damage = 1000
+	damage = 10
 	is_melee = false
 	sprite_texture = preload("res://.godot/imported/mag7_by_ashmo.png-7aeca98bc61fe5809ccb6fc6392808f3.ctex")
 	shoot_sound.stream = preload("res://Assets/Sounds/shootgun_shoot.mp3")
@@ -30,7 +30,7 @@ func shoot_bullet():
 			bullet.speed *= 3
 			bullet.lifespan = 0.2
 			bullet.trail_enabled = true
-			var offset = Vector2(0, randf_range(-5, 5))
+			var offset = Vector2(0, randf_range(-7, 7))
 			bullet.global_position = global_position + offset
 
 			var spread = deg_to_rad(randf_range(-10, 10))

@@ -69,7 +69,7 @@ func _on_empezar_pressed() -> void:
 	for i in range(SeleccionPersonaje.num_jugadores):
 		var color_index = player_color_index[i]
 		SeleccionPersonaje.skins_elegidas.append(player_colors[color_index])
-
+	print("AAAA", SeleccionPersonaje.skins_elegidas)
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
 

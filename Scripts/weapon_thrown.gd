@@ -1,7 +1,7 @@
 extends RigidBody2D
 class_name WeaponThrown
 
-@export var damage: int = 10
+@export var damage: int = 25
 @export var sprite_texture: Texture2D
 @export var initial_scale: Vector2 = Vector2.ONE
 @export var rotation_speed: float = 30.0
@@ -12,7 +12,11 @@ var gravity_disabled_time: float = 0.5
 var apply_gravity: bool = true
 var apply_map_collision = false
 
+var is_melee:bool = false 
+
 func _ready():
+	if is_melee:
+		damage = 100
 	$Area2D.body_entered.connect(_on_body_entered)
 	$Sprite2D.texture = sprite_texture
 	scale = initial_scale

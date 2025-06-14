@@ -37,6 +37,7 @@ var puede_moverse : bool = true
 @onready var landing_sound: AudioStreamPlayer2D = $landing_sound
 @onready var throw_sound: AudioStreamPlayer2D = $throw_sound
 @onready var dash_sound: AudioStreamPlayer2D = $dash_sound
+@onready var death_sound: AudioStreamPlayer2D = $death_sound
 var recoil_velocity := Vector2.ZERO
 var recoil_timer := 0.0
 var recoil_duration := 0.1
@@ -218,6 +219,8 @@ func _flash_red():
 func explode():
 	if is_dead:
 		return
+	is_dead = true
+	death_sound.play()
 	$CollisionShape2D.set_deferred("disabled", true)
 	$ExplosionParticles.emitting = true
 	$Sprite2D.visible = false
@@ -225,7 +228,7 @@ func explode():
 	set_process(false)
 	await get_tree().create_timer(1.0).timeout
 	visible = false
-	is_dead = true
+
 
 func lanzar_arma(weapon):
 	if not weapon:
@@ -233,10 +236,9 @@ func lanzar_arma(weapon):
 
 	var thrown_weapon = preload("res://Scenes/WeaponThrown.tscn").instantiate()
 	thrown_weapon.global_position = weapon.global_position
-	thrown_weapon.damage = weapon.damage
 	thrown_weapon.sprite_texture = weapon.sprite_texture
 	thrown_weapon.initial_scale = weapon.scale
-
+	thrown_weapon.is_melee = weapon.is_melee
 	var dir = Vector2(1 if Sprite.flip_h else -1, 0).normalized()
 	thrown_weapon.linear_velocity = dir * 500
 	thrown_weapon.damaged_players.append(self)

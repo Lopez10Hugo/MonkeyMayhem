@@ -6,7 +6,7 @@ extends WeaponBase
 
 func _ready():
 	weapon_name = "Minigun"
-	damage = 10
+	damage = 15
 	is_melee = false
 	sprite_texture = preload("res://Assets/posibles armas/m1_carbine_by_ashmo.png")
 	scale = Vector2(0.4, 0.4) 
@@ -35,7 +35,7 @@ func shoot_bullet():
 		else:
 			base_dir = Vector2.LEFT.rotated(global_rotation)
 
-		var y_variation = randf_range(-0.1, 0.1)
+		var y_variation = randf_range(-0.1, 0)
 		var direction = (base_dir + Vector2(0, y_variation)).normalized()
 
 		bullet.set_direction(direction)
