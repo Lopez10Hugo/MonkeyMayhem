@@ -157,7 +157,7 @@ focus_neighbor_right = NodePath("../atras")
 focus_neighbor_bottom = NodePath("../Fondo/MarginContainer/vbox_seleccion_1/HBoxContainer/HSlider")
 theme = ExtResource("3_wv6jt")
 theme_override_font_sizes/font_size = 32
-text = "Empezar partida"
+text = "Continuar"
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="ready" from="." to="." method="_on_ready"]

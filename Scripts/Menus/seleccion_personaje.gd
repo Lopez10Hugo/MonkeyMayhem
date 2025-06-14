@@ -62,6 +62,6 @@ func create_buttons() -> void:
 	button_rondas.add_item("4 Rondas")
 	button_rondas.add_item("8 Ronda")
 	
-	button_mapa.add_item("Mapa por defecto")
+	button_mapa.add_item("Mapa tutorial")
 	button_mapa.add_item("Mapa 1: Jungla")
 	button_mapa.add_item("Mapa 2: Depósito")
