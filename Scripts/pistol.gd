@@ -7,7 +7,7 @@ extends WeaponBase
 
 func _ready():
 	weapon_name = "Pistol"
-	damage = 1000
+	damage = 25
 	is_melee = false
 	sprite_texture = preload("res://.godot/imported/german_pistol_by_ashmo.png-95c4c228a40b81685587a28f659a6679.ctex")
 	super._ready()

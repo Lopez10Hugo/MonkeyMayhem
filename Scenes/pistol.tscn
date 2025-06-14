@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqprjxmtwpuu2"]
+[gd_scene load_steps=5 format=3 uid="uid://bqprjxmtwpuu2"]
 
 [ext_resource type="PackedScene" uid="uid://bda7eklvavgdt" path="res://Scenes/WeaponBase.tscn" id="1_3s07g"]
 [ext_resource type="Script" uid="uid://r5726lnl3k07" path="res://Scripts/pistol.gd" id="1_j1qo2"]
 [ext_resource type="PackedScene" uid="uid://c714t1d0cfn1" path="res://Scenes/bullet.tscn" id="3_ui64p"]
-[ext_resource type="AudioStream" uid="uid://bbvcadddqc6du" path="res://Assets/Sounds/quePasaBala.mp3" id="4_mix3b"]
 [ext_resource type="AudioStream" uid="uid://cstblr0y5xfpw" path="res://Assets/Sounds/provisional_gun_sound.mp3" id="5_1nf8w"]
 
 [node name="WeaponBase" instance=ExtResource("1_3s07g")]
@@ -19,7 +18,7 @@ wait_time = 0.2
 wait_time = 0.2
 
 [node name="AudioStreamPlayer" parent="." index="4"]
-stream = ExtResource("4_mix3b")
+stream = ExtResource("5_1nf8w")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="5"]
 stream = ExtResource("5_1nf8w")

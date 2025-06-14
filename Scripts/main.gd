@@ -173,11 +173,11 @@ func handle_camara(delta) -> void:
 			if dist > max_dist:
 				max_dist = dist
 
-	var zoom_min = 1.8  # Cuando los jugadores están lejos, la cámara estará más cerca
+	var zoom_min = 1.4  # Cuando los jugadores están lejos, la cámara estará más cerca
 	var zoom_max = 1.3  # Cuando los jugadores están cerca, aún más cerca
 
 	var distancia_min = 10.0  # Reducimos para que el zoom se acerque antes
-	var distancia_max = 800.0  # Ajustamos el rango para transiciones más suaves
+	var distancia_max = 1300.0  # Ajustamos el rango para transiciones más suaves
 
 	var t = clamp((max_dist - distancia_min) / (distancia_max - distancia_min), 0, 1)
 	var zoom_target = lerp(zoom_min, zoom_max, t)

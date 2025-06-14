@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bda7eklvavgdt" path="res://Scenes/WeaponBase.tscn" id="1_6rmx4"]
 [ext_resource type="Script" uid="uid://cgvsrgrxt6cqy" path="res://Scripts/minigun.gd" id="2_jkprt"]
 [ext_resource type="PackedScene" uid="uid://c714t1d0cfn1" path="res://Scenes/bullet.tscn" id="3_jkprt"]
-[ext_resource type="AudioStream" uid="uid://bbvcadddqc6du" path="res://Assets/Sounds/quePasaBala.mp3" id="4_qjiol"]
+[ext_resource type="AudioStream" uid="uid://cv74435o5nm1g" path="res://Assets/Sounds/rifle_sound.mp3" id="4_qjiol"]
 
 [node name="WeaponBase" instance=ExtResource("1_6rmx4")]
 collision_mask = 2
