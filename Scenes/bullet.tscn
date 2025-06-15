@@ -1,10 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://c714t1d0cfn1"]
+[gd_scene load_steps=7 format=3 uid="uid://c714t1d0cfn1"]
 
 [ext_resource type="Script" uid="uid://bnpltfnerw5hh" path="res://Scripts/bullet.gd" id="1_xjght"]
 [ext_resource type="Texture2D" uid="uid://gjdsx5xxwtow" path="res://Assets/bullet_1.png" id="2_oduel"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycag2"]
 size = Vector2(20, 9)
+
+[sub_resource type="Gradient" id="Gradient_oduel"]
+offsets = PackedFloat32Array(0.164223, 0.43695, 0.73607)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.372549, 0, 1, 0.767348, 0.615491, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ycag2"]
+gradient = SubResource("Gradient_oduel")
+width = 1024
+use_hdr = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oduel"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+velocity_pivot = Vector3(0.2, 0, 0)
+direction = Vector3(-1, 0, 0)
+spread = 105.938
+initial_velocity_max = 183.82
+gravity = Vector3(-3, 0, 0)
+scale_min = 4.94
+scale_max = 4.94
+color_ramp = SubResource("GradientTexture1D_ycag2")
 
 [node name="bullet" type="Area2D"]
 collision_layer = 4
@@ -22,5 +43,14 @@ shape = SubResource("RectangleShape2D_ycag2")
 
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2(18, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-11, 0)
+emitting = false
+amount = 10
+lifetime = 0.44
+speed_scale = 1.5
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_oduel")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

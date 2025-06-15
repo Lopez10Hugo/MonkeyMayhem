@@ -38,6 +38,9 @@ var puede_moverse : bool = true
 @onready var throw_sound: AudioStreamPlayer2D = $throw_sound
 @onready var dash_sound: AudioStreamPlayer2D = $dash_sound
 @onready var death_sound: AudioStreamPlayer2D = $death_sound
+@onready var hitmarker_sound: AudioStreamPlayer2D = $hitmarker_sound
+@onready var punch_sound: AudioStreamPlayer2D = $punch_sound
+
 var recoil_velocity := Vector2.ZERO
 var recoil_timer := 0.0
 var recoil_duration := 0.1
@@ -143,7 +146,7 @@ func handle_movement(delta: float) -> void:
 	if child != null:
 		child.get_node("Sprite2D").flip_h = Sprite.flip_h
 		if Sprite.flip_h:
-			child.position.x = Hand.position.x + 5
+			child.position.x = Hand.position.x
 		else:
 			child.position.x = Hand.position.x - 5
 
@@ -159,14 +162,17 @@ func update_collision_position_while_climbing():
 
 var walking_started = false
 var last_state = ""
+var is_punching = false
 
 func update_animation():
+	if is_punching:
+		return  # No interrumpas la animación de golpe
+
 	if is_climbing():
 		if $Sprite2D.animation != "climb":
 			$Sprite2D.play("climb")
 		walking_started = false
 		last_state = "climb"
-
 	elif velocity.x != 0 and is_on_floor():
 		if last_state != "walk-init" and not walking_started:
 			$Sprite2D.play("walk-init")
@@ -180,6 +186,7 @@ func update_animation():
 			$Sprite2D.play("idle")
 		walking_started = false
 		last_state = "idle"
+
 
 
 func create_trail():
@@ -206,6 +213,7 @@ func _on_dash_timer_timeout() -> void:
 
 func take_damage(damage: int):
 	HP -= damage
+	hitmarker_sound.play()
 	_flash_red()
 	if HP <= 0:
 		explode()
@@ -250,6 +258,11 @@ func handle_attack():
 	var candidates = Hand.get_children().filter(func(c): return c.name.begins_with("WeaponBase"))
 	if candidates.size() > 0:
 		child = candidates.front()
+	elif Input.is_action_just_pressed("atacar_%s" % [player_id]) and not is_punching:
+		is_punching = true
+		$Sprite2D.play("punch")  # Reproducir animación de puñetazo
+		punch()
+
 	if Input.is_action_pressed("atacar_%s" % [player_id]) and child != null:
 		child.attack()
 	if Input.is_action_pressed("lanzar_arma_%s" % [player_id]) and child != null:
@@ -263,3 +276,19 @@ func _on_sprite_2d_animation_finished() -> void:
 	if $Sprite2D.animation == "walk-init":
 		$Sprite2D.play("walk-cycle")
 		last_state = "walk-cycle"
+	elif $Sprite2D.animation == "punch":
+		is_punching = false
+		
+func punch():
+	$Hand.monitoring = true
+	await get_tree().create_timer(0.1).timeout
+	punch_sound.play()
+	$Hand.monitoring = false
+
+func _on_hand_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player") and body != self:
+		body.take_damage(10)
+		if(Sprite.flip_h):
+			body.apply_recoil(Vector2(250,-20))
+		else:
+			body.apply_recoil(Vector2(250,-20))

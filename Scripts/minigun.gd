@@ -28,7 +28,7 @@ func shoot_bullet():
 		var bullet = bullet_scene.instantiate()
 		bullet.global_position = global_position
 		bullet.rotation = global_rotation
-
+		bullet.scale *= Vector2(0.5,0.5)
 		var base_dir = Vector2()
 		if Sprite.flip_h:
 			base_dir = Vector2.RIGHT.rotated(global_rotation)

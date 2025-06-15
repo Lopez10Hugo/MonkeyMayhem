@@ -50,7 +50,6 @@ func shoot_bullet():
 
 		shoot_sound.play()
 
-		# Empujar al jugador en dirección contraria al disparo (recoil)
 		var player = self.get_parent().get_parent()  # asumimos que el jugador es el abuelo de la arma
 		if player and player.has_method("apply_recoil"):
 			var recoil_direction = (Vector2.RIGHT if Sprite.flip_h else Vector2.LEFT) * -1  # dirección opuesta al disparo

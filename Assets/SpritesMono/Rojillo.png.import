@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8h1o5xtqnjv4"
-path="res://.godot/imported/spritesheet_rojillo.png-d25e209f4e30c75289768c0a21eef709.ctex"
+uid="uid://by1de3fbwxdbf"
+path="res://.godot/imported/Rojillo.png-7ebe20f71a64fc38e90c3d24191eab03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/SpritesMono/spritesheet_rojillo.png"
-dest_files=["res://.godot/imported/spritesheet_rojillo.png-d25e209f4e30c75289768c0a21eef709.ctex"]
+source_file="res://Assets/SpritesMono/Rojillo.png"
+dest_files=["res://.godot/imported/Rojillo.png-7ebe20f71a64fc38e90c3d24191eab03.ctex"]
 
 [params]
 
