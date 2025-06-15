@@ -23,7 +23,6 @@ var ronda_en_progreso = true
 
 @onready var tutorial_1: Label = $Tutorial1
 @onready var foto_tutorial_1: Panel = $Tutorial1/Foto_tutorial1
-@onready var pistola_tutorial: Area2D = $WeaponBase
 @onready var tutorial_2: Label = $tutorial2
 @onready var foto_tutorial_2: Panel = $tutorial2/foto_tutorial2
 @onready var tutorial_3: Label = $tutorial3
@@ -34,6 +33,8 @@ var ronda_en_progreso = true
 @onready var foto_tutorial_5: Panel = $tutorial5/foto_tutorial5
 @onready var tutorial_6: Label = $tutorial6
 @onready var foto_tutorial_6: Panel = $tutorial6/foto_tutorial6
+
+var ids_jugadores_ronda : Array = []
 
 func _ready():
 	#camara.current = true
@@ -80,11 +81,41 @@ func crear_jugadores():
 			#print('reset')
 			rondas_ganadas[i] = 0
 		match SeleccionPersonaje.skins_elegidas[i - 1]:
-			Color.RED:
+			0:
+				pass
+			1:
 				player.get_node("Sprite2D").sprite_frames = $Rojo.sprite_frames
-			Color.GREEN:
+			2:
 				player.get_node("Sprite2D").sprite_frames = $Graduado.sprite_frames
 	reset = false
+	
+func crear_jugadores_empate():
+	jugadores.clear()
+
+	for id in ids_jugadores_ronda:
+		var player = PlayerScene.instantiate()
+		
+		if id < puntos_spawn.size():
+			player.position = puntos_spawn[id]
+		else:
+			# Si no hay suficientes puntos de spawn definidos, asignar posición por defecto
+			player.position = Vector2(id * 30, 0)
+			print("No hay suficiente spawn definido para el jugador ", id, ". Usando posición por defecto.")
+		
+		add_child(player)
+		jugadores.append(player)
+		if reset:
+			#print('reset')
+			rondas_ganadas[id] = 0
+		match SeleccionPersonaje.skins_elegidas[id]:
+			0:
+				pass
+			1:
+				player.get_node("Sprite2D").sprite_frames = $Rojo.sprite_frames
+			2:
+				player.get_node("Sprite2D").sprite_frames = $Graduado.sprite_frames
+	reset = false
+
 
 func _process(delta: float) -> void:
 	if SeleccionPersonaje.high_contrast_enabled:
@@ -124,6 +155,7 @@ func _process(delta: float) -> void:
 			if ganadores.size() > 1:
 				print("Empate entre jugadores: ", ganadores)
 				jugadores = jugadores.filter(func(p): return ganadores.has(p.player_id))
+				ids_jugadores_ronda = jugadores.duplicate()
 				SeleccionPersonaje.num_jugadores = ganadores.size()
 				SeleccionPersonaje.mapa = "mapa_2"  # usa un mapa especial si querés
 				rondas_jugadas -= 1  # no contar esta ronda como una "oficial"
@@ -195,9 +227,9 @@ func resetear_ronda(empate : bool):
 
 	await get_tree().create_timer(1.0).timeout
 	ronda_en_progreso = true
-	crear_jugadores()
-	if empate:
+	if empate or SeleccionPersonaje.mapa == 'aleatorio':
 		crear_mapa()
+	crear_jugadores()
 	reset_armas()
 	actualizar_marcadores()
 	mensaje_victoria_ronda.hide()
@@ -210,6 +242,7 @@ func reset_armas() -> void:
 		arma.queue_free()
 		print('Borrando arma, ', arma.name)
 	# Volver a cargar armas aleatorias
+	await get_tree().process_frame
 	cargar_armas()
 
 func mostrar_resultado_final():
@@ -230,11 +263,22 @@ func mostrar_resultado_final():
 	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 
 func crear_mapa():
-	if SeleccionPersonaje.mapa != 'default':
+	if SeleccionPersonaje.mapa != 'default' and SeleccionPersonaje.mapa != "aleatorio":
 		#print("Cargando mapa desde SeleccionPersonaje:", SeleccionPersonaje.mapa)
 		var ruta = "res://Scenes/"
 		mostrar_tutoriales(false)
 		ruta += SeleccionPersonaje.mapa
+		ruta += ".tscn"
+		print("Cargando mapa: ", ruta)
+		cargar_mapa(ruta)
+		if mapa_base != null:
+			mapa_base.hide()
+		cargar_armas()
+	elif SeleccionPersonaje.mapa == 'aleatorio':
+		var ruta = "res://Scenes/"
+		mostrar_tutoriales(false)
+		var mapa_aleatorio = SeleccionPersonaje.mapas_disponibles[randi() % SeleccionPersonaje.mapas_disponibles.size()]
+		ruta += mapa_aleatorio
 		ruta += ".tscn"
 		print("Cargando mapa: ", ruta)
 		cargar_mapa(ruta)
@@ -251,7 +295,6 @@ func mostrar_tutoriales(mostrar : bool):
 	if mostrar:
 		tutorial_1.show()
 		foto_tutorial_1.show()
-		pistola_tutorial.show()
 		tabla_puntuaciones.show()
 		tutorial_2.show()
 		foto_tutorial_2.show()
@@ -266,7 +309,6 @@ func mostrar_tutoriales(mostrar : bool):
 	else:
 		tutorial_1.hide()
 		foto_tutorial_1.hide()
-		pistola_tutorial.hide()
 		tabla_puntuaciones.hide()
 		tutorial_2.hide()
 		foto_tutorial_2.hide()

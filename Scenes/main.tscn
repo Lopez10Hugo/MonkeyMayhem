@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=4 uid="uid://cts2878rykdgr"]
+[gd_scene load_steps=81 format=4 uid="uid://cts2878rykdgr"]
 
 [ext_resource type="Script" uid="uid://b6j4c4ju0vxo6" path="res://Scripts/main.gd" id="1_8gbba"]
 [ext_resource type="FontFile" uid="uid://dkkt3xoq4ajcs" path="res://Assets/Fonts/kiwisoda/KiwiSoda.ttf" id="2_21xkr"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cxfkewlgy5kpa" path="res://Scenes/killzone.tscn" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://6dybykqnfrcc" path="res://Scenes/Menus/pausa.tscn" id="4_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://b6knsfh0tbp35" path="res://Scenes/pantalla_carga.tscn" id="6_21xkr"]
-[ext_resource type="PackedScene" uid="uid://bqprjxmtwpuu2" path="res://Scenes/pistol.tscn" id="7_6bp64"]
 [ext_resource type="Texture2D" uid="uid://7m4e0ghqbngf" path="res://Assets/flechas_mando.png" id="8_344ge"]
 [ext_resource type="Texture2D" uid="uid://boxoym0oo5xgc" path="res://Themes/boton_x.jpeg" id="9_fdnlq"]
 [ext_resource type="Texture2D" uid="uid://wt1rr1lj1vpn" path="res://Assets/l2.png" id="10_jkdf5"]
@@ -717,9 +716,6 @@ shape = SubResource("WorldBoundaryShape2D_jjvhh")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
 [node name="Pantalla_carga" parent="." instance=ExtResource("6_21xkr")]
-
-[node name="WeaponBase" parent="." instance=ExtResource("7_6bp64")]
-position = Vector2(-111, -132)
 
 [node name="Tutorial1" type="Label" parent="."]
 offset_left = -390.0

@@ -44,6 +44,8 @@ func _on_button_mapa_item_selected(index: int) -> void:
 			SeleccionPersonaje.mapa = 'mapa_1'
 		2:
 			SeleccionPersonaje.mapa = 'mapa_2'
+		3:
+			SeleccionPersonaje.mapa = 'aleatorio'
 
 func _on_button_rondas_item_selected(index: int) -> void:
 	match index:
@@ -65,3 +67,4 @@ func create_buttons() -> void:
 	button_mapa.add_item("Mapa tutorial")
 	button_mapa.add_item("Mapa 1: Jungla")
 	button_mapa.add_item("Mapa 2: Depósito")
+	button_mapa.add_item("Mapa Aleatorio")

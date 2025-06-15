@@ -76,13 +76,17 @@ func _on_empezar_pressed() -> void:
 func _on_atras_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Menus/seleccion_personaje.tscn")
 
-var player_colors := [Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW]
-var player_color_index := [0, 0, 0, 0]  # Índice del color actual por jugador
-var skin_texture := preload("res://Assets/monillo.png")
+var player_colors = [0,1,2,3]
+var player_color_index = [0, 0, 0, 0]  # Índice del color actual por jugador
+var skin_texture_normal = preload("res://Assets/monillo.png")
+var skin_texture_rojo = preload("res://Assets/monillo_rojo.png")
+var skin_texture_graduado = preload("res://Assets/SpritesMono/mono_graduado_foto.png")
+
+var skin_textures = [skin_texture_normal,skin_texture_rojo,skin_texture_graduado]
 
 func update_player_skin(player_index: int) -> void:
-	skin_images[player_index].texture = skin_texture
-	skin_images[player_index].modulate = player_colors[player_color_index[player_index]]
+	skin_images[player_index].texture = skin_textures[player_color_index[player_index]]
+	#skin_images[player_index].modulate = player_colors[player_color_index[player_index]]
 
 func _on_izq_pressed(player_index: int) -> void:
 	player_color_index[player_index] = (player_color_index[player_index] - 1 + player_colors.size()) % player_colors.size()

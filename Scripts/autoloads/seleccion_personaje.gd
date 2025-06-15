@@ -11,6 +11,8 @@ var skins_elegidas = [
 	
 ]
 
+var mapas_disponibles = ["mapa_1", "mapa_2"]
+
 var armas_disponibles = [
 	"res://Scenes/shotgun.tscn",
 	"res://Scenes/sword.tscn",
