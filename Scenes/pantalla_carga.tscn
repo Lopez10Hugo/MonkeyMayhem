@@ -38,6 +38,6 @@ theme_override_colors/font_shadow_color = Color(0.219627, 0.445709, 1, 1)
 theme_override_constants/shadow_offset_x = -10
 theme_override_fonts/font = ExtResource("3_b8s5c")
 theme_override_font_sizes/font_size = 128
-text = "Ejemplo"
+text = "Cargando..."
 horizontal_alignment = 1
 vertical_alignment = 1

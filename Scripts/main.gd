@@ -36,6 +36,11 @@ var ronda_en_progreso = true
 
 var ids_jugadores_ronda : Array = []
 
+func _inicia_pantalla_ronda():
+	await get_tree().process_frame
+	await get_tree().create_timer(0.5).timeout
+	await poner_pantalla_carga(true,false)
+	
 func _ready():
 	#camara.current = true
 	mapa_actual = mapa_base
@@ -46,7 +51,9 @@ func _ready():
 	tabla_puntuaciones.show()
 	actualizar_marcadores()
 	mensaje_victoria_ronda.hide()
-	poner_pantalla_carga(false,false)
+	#poner_pantalla_carga(false,false)
+	call_deferred('_inicia_pantalla_ronda')
+
 
 func actualizar_marcadores():
 	var contenedor = tabla_puntuaciones
@@ -364,6 +371,7 @@ func poner_pantalla_carga(next_round: bool,empate : bool) -> void:
 		jugador.puede_moverse = false
 	
 	pantalla_carga.show()
+	await get_tree().process_frame
 	print('Cargando...')
 	await pantalla_carga.iniciar(next_round,empate)
 	pantalla_carga.hide()

@@ -21,6 +21,7 @@ func iniciar(next_round: bool, empate: bool) -> void:
 	esconder()
 
 func contar_regresivamente():
+	print('Cuenta regresiva...')
 	for i in countdown:  # i = 0,1,2
 		var restante = countdown - i
 		label.text = "Próxima ronda en %d..." % restante

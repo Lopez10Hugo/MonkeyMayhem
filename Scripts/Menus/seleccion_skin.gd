@@ -64,6 +64,10 @@ func _ready() -> void:
 func _on_focus_entered() -> void:
 	izq_1.grab_focus()
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().change_scene_to_file("res://Scenes/Menus/seleccion_personaje.tscn")
+
 func _on_empezar_pressed() -> void:
 	SeleccionPersonaje.skins_elegidas.clear()
 	for i in range(SeleccionPersonaje.num_jugadores):
@@ -76,7 +80,7 @@ func _on_empezar_pressed() -> void:
 func _on_atras_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Menus/seleccion_personaje.tscn")
 
-var player_colors = [0,1,2,3]
+var player_colors = [0,1,2]
 var player_color_index = [0, 0, 0, 0]  # Índice del color actual por jugador
 var skin_texture_normal = preload("res://Assets/monillo.png")
 var skin_texture_rojo = preload("res://Assets/monillo_rojo.png")
