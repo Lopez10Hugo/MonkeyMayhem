@@ -73,7 +73,6 @@ func _on_empezar_pressed() -> void:
 	for i in range(SeleccionPersonaje.num_jugadores):
 		var color_index = player_color_index[i]
 		SeleccionPersonaje.skins_elegidas.append(player_colors[color_index])
-	print("AAAA", SeleccionPersonaje.skins_elegidas)
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
 
@@ -85,8 +84,8 @@ var player_color_index = [0, 0, 0, 0]  # Índice del color actual por jugador
 var skin_texture_normal = preload("res://Assets/monillo.png")
 var skin_texture_rojo = preload("res://Assets/monillo_rojo.png")
 var skin_texture_graduado = preload("res://Assets/SpritesMono/mono_graduado_foto.png")
-
-var skin_textures = [skin_texture_normal,skin_texture_rojo,skin_texture_graduado]
+var skin_texture_spiderman = preload("res://Assets/SpritesMono/MonoSpiderman_foto.png")
+var skin_textures = [skin_texture_normal,skin_texture_rojo,skin_texture_graduado,skin_texture_spiderman]
 
 func update_player_skin(player_index: int) -> void:
 	skin_images[player_index].texture = skin_textures[player_color_index[player_index]]

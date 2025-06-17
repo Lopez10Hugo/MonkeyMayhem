@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpyrefq2fq1y"
-path="res://.godot/imported/cuadrado.jpeg-4addd58f8b32f93ae35a7eef9873de93.ctex"
+uid="uid://wptct63volfm"
+path="res://.godot/imported/MonoSpiderman_foto.png-db9e7c673e147d876676122d0f3e1d5f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cuadrado.jpeg"
-dest_files=["res://.godot/imported/cuadrado.jpeg-4addd58f8b32f93ae35a7eef9873de93.ctex"]
+source_file="res://Assets/SpritesMono/MonoSpiderman_foto.png"
+dest_files=["res://.godot/imported/MonoSpiderman_foto.png-db9e7c673e147d876676122d0f3e1d5f.ctex"]
 
 [params]
 
