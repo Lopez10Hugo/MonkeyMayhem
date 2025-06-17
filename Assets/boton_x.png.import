@@ -2,16 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c43k0gfcu0tfa"
-path="res://.godot/imported/boton_o.jpeg-3172acaf0f052023abe8d65216916b04.ctex"
-metadata={
-"vram_texture": false
-}
+uid="uid://dige4sl82t7bf"
+valid=false
 
 [deps]
 
-source_file="res://Assets/boton_o.jpeg"
-dest_files=["res://.godot/imported/boton_o.jpeg-3172acaf0f052023abe8d65216916b04.ctex"]
+source_file="res://Assets/boton_x.png"
 
 [params]
 

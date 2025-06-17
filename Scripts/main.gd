@@ -94,6 +94,9 @@ func crear_jugadores():
 				player.get_node("Sprite2D").sprite_frames = $Rojo.sprite_frames
 			2:
 				player.get_node("Sprite2D").sprite_frames = $Graduado.sprite_frames
+			3:
+				player.get_node("Sprite2D").sprite_frames = $Spiderman.sprite_frames
+				
 	reset = false
 	
 func crear_jugadores_empate():

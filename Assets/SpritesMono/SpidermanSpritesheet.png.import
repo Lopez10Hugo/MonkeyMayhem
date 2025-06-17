@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c88by4twwfw0m"
-path="res://.godot/imported/triangulo.jpeg-f4aa5c4b2d372795d1c4ffbdb576122c.ctex"
+uid="uid://cnu0e7chldgxv"
+path="res://.godot/imported/SpidermanSpritesheet.png-01905a511c1f01fedaaae5fd7665dc55.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/triangulo.jpeg"
-dest_files=["res://.godot/imported/triangulo.jpeg-f4aa5c4b2d372795d1c4ffbdb576122c.ctex"]
+source_file="res://Assets/SpritesMono/SpidermanSpritesheet.png"
+dest_files=["res://.godot/imported/SpidermanSpritesheet.png-01905a511c1f01fedaaae5fd7665dc55.ctex"]
 
 [params]
 

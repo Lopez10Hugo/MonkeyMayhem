@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://duvnfsjytk38v"]
+[gd_scene load_steps=13 format=3 uid="uid://duvnfsjytk38v"]
 
 [ext_resource type="Texture2D" uid="uid://bhbgwyujqpepl" path="res://Assets/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest of Illusion/Forest of Illusion Expansion Pack/Layers/back.png" id="1_plplt"]
 [ext_resource type="Script" uid="uid://cup6bx8lv1lk8" path="res://Scripts/Menus/options_menu.gd" id="1_uj0ok"]
