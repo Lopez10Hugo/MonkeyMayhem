@@ -8,17 +8,17 @@
 [ext_resource type="PackedScene" uid="uid://ci623np0twgr4" path="res://Scenes/Menus/controles.tscn" id="5_wuvo6"]
 [ext_resource type="PackedScene" uid="uid://by8ycvahi1byv" path="res://Scenes/Menus/sonido.tscn" id="6_wuvo6"]
 [ext_resource type="PackedScene" uid="uid://6yd088206y4k" path="res://Scenes/Menus/accesibilidad.tscn" id="7_mjiau"]
-[ext_resource type="Texture2D" uid="uid://boxoym0oo5xgc" path="res://Themes/boton_x.jpeg" id="9_r642v"]
-[ext_resource type="Texture2D" uid="uid://cgtkyg3fqwc2y" path="res://Themes/boton_o.jpeg" id="10_62r4j"]
+[ext_resource type="Texture2D" uid="uid://jwuptoqqrbbj" path="res://Assets/boton_x (1).png" id="9_pcs5k"]
+[ext_resource type="Texture2D" uid="uid://cvqjwf7n0eer8" path="res://Assets/boton_o (1).png" id="10_r642v"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uj0ok"]
 texture = ExtResource("1_plplt")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3g5iq"]
-texture = ExtResource("9_r642v")
+texture = ExtResource("9_pcs5k")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vklxx"]
-texture = ExtResource("10_62r4j")
+texture = ExtResource("10_r642v")
 
 [node name="Options Menu" type="Control"]
 layout_mode = 3
@@ -162,15 +162,15 @@ text = "Atrás:"
 [node name="imagen_confirmar" type="Panel" parent="instrucciones"]
 offset_left = 121.0
 offset_top = 575.0
-offset_right = 156.0
-offset_bottom = 604.0
+offset_right = 163.0
+offset_bottom = 609.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_3g5iq")
 
 [node name="imagen_atras" type="Panel" parent="instrucciones"]
 offset_left = 256.0
 offset_top = 572.0
-offset_right = 295.0
-offset_bottom = 605.0
+offset_right = 304.0
+offset_bottom = 612.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_vklxx")
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
