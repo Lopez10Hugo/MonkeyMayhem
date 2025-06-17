@@ -9,7 +9,7 @@ var tween: Tween
 
 func _ready():
 	weapon_name = "Sniper"
-	damage = 30
+	damage = 50
 	is_melee = false
 	sprite_texture = preload("res://.godot/imported/laser_rifle_by_ashmo.png-d744b7e4ed36763e5b4047e818b7803d.ctex")
 	laser_line.default_color = Color(1, 0, 0)  # Rojo normal

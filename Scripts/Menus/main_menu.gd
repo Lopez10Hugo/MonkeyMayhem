@@ -5,6 +5,8 @@ extends Control
 @onready var margin_container_main: MarginContainer = $MarginContainer
 @onready var boton_play: Button = $MarginContainer/VBoxContainer2/VBoxContainer/Start
 @onready var main_menu: Control = $"."
+@onready var titulo: Panel = $titulo
+
 
 func _ready() -> void:
 	options_menu.exit_options.connect(on_exit_options)
@@ -19,6 +21,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func on_exit_options() -> void:
 	margin_container_main.visible = true
 	fondo_main.visible = true
+	titulo.visible = true
 	options_menu.visible = false
 	boton_play.grab_focus()
 	SettingsSignalBus.emit_set_settings_dict(SettingsDataContainer.create_storage_dict())
@@ -29,6 +32,7 @@ func _on_start_pressed() -> void:
 
 
 func _on_options_pressed() -> void:
+	titulo.visible= false
 	margin_container_main.visible = false
 	fondo_main.visible = false
 	options_menu.set_process(true)
