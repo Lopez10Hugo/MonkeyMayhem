@@ -19,5 +19,6 @@ var armas_disponibles = [
 	"res://Scenes/minigun.tscn",
 	"res://Scenes/pistol.tscn",
 	"res://Scenes/guided_pistol.tscn",
-	#"res://Scenes/shotgun.tscn",
+	"res://Scenes/shotgun.tscn",
+	"res://Scenes/Sniper.tscn"
 ]

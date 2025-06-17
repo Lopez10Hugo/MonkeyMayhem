@@ -83,7 +83,11 @@ var player_colors = [0,1,2,3]
 var player_color_index = [0, 0, 0, 0]  # Índice del color actual por jugador
 var skin_texture_normal = preload("res://Assets/monillo.png")
 var skin_texture_rojo = preload("res://Assets/monillo_rojo.png")
+<<<<<<< Updated upstream
 var skin_texture_graduado = preload("res://Assets/SpritesMono/mono_graduado_sinfondo.png")
+=======
+var skin_texture_graduado = preload("res://Assets/SpritesMono/mono.png")
+>>>>>>> Stashed changes
 var skin_texture_spiderman = preload("res://Assets/SpritesMono/MonoSpiderman_foto.png")
 var skin_textures = [skin_texture_normal,skin_texture_rojo,skin_texture_graduado,skin_texture_spiderman]
 
