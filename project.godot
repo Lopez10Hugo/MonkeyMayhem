@@ -13,7 +13,10 @@ config_version=5
 config/name="Mono juego"
 run/main_scene="uid://beo6iadyjm0u0"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://Assets/icon.svg"
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+config/icon="uid://cc0av8as2cyko"
 
 [autoload]
 
