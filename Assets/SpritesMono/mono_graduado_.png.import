@@ -2,18 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-
-uid="uid://bnyvjugxg8w7m"
-
-path="res://.godot/imported/triangulo.png-56145db3c8740b086d3aac1f95489ea7.ctex"
+uid="uid://bjbhvvfrdx1qk"
+path="res://.godot/imported/mono_graduado_.png-dd66749049ced48675499d1432b30dbf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/triangulo.png"
-dest_files=["res://.godot/imported/triangulo.png-56145db3c8740b086d3aac1f95489ea7.ctex"]
+source_file="res://Assets/SpritesMono/mono_graduado_.png"
+dest_files=["res://.godot/imported/mono_graduado_.png-dd66749049ced48675499d1432b30dbf.ctex"]
 
 [params]
 

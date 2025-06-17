@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=4 uid="uid://cts2878rykdgr"]
+[gd_scene load_steps=112 format=4 uid="uid://cts2878rykdgr"]
 
 [ext_resource type="Script" uid="uid://b6j4c4ju0vxo6" path="res://Scripts/main.gd" id="1_8gbba"]
 [ext_resource type="FontFile" uid="uid://dkkt3xoq4ajcs" path="res://Assets/Fonts/kiwisoda/KiwiSoda.ttf" id="2_21xkr"]
@@ -8,11 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://b6knsfh0tbp35" path="res://Scenes/pantalla_carga.tscn" id="6_21xkr"]
 [ext_resource type="Theme" uid="uid://d28wke34y3qap" path="res://Themes/tema_general.tres" id="7_wsu2k"]
 [ext_resource type="Texture2D" uid="uid://7m4e0ghqbngf" path="res://Assets/flechas_mando.png" id="8_344ge"]
-[ext_resource type="Texture2D" uid="uid://jwuptoqqrbbj" path="res://Assets/boton_x (1).png" id="9_wsu2k"]
+
+[ext_resource type="Texture2D" uid="uid://4emef5ed7w2w" path="res://Assets/boton_x (1).png" id="9_wsu2k"]
 [ext_resource type="Texture2D" uid="uid://wt1rr1lj1vpn" path="res://Assets/l2.png" id="10_jkdf5"]
 [ext_resource type="Texture2D" uid="uid://dkt0ps5xjfsx5" path="res://Assets/r2.png" id="11_wsu2k"]
-[ext_resource type="Texture2D" uid="uid://btgcu5cd6wk0o" path="res://Assets/triangulo.png" id="12_k12tt"]
-[ext_resource type="Texture2D" uid="uid://dxl6w5nwfjp7x" path="res://Assets/cuadrado (1).png" id="13_h1bgf"]
+[ext_resource type="Texture2D" uid="uid://bnyvjugxg8w7m" path="res://Assets/triangulo.png" id="12_k12tt"]
+[ext_resource type="Texture2D" uid="uid://bas6oo1v3bw6t" path="res://Assets/cuadrado (1).png" id="13_h1bgf"]
+
 [ext_resource type="Texture2D" uid="uid://by1de3fbwxdbf" path="res://Assets/SpritesMono/Rojillo.png" id="14_wsu2k"]
 [ext_resource type="Texture2D" uid="uid://cnu0e7chldgxv" path="res://Assets/SpritesMono/SpidermanSpritesheet.png" id="15_k12tt"]
 [ext_resource type="Texture2D" uid="uid://b2e2pdo2o4440" path="res://Assets/SpritesMono/Graduado.png" id="15_wsu2k"]
@@ -204,10 +206,10 @@ texture = ExtResource("10_jkdf5")
 texture = ExtResource("11_wsu2k")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pdsj5"]
-texture = ExtResource("8_fdnlq")
+texture = ExtResource("12_k12tt")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ee4r6"]
-texture = ExtResource("8_fdnlq")
+texture = ExtResource("13_h1bgf")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jwpg7"]
 atlas = ExtResource("14_wsu2k")
@@ -955,10 +957,12 @@ text = "Para moverte usa las
 
 [node name="Foto_tutorial1" type="Panel" parent="Tutorial1"]
 layout_mode = 0
-offset_left = 229.0
-offset_top = 3.0
-offset_right = 284.0
-offset_bottom = 55.0
+
+offset_left = 230.0
+offset_top = -1.0
+offset_right = 290.0
+offset_bottom = 56.0
+
 theme_override_styles/panel = SubResource("StyleBoxTexture_ynf5e")
 
 [node name="tutorial2" type="Label" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://duvnfsjytk38v"]
+[gd_scene load_steps=14 format=3 uid="uid://duvnfsjytk38v"]
 
 [ext_resource type="Texture2D" uid="uid://bhbgwyujqpepl" path="res://Assets/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest of Illusion/Forest of Illusion Expansion Pack/Layers/back.png" id="1_plplt"]
 [ext_resource type="Script" uid="uid://cup6bx8lv1lk8" path="res://Scripts/Menus/options_menu.gd" id="1_uj0ok"]
@@ -8,8 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://ci623np0twgr4" path="res://Scenes/Menus/controles.tscn" id="5_wuvo6"]
 [ext_resource type="PackedScene" uid="uid://by8ycvahi1byv" path="res://Scenes/Menus/sonido.tscn" id="6_wuvo6"]
 [ext_resource type="PackedScene" uid="uid://6yd088206y4k" path="res://Scenes/Menus/accesibilidad.tscn" id="7_mjiau"]
-[ext_resource type="Texture2D" uid="uid://jwuptoqqrbbj" path="res://Assets/boton_x (1).png" id="9_pcs5k"]
-[ext_resource type="Texture2D" uid="uid://cvqjwf7n0eer8" path="res://Assets/boton_o (1).png" id="10_r642v"]
+
+[ext_resource type="Texture2D" uid="uid://4emef5ed7w2w" path="res://Assets/boton_x (1).png" id="9_pcs5k"]
+[ext_resource type="Texture2D" uid="uid://cgf2ethc4jok0" path="res://Assets/boton_o (1).png" id="10_r642v"]
+
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uj0ok"]
 texture = ExtResource("1_plplt")
@@ -161,16 +163,20 @@ text = "Atrás:"
 
 [node name="imagen_confirmar" type="Panel" parent="instrucciones"]
 offset_left = 121.0
-offset_top = 575.0
-offset_right = 163.0
-offset_bottom = 609.0
+
+offset_top = 571.0
+offset_right = 167.0
+offset_bottom = 604.0
+
 theme_override_styles/panel = SubResource("StyleBoxTexture_3g5iq")
 
 [node name="imagen_atras" type="Panel" parent="instrucciones"]
 offset_left = 256.0
 offset_top = 572.0
-offset_right = 304.0
-offset_bottom = 612.0
+
+offset_right = 311.0
+offset_bottom = 610.0
+
 theme_override_styles/panel = SubResource("StyleBoxTexture_vklxx")
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
