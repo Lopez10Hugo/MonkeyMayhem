@@ -15,8 +15,8 @@ var mapas_disponibles = ["mapa_1", "mapa_2","mapa_3"]
 
 var armas_disponibles = [
 	"res://Scenes/shotgun.tscn",
-	"res://Scenes/sword.tscn",
-	"res://Scenes/minigun.tscn",
+	"res://Scenes/Sword.tscn",
+	"res://Scenes/Minigun.tscn",
 	"res://Scenes/pistol.tscn",
 	"res://Scenes/guided_pistol.tscn",
 	"res://Scenes/shotgun.tscn",
